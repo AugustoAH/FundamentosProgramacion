@@ -61,10 +61,10 @@ for i in range(1, 6):                # │           │                  │
 print("Fin del conteo")              #                            [ Sigue ]
 
 '''
-La funcion (in) significa "en" su función es decirle a Python que mire dentro de un grupo de cosas 
+──▶ Python (in): La funcion (in) significa "en" su función es decirle a Python que mire dentro de un grupo de cosas 
 y saque los elementos uno por uno".
 
-Como a veces no tenemos una lista ya creada, usamos range(), esta función fabrica una secuencia de 
+──▶ Python (range): Como a veces no tenemos una lista ya creada, usamos range(), esta función fabrica una secuencia de 
 números sobre la marcha, es como una máquina que genera una fila de números para que el (for)
 los recorra.
 
@@ -81,20 +81,49 @@ El tercer número es para saltar de tanto en tanto.
 range(1, 11, 2) → 1, 3, 5, 7, 9 (va saltando de 2 en 2).
 
 
-'''
-
-'''
-               
-               
-               
-               
-               
-               
-               
-               ──▶ Bucle while: Es un bucle que se ejecuta mientras se cumpla una condición. 
+──▶ Bucle while: Es un bucle que se ejecuta mientras se cumpla una condición. 
  Se utiliza cuando no se conoce el número de iteracciones que se van a realizar, 
  pero se sabe que se desea repetir un bloque de instrucciones mientras se cumpla una condición.    
 
+La condición que se utiliza para comprobar si se tiene que ejecutar una
+interacción deberá ser (true), la ejecución del bucle se detendrá cuando 
+la condición sea (false). La condición se evalúa antes de cada iteracción,
+por lo que si la condición es (false) desde el principio, el bloque de instrucciones 
+no se ejecutará ni una sola vez.
+
+Los bucles (while) tienen la siguiente sintaxis:
+while condición:
+    bloque de instrucciones
+
+Elementos en detalle:
+(while): Indicador de comienzo del bucle while.
+(condición): condición que se debe de cumplir para que siga repitiéndose la ejecución
+del bucle.
+(bloque de instrucciones): Es el conjunto de instrucciones que se ejecutará en cada iteracción
+
+           [Inicio]
+               |
+         while x > 0:)
+               |
+┌──────▶ [¿Condición?] ─────(False)───────┐
+│              |                          |
+│           (True)                        |
+│              ▼                          |
+│       [Bloque Código]                   |
+│              |                          |
+└──────────────┘                          ▼
+                                      [ Sigue ]
+                                          |
+                                        [Fin]           
 '''
+contador = 3
+
+                                 # ┌──▶ [¿contador > 0?] ──(F)──┐
+while contador > 0:              # │           │                │
+    print(contador)              # │          (V)               │
+    contador -= 1                # │           ▼                │
+                                 # │    [Bloque Código]         │
+                                 # └───────────┘                │
+print("¡Despegue!")              #                          [ Sigue ]
 
 
