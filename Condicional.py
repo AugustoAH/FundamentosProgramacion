@@ -165,6 +165,7 @@ if usuario == "admin" and password == 1234:
 else:
     print("Datos incorrectos")
 print("----------------")
+#----------------------------------------------------------------------
 print("----------------")
 print("Escribir un número de 1 a 10")
 numero= int(input())
@@ -175,6 +176,7 @@ elif(numero == 5):
 else:
     print("Soy menor o igual que 5")
 print("----------------")
+#----------------------------------------------------------------------
 print("----------------")
 edad = int(input("¿Cuántos años tienes? "))
 if edad < 4:
