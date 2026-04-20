@@ -122,8 +122,8 @@ contador = 3
 while contador > 0:              # │           │                │
     print(contador)              # │          (V)               │
     contador -= 1                # │           ▼                │
-                                 # │    [Bloque Código]         │
-                                 # └───────────┘                │
-print("¡Despegue!")              #                          [ Sigue ]
+else:                            # │    [Bloque Código]         │
+    print("¡Despegue!")          # └───────────┘                │
+                                 #                          [ Sigue ]
 
 
