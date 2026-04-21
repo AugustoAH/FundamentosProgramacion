@@ -151,7 +151,6 @@ A diferencia de (break) que rompe el bucle por completo, continue permite contin
 
 '''
 # Ejemplo de uso de break
-
 print("Ejemplo de break en un bucle for")
 for i in range(1, 10):
     if i == 5:
@@ -171,3 +170,64 @@ for i in range(1, 10):
     print(f"Número: {i}")
 print("Bucle terminado.")
 print("------------------------------")
+
+'''
+Iteradores
+Otra forma de recorrer los elementos de un objeto en Python es utilizando iteradores. Un iterador es un objeto que, al aplicarlo 
+sobre otro objeto iterable, como son las cadenas de texto o los conjuntos, nos permite obtener el siguiente elemento por visitar.
+
+1. Iterable vs. Iterador (El Libro y el Marcapáginas)
+Iterable (El Libro): Es cualquier cosa que contenga elementos que puedas recorrer (una cadena de texto, una lista, una tupla). 
+Sabes que tiene páginas, pero el libro por sí solo no sabe por cuál página vas leyendo.
+
+Iterador (El Marcapáginas): Es una herramienta que recuerda exactamente en qué posición te quedaste y sabe cómo pasar a la siguiente.
+
+──▶ La función iter() es la encargada de crear ese marcapáginas.
+
+2. Cómo funciona en el código: iter() y next()
+Cuando usas iter(), Python no imprime nada, solo "prepara" el marcapáginas. 
+Para ir avanzando y viendo los elementos uno a uno, necesitas a su mejor amigo: la función next().
+
+'''
+print("Ejemplo de iteradores con una cadena de texto")
+cadena = "Hola"
+
+# 1. Creamos el iterador (ponemos el marcapáginas al inicio)
+mi_iterador = iter(cadena)
+
+# 2. Pedimos el siguiente elemento usando next()
+print(next(mi_iterador))  # Imprime: 'H'
+print(next(mi_iterador))  # Imprime: 'o'
+print(next(mi_iterador))  # Imprime: 'l'
+print(next(mi_iterador))  # Imprime: 'a'
+print("------------------------------")
+'''
+Cada vez que llamas a next(), el iterador te da la letra actual y avanza un paso automáticamente.
+
+¿Qué pasa cuando se acaba la palabra?
+Si intentas usar next() cuando ya no quedan más letras, Python se queja y lanza un error especial llamado StopIteration. 
+Es su forma de decir: "¡Oye, ya llegamos al final del libro!".
+
+El Gran Secreto del Bucle (for)
+El bucle (for) no es más que una ilusión, por debajo cuando se escribes un (for) Python en realidad hace todo este trabajo manual 
+por ti. Esconde el iter(), usa el next() repetidamente y oculta el error StopIteration para que el programa termine elegantemente.
+
+Es decir, cuando tú escribes esto:
+'''
+for letra in "Hola":
+    print(letra)
+
+#Python, internamente, lo convierte en algo parecido a esto:
+
+mi_iterador = iter("Hola")
+
+while True:
+    try:
+        letra = next(mi_iterador)
+        print(letra)
+    except StopIteration:
+        break # Si sale el error de que se acabó, rompe el bucle
+'''
+En resumen: Utilizar iter() y next() te permite tener el control manual y absoluto de cuándo avanzas al siguiente elemento, en
+lugar de que el (for) lo haga todo de golpe de principio a fin.
+'''
