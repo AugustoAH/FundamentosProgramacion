@@ -42,6 +42,7 @@ Elementos en detalle:
                                                 |
                                               [Fin]
 '''
+print("Ejemplo de bucle for impresión de nombres")
 nombres = ["Ana", "Leo", "Mia"] # Lista de nombres
                                  # ┌──▶ [¿Hay más items?] ──(F)──┐
 for nombre in nombres:           # │          │                  │
@@ -50,16 +51,17 @@ for nombre in nombres:           # │          │                  │
                                  # │    [Bloque Código]          │
                                  # └──────────┘                  │
 print("Todos saludados")         #                           [ Sigue ]
-
+print("------------------------------")
 #----------------------------------------------------------------------
+print
                                      # ┌──▶ [¿Quedan números?] ──(F)──┐
 for i in range(1, 6):                # │           │                  │
     print(f"Número: {i}")            # │          (V)                 │
-                                     # │           ▼                  │
-                                     # │    [Imprimir Número]         │
+else:                                # │           ▼                  │
+    print("Fin del conteo")          # │    [Imprimir Número]         │
                                      # └───────────┘                  │
-print("Fin del conteo")              #                            [ Sigue ]
-
+                                     #                            [ Sigue ]
+print("------------------------------")
 '''
 ──▶ Python (in): La funcion (in) significa "en" su función es decirle a Python que mire dentro de un grupo de cosas 
 y saque los elementos uno por uno".
@@ -116,6 +118,7 @@ del bucle.
                                           |
                                         [Fin]           
 '''
+print
 contador = 3
 
                                  # ┌──▶ [¿contador > 0?] ──(F)──┐
@@ -125,5 +128,46 @@ while contador > 0:              # │           │                │
 else:                            # │    [Bloque Código]         │
     print("¡Despegue!")          # └───────────┘                │
                                  #                          [ Sigue ]
+print("------------------------------")
 
+'''
+(else) en un bucle no funciona igual que el (else) de un (if), en un bucle el (else) significa: "Ejecútate solo si el bucle terminó de forma natural".
 
+¿Qué es "terminar de forma natural"? : Un bucle termina de forma natural cuando se cumplen las condiciones para que deje de ejecutarse, 
+es decir, cuando el bucle no se detiene por una interrupción externa como un (break) o una excepción.
+
+──▶ En el (for): Se recorrieron todos los elementos de la lista o el rango.
+──▶ En el (while): La condición se volvió falsa.
+
+FUNCIONES IMPORTATES PARA CONTROLAR LOS BUCLES:
+──▶ (break) - Freno de Emergencia
+La instrucción break sirve para salir inmediatamente del bucle, sin importar si la condición todavía es verdadera 
+o si quedan elementos en la lista, en cuanto Python ejecuta la instrucción (break), el bucle se rompe y el programa 
+sigue con lo que haya después del Bucle.
+
+──▶ (continue) - un pequeño salto
+La insrucción se utiliza para omitir el resto del código en la iteración actual y saltar inmediatamente a la siguiente. 
+A diferencia de (break) que rompe el bucle por completo, continue permite continuar con la ejecución del ciclo. 
+
+'''
+# Ejemplo de uso de break
+
+print("Ejemplo de break en un bucle for")
+for i in range(1, 10):
+    if i == 5:
+        print("¡Se encontró el número 5! Saliendo del bucle.")
+        break
+    print(f"Número: {i}")
+print("Bucle terminado.")
+print("------------------------------")
+
+# Ejemplo de uso de continue
+
+print("Ejemplo de continue en un bucle for")
+for i in range(1, 10):
+    if i == 5:
+        print("¡Se encontró el número 5! Omitiendo.")
+        continue
+    print(f"Número: {i}")
+print("Bucle terminado.")
+print("------------------------------")
