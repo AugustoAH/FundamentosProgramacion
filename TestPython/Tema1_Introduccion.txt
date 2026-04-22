@@ -1,0 +1,187 @@
+
+1. En Python, a diferencia de otros lenguajes como Java o C++, los bloques de código se definen 
+mediante ____.
+
+a) indentación
+b) palabras clave begin/end
+c) llaves {}
+d) paréntesis ()
+
+Respuesta: a)
+
+2. Según la guía de estilo PEP 8, el número recomendado de espacios para cada nivel de indentación 
+en Python es ____.
+
+a) 3
+b) 4
+c) 2
+d) 8
+
+Respuesta: b)
+
+3. El error que se produce cuando la indentación no es consistente en Python se denomina ____.
+
+a) SyntaxError
+b) IndentationError
+c) FormatError
+d) SpaceError
+
+Respuesta: b)
+
+4. En Python, los identificadores válidos deben comenzar con ____.
+
+a) un número o una letra
+b) cualquier carácter alfanumérico
+c) una letra o un guion bajo
+d) un símbolo especial
+
+Respuesta: c)
+
+5. La convención de nomenclatura recomendada en Python para variables y funciones es ____.
+
+a) camelCase
+b) snake_case
+c) UPPERCASE
+d) PascalCase
+
+Respuesta: b)
+
+6. En Python, los términos reservados que tienen un significado especial y no pueden usarse como 
+identificadores se llaman ____.
+
+a) operadores
+b) palabras clave
+c) literales
+d) tokens especiales
+
+Respuesta: b)
+
+7. Para verificar si una cadena es una palabra clave en Python, se puede usar la función ____ del módulo keyword.
+
+a) iskeyword()
+b) is_keyword()
+c) isreserved()
+d) checkKeyword()
+
+Respuesta: a)
+
+8. Los comentarios de una línea en Python comienzan con el símbolo ____.
+
+a) #
+b) /*
+c) //
+d) --
+
+Respuesta: a)
+
+9. Las cadenas de documentación en Python, conocidas como ____, se definen usando triple comillas.
+
+a) commentdocs
+b) helpstrings
+c) pydocs
+d) docstrings
+
+Respuesta:  d)
+
+10. Para acceder programáticamente al docstring de una función en Python, se utiliza el atributo ____.
+
+a) info
+b) help
+c) docstring
+d) doc
+
+Respuesta: d)
+
+11. El error que ocurre cuando se mezclan tabulaciones y espacios de manera inconsistente en Python se llama ____.
+
+a) TabError
+b) MixedIndentError
+c) SpaceTabError
+d) IndentMixError
+
+Respuesta: a)
+
+12. En Python, la convención para nombrar constantes es usar ____.
+
+a) PascalCase
+b) snake_case
+c) MAYÚSCULAS_CON_GUIONES
+d) camelCase
+
+Respuesta: c) 
+
+13. Los identificadores en Python que comienzan con doble guion bajo (como __init__) se conocen comúnmente como métodos ____.
+
+a) protegidos
+b) privados
+c) dunder
+d) especiales
+
+Respuesta: c)
+
+14. La directiva especial que se coloca al inicio de un archivo Python en sistemas Unix para indicar qué intérprete usar se llama ____.
+
+a) shebang
+b) directive
+c) hashbang
+d) interpreter
+
+Respuesta: a)
+
+15. En Python, la convención para nombrar clases es usar ____.
+
+a) snake_case
+b) UPPERCASE
+c) camelCase
+d) PascalCase
+
+Respuesta: d)
+
+16. Para comentar temporalmente varias líneas de código en Python, una práctica común es ____.
+
+a) encerrar el código entre <!-- y -->
+b) colocar # al inicio de cada línea
+c) usar la palabra clave comment
+d) encerrar el código entre /* y */
+
+Respuesta: b)
+
+17. La etiqueta que se usa comúnmente en comentarios para marcar código que necesita ser revisado o mejorado en el futuro es ____.
+
+a) # TODO:
+b) # PENDING:
+c) # LATER:
+d) # REVIEW:
+
+Respuesta: a)
+
+18. En Python, un identificador que comienza con un solo guion bajo (como _variable) indica por convención que es ____.
+
+a) Parte no pública / de uso interno
+b) Global
+c) Pública / API estable
+d) Constante
+
+Respuesta: a)
+
+19. La función que permite verificar si una cadena es un identificador válido en Python es ____.
+
+a) check_identifier()
+b) valid_id()
+c) isidentifier()
+d) is_valid_name()
+
+Respuesta: c)
+
+20. Cuando se escribe un docstring para una función en Python, es una buena práctica incluir información sobre ____.
+
+a) parámetros, valor de retorno y excepciones
+b) el autor y la fecha de creación
+c) únicamente los parámetros de entrada
+d) solo el propósito general de la función
+
+Respuesta: a)
+
+
+
+

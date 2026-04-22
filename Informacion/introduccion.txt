@@ -1,0 +1,55 @@
+
+Python Tema 1: Introducción
+
+Bloque de introducción e instalación del entorno Python para programar.
+
+Python se ha convertido en uno de los lenguajes de programación más populares y versátiles del mundo. 
+Su filosofía de diseño enfatiza la legibilidad del código con una sintaxis clara y expresiva, lo que 
+permite a los programadores expresar conceptos en menos líneas de código que otros lenguajes. 
+Creado por Guido van Rossum a finales de los años 80, Python ha crecido hasta ser utilizado en 
+múltiples ámbitos: desarrollo web, ciencia de datos, inteligencia artificial, automatización, 
+análisis científico y muchos más.
+
+Enlace: https://docs.python.org/3/
+
+Contenidos del Tema 1
+
+En este primer tema sentaremos las bases necesarias para comenzar a programar en Python:
+
+1. Introducción a Python
+
+Exploraremos qué hace a Python especial, su filosofía "Zen of Python", y por qué se ha convertido 
+en una herramienta fundamental en el mundo de la programación. Conoceremos sus principales 
+características como lenguaje interpretado, dinámicamente tipado y multiplataforma.
+
+2. Instalación de Python
+
+Aprenderás a instalar Python en diferentes sistemas operativos (Windows, macOS, Linux), 
+configurar correctamente el entorno de desarrollo y conocer las diferentes opciones disponibles 
+como distribuciones estándar o Anaconda. También veremos los primeros pasos con el intérprete 
+interactivo.
+
+3. Versiones de Python
+
+Analizaremos las diferencias entre Python 2 y Python 3, entenderemos la evolución del lenguaje y 
+las razones para usar las versiones más recientes. Conoceremos el ciclo de lanzamiento y soporte de 
+versiones para tomar decisiones informadas sobre qué versión utilizar.
+
+4. Estructura léxica
+
+Estudiaremos los elementos fundamentales de la sintaxis de Python:
+
+    Líneas e indentación: la importancia de la indentación como parte estructural del código
+    Tokens y su clasificación
+    Sentencias y cómo se organizan
+    Comentarios y su uso para documentar el código
+
+5. PEPs en Python
+
+Conoceremos qué son las Python Enhancement Proposals (PEPs), su importancia en la evolución del 
+lenguaje y nos centraremos especialmente en el PEP 8, la guía de estilo oficial que nos ayudará 
+a escribir código más legible y mantenible.
+
+El tema concluirá con un test de evaluación que te permitirá verificar la comprensión de estos 
+conceptos fundamentales antes de avanzar a temas más prácticos.
+
