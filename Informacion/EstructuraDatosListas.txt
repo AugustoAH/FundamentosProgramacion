@@ -1,0 +1,919 @@
+Estructuras de datos: Listas
+
+──▶ Creación, indexación y modificación de elementos en listas
+
+Las listas son una de las estructuras de datos más versátiles y utilizadas en Python. A diferencia de otros lenguajes donde los arrays tienen un tamaño fijo, las listas de Python son dinámicas y pueden contener elementos de diferentes tipos.
+
+──▶ Creación de listas
+
+Existen varias formas de crear listas en Python:
+
+* Usando corchetes para definir una lista literal:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Lista vacía
+mi_lista = []
+
+# Lista con elementos
+numeros = [1, 2, 3, 4, 5]
+
+# Lista con diferentes tipos de datos
+mixta = [1, "Hola", 3.14, True]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Usando el constructor list():
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Convertir otros iterables en listas
+lista_desde_tupla = list((1, 2, 3))
+lista_desde_string = list("Python")
+lista_desde_rango = list(range(5))  # [0, 1, 2, 3, 4]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Mediante comprensión de listas (una forma concisa de crear listas):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Crear una lista con los cuadrados de los números del 0 al 9
+cuadrados = [x**2 for x in range(10)]  # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# Lista con números pares del 0 al 10
+pares = [x for x in range(11) if x % 2 == 0]  # [0, 2, 4, 6, 8, 10]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Indexación de listas
+
+La indexación permite acceder a elementos específicos de una lista. En Python, los índices comienzan en 0:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+frutas = ["manzana", "banana", "cereza", "durazno", "fresa"]
+
+# Acceder al primer elemento (índice 0)
+primera_fruta = frutas[0]  # "manzana"
+
+# Acceder al tercer elemento (índice 2)
+tercera_fruta = frutas[2]  # "cereza"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Python también permite la indexación negativa, que cuenta desde el final de la lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Último elemento (índice -1)
+ultima_fruta = frutas[-1]  # "fresa"
+
+# Penúltimo elemento (índice -2)
+penultima_fruta = frutas[-2]  # "durazno"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Slicing (rebanado) de listas
+
+El slicing permite extraer sublistas usando la sintaxis [inicio:fin:paso]:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# Obtener elementos del índice 2 al 5 (sin incluir el 6)
+sublista1 = numeros[2:6]  # [2, 3, 4, 5]
+
+# Desde el inicio hasta el índice 4 (sin incluirlo)
+sublista2 = numeros[:4]  # [0, 1, 2, 3]
+
+# Desde el índice 7 hasta el final
+sublista3 = numeros[7:]  # [7, 8, 9]
+
+# Cada segundo elemento de toda la lista
+sublista4 = numeros[::2]  # [0, 2, 4, 6, 8]
+
+# Invertir una lista
+invertida = numeros[::-1]  # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Modificación de elementos
+
+Las listas en Python son mutables, lo que significa que podemos cambiar sus elementos después de crearlas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+colores = ["rojo", "verde", "azul", "amarillo"]
+
+# Modificar un elemento específico
+colores[1] = "esmeralda"  # ["rojo", "esmeralda", "azul", "amarillo"]
+
+# Modificar varios elementos con slicing
+colores[2:4] = ["índigo", "violeta"]  # ["rojo", "esmeralda", "índigo", "violeta"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También podemos modificar múltiples elementos a la vez:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+letras = ["a", "b", "c", "d", "e"]
+
+# Reemplazar 3 elementos con 1 solo
+letras[1:4] = ["X"]  # ["a", "X", "e"]
+
+# Reemplazar 1 elemento con 3
+numeros = [1, 2, 3]
+numeros[1:2] = [10, 20, 30]  # [1, 10, 20, 30, 3]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Añadir elementos a una lista
+
+Existen varias formas de añadir elementos a una lista:
+
+* Operador += o método extend() para añadir múltiples elementos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+vocales = ["a", "e"]
+vocales += ["i", "o", "u"]  # ["a", "e", "i", "o", "u"]
+
+# Equivalente usando extend()
+consonantes = ["b", "c", "d"]
+consonantes.extend(["f", "g"])  # ["b", "c", "d", "f", "g"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Operador de concatenación + para crear una nueva lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+combinada = lista1 + lista2  # [1, 2, 3, 4, 5, 6]
+# Nota: lista1 y lista2 no se modifican
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Eliminar elementos de una lista
+
+Para eliminar elementos de una lista:
+
+* Usando del para eliminar por índice:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+planetas = ["Mercurio", "Venus", "Tierra", "Marte", "Júpiter"]
+del planetas[1]  # Elimina "Venus"
+# planetas ahora es ["Mercurio", "Tierra", "Marte", "Júpiter"]
+
+# También funciona con slices
+del planetas[2:]  # Elimina desde el índice 2 hasta el final
+# planetas ahora es ["Mercurio", "Tierra"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Usando asignación de lista vacía para eliminar múltiples elementos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
+dias[1:3] = []  # Elimina "Martes" y "Miércoles"
+# dias ahora es ["Lunes", "Jueves", "Viernes"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Verificación de pertenencia
+
+Podemos comprobar si un elemento está en una lista usando el operador in:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+animales = ["perro", "gato", "conejo", "tortuga"]
+
+# Verificar si un elemento está en la lista
+tiene_gato = "gato" in animales  # True
+tiene_leon = "león" in animales  # False
+
+# Usar en condicionales
+if "conejo" in animales:
+    print("Hay un conejo en la lista")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Listas multidimensionales
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+En Python, podemos crear listas anidadas (listas dentro de listas):
+
+# Lista de 2 dimensiones (matriz)
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Acceder a elementos de la matriz
+elemento = matriz[1][2]  # 6 (fila 1, columna 2)
+
+# Modificar un elemento
+matriz[0][1] = 20  # Cambia el 2 por 20
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Copiar listas correctamente
+
+Es importante entender que la asignación simple no crea una copia de la lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+original = [1, 2, 3]
+copia_incorrecta = original  # Ambas variables apuntan a la misma lista
+
+copia_incorrecta[0] = 99
+print(original)  # [99, 2, 3] - ¡La lista original también cambió!
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para crear copias reales de listas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Método 1: usando el método copy()
+lista1 = [1, 2, 3]
+copia1 = lista1.copy()
+
+# Método 2: usando slicing
+copia2 = lista1[:]
+
+# Método 3: usando list()
+copia3 = list(lista1)
+
+# Para listas anidadas (copia profunda)
+import copy
+anidada = [[1, 2], [3, 4]]
+copia_profunda = copy.deepcopy(anidada)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Desempaquetar listas
+
+Python permite desempaquetar los elementos de una lista en variables individuales:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+coordenadas = [10, 20, 30]
+x, y, z = coordenadas
+
+print(x)  # 10
+print(y)  # 20
+print(z)  # 30
+
+# Con el operador * para capturar múltiples elementos
+primero, *resto = [1, 2, 3, 4, 5]
+print(primero)  # 1
+print(resto)    # [2, 3, 4, 5]
+
+*inicio, ultimo = [1, 2, 3, 4, 5]
+print(inicio)   # [1, 2, 3, 4]
+print(ultimo)   # 5
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las listas son estructuras fundamentales en Python que te permitirán almacenar y manipular colecciones de datos de manera eficiente. 
+Dominar su creación, indexación y modificación es esencial para cualquier programador de Python.
+
+──▶ Métodos principales para manipulación de listas (append, extend, insert, pop)
+
+Las listas en Python ofrecen una amplia variedad de métodos integrados que facilitan la manipulación de sus elementos. 
+Estos métodos permiten añadir, eliminar y reorganizar elementos de forma eficiente sin necesidad de reescribir la lista completa.
+
+──▶ Añadir elementos
+
+──▶ Método append()
+
+El método append() añade un único elemento al final de la lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+tecnologias = ["Python", "JavaScript", "HTML"]
+tecnologias.append("CSS")
+print(tecnologias)  # ["Python", "JavaScript", "HTML", "CSS"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Es importante destacar que append() siempre añade el elemento como un único objeto, incluso si ese objeto es iterable:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [1, 2, 3]
+numeros.append([4, 5])
+print(numeros)  # [1, 2, 3, [4, 5]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este caso, la lista completa [4, 5] se añade como un único elemento, creando una lista anidada.
+
+──▶ Método extend()
+
+Cuando necesitamos añadir múltiples elementos manteniendo una lista plana, utilizamos extend(). Este método toma un iterable y añade cada uno de sus elementos individualmente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+frutas = ["manzana", "pera"]
+frutas.extend(["naranja", "uva"])
+print(frutas)  # ["manzana", "pera", "naranja", "uva"]
+
+# También funciona con cualquier iterable
+letras = ["a", "b"]
+letras.extend("cd")  # Extiende con los caracteres del string
+print(letras)  # ["a", "b", "c", "d"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La diferencia entre append() y extend() es crucial:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+lista1 = [1, 2, 3]
+lista2 = [1, 2, 3]
+
+lista1.append([4, 5])  # Añade [4, 5] como un elemento
+lista2.extend([4, 5])  # Añade 4 y 5 como elementos individuales
+
+print(lista1)  # [1, 2, 3, [4, 5]]
+print(lista2)  # [1, 2, 3, 4, 5]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método insert()
+
+El método insert() permite añadir un elemento en una posición específica de la lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+colores = ["rojo", "verde", "azul"]
+colores.insert(1, "amarillo")  # Inserta en el índice 1
+print(colores)  # ["rojo", "amarillo", "verde", "azul"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La sintaxis es lista.insert(índice, elemento), donde:
+
+* El índice indica la posición donde insertar
+* El elemento es el valor a insertar
+
+Si el índice es mayor que la longitud de la lista, el elemento simplemente se añade al final:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [1, 2, 3]
+numeros.insert(10, 4)  # La lista solo tiene 3 elementos
+print(numeros)  # [1, 2, 3, 4]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Si el índice es negativo, se cuenta desde el final de la lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+dias = ["lunes", "miércoles", "jueves"]
+dias.insert(-1, "martes")  # Inserta antes del último elemento
+print(dias)  # ["lunes", "miércoles", "martes", "jueves"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Eliminar elementos
+
+──▶ Método pop()
+
+El método pop() elimina y devuelve un elemento de la lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+lenguajes = ["Python", "Java", "C++", "JavaScript"]
+eliminado = lenguajes.pop()  # Elimina y devuelve el último elemento
+print(eliminado)  # "JavaScript"
+print(lenguajes)  # ["Python", "Java", "C++"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Por defecto, pop() elimina el último elemento, pero podemos especificar un índice:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [10, 20, 30, 40, 50]
+eliminado = numeros.pop(2)  # Elimina y devuelve el elemento en el índice 2
+print(eliminado)  # 30
+print(numeros)  # [10, 20, 40, 50]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este método es particularmente útil para implementar estructuras de datos como pilas y colas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Usando una lista como pila (LIFO: Last In, First Out)
+pila = []
+pila.append(1)  # Añadir al final
+pila.append(2)
+pila.append(3)
+print(pila)  # [1, 2, 3]
+
+ultimo = pila.pop()  # Sacar del final
+print(ultimo)  # 3
+print(pila)  # [1, 2]
+
+# Usando una lista como cola (FIFO: First In, First Out)
+cola = []
+cola.append("primero")
+cola.append("segundo")
+cola.append("tercero")
+
+primero = cola.pop(0)  # Sacar del principio
+print(primero)  # "primero"
+print(cola)  # ["segundo", "tercero"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método remove()
+
+A diferencia de pop(), el método remove() elimina la primera ocurrencia de un valor específico:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+animales = ["perro", "gato", "conejo", "gato", "tortuga"]
+animales.remove("gato")  # Elimina la primera ocurrencia de "gato"
+print(animales)  # ["perro", "conejo", "gato", "tortuga"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Si el elemento no existe, remove() lanzará un error ValueError:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+try:
+    animales.remove("león")  # "león" no está en la lista
+except ValueError as e:
+    print(f"Error: {e}")  # Error: list.remove(x): x not in list
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para evitar este error, podemos verificar primero si el elemento existe:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+elemento = "león"
+if elemento in animales:
+    animales.remove(elemento)
+else:
+    print(f"{elemento} no está en la lista")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método clear()
+
+Para eliminar todos los elementos de una lista, usamos el método clear():
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [1, 2, 3, 4, 5]
+numeros.clear()
+print(numeros)  # []
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este método es más eficiente que asignar una lista vacía (números = []), especialmente cuando hay múltiples referencias a la misma lista.
+
+──▶ Buscar y contar elementos
+
+──▶ Método index()
+
+El método index() devuelve el índice de la primera ocurrencia de un elemento:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+vocales = ["a", "e", "i", "o", "u", "i"]
+indice = vocales.index("i")
+print(indice)  # 2 (primera ocurrencia de "i")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Podemos especificar un rango de búsqueda con los parámetros opcionales start y end:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Buscar "i" a partir del índice 3
+indice = vocales.index("i", 3)
+print(indice)  # 5 (segunda ocurrencia de "i")
+
+# Buscar "e" entre los índices 0 y 2
+indice = vocales.index("e", 0, 2)
+print(indice)  # 1
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Si el elemento no se encuentra, index() lanzará un ValueError:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+try:
+    indice = vocales.index("x")
+except ValueError:
+    print("Elemento no encontrado")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método count()
+
+El método count() devuelve el número de veces que aparece un elemento en la lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [1, 2, 3, 2, 4, 2, 5]
+ocurrencias = numeros.count(2)
+print(ocurrencias)  # 3 (el número 2 aparece 3 veces)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este método es útil para verificar la frecuencia de elementos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = list("programación")
+frecuencia_a = texto.count("a")
+print(frecuencia_a)  # 2
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Reorganizar elementos
+
+──▶ Método sort()
+
+El método sort() ordena los elementos de una lista in-place (modifica la lista original):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [5, 2, 8, 1, 9]
+numeros.sort()
+print(numeros)  # [1, 2, 5, 8, 9]
+
+# Orden descendente
+numeros.sort(reverse=True)
+print(numeros)  # [9, 8, 5, 2, 1]
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También podemos ordenar por un criterio personalizado usando el parámetro key:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ordenar por longitud de palabra
+palabras = ["python", "es", "un", "lenguaje", "genial"]
+palabras.sort(key=len)
+print(palabras)  # ["es", "un", "python", "genial", "lenguaje"]
+
+# Ordenar ignorando mayúsculas/minúsculas
+nombres = ["Ana", "carlos", "Berta", "david"]
+nombres.sort(key=str.lower)
+print(nombres)  # ["Ana", "Berta", "carlos", "david"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método reverse()
+
+El método reverse() invierte el orden de los elementos de la lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+letras = ["a", "b", "c", "d"]
+letras.reverse()
+print(letras)  # ["d", "c", "b", "a"]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Una alternativa usando slicing (que crea una nueva lista):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [1, 2, 3, 4, 5]
+invertidos = numeros[::-1]  # Crea una nueva lista invertida
+print(invertidos)  # [5, 4, 3, 2, 1]
+print(numeros)     # [1, 2, 3, 4, 5] (la original no cambia)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Combinando métodos
+
+Los métodos de lista pueden combinarse para realizar operaciones más complejas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Eliminar duplicados manteniendo el orden
+numeros = [3, 1, 4, 1, 5, 9, 2, 6, 5]
+sin_duplicados = []
+for num in numeros:
+    if num not in sin_duplicados:
+        sin_duplicados.append(num)
+print(sin_duplicados)  # [3, 1, 4, 5, 9, 2, 6]
+
+# Filtrar y transformar elementos
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+pares = []
+for num in numeros:
+    if num % 2 == 0:
+        pares.append(num * 2)
+print(pares)  # [4, 8, 12, 16, 20]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Estos métodos de manipulación de listas son herramientas fundamentales que te permitirán gestionar datos de manera eficiente en tus programas Python. Dominarlos te ayudará a escribir código más limpio y efectivo para resolver problemas del mundo real.
+
+──▶ Listas anidadas y matrices en Python
+
+Las listas anidadas son estructuras de datos que contienen otras listas como elementos. Esta característica de Python permite crear estructuras de datos multidimensionales como matrices, tablas o árboles, que son fundamentales para resolver problemas complejos en programación.
+
+──▶ Concepto de listas anidadas
+
+Una lista anidada se crea simplemente incluyendo listas como elementos de otra lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Lista anidada simple
+lista_anidada = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Cada elemento de lista_anidada es a su vez una lista, lo que nos permite representar datos en múltiples dimensiones. Podemos visualizar esta estructura como una tabla o matriz:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+[1, 2, 3]  # Primera fila
+[4, 5, 6]  # Segunda fila
+[7, 8, 9]  # Tercera fila
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Acceso a elementos en listas anidadas
+
+Para acceder a elementos dentro de listas anidadas, utilizamos múltiples índices en secuencia:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Acceder al elemento en la segunda fila, tercera columna
+elemento = matriz[1][2]  # Resultado: 6
+
+# Acceder a la primera fila completa
+primera_fila = matriz[0]  # Resultado: [1, 2, 3]
+
+# Acceder al último elemento de la última fila
+ultimo = matriz[-1][-1]  # Resultado: 9
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La notación matriz[i][j] significa:
+
+* matriz[i] selecciona la lista en la posición i
+* [j] selecciona el elemento en la posición j de esa lista
+
+──▶ Modificación de elementos en listas anidadas
+
+Al igual que con listas simples, podemos modificar elementos en listas anidadas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+tablero = [
+    ['X', 'O', ' '],
+    [' ', 'X', ' '],
+    ['O', ' ', ' ']
+]
+
+# Modificar un elemento específico
+tablero[2][2] = 'X'  # Coloca una X en la esquina inferior derecha
+
+print(tablero)
+# [['X', 'O', ' '], [' ', 'X', ' '], ['O', ' ', 'X']]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También podemos reemplazar una fila completa:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+matriz = [[1, 2], [3, 4]]
+matriz[0] = [5, 6]  # Reemplaza la primera fila
+print(matriz)  # [[5, 6], [3, 4]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Creación de matrices
+
+Las matrices son un caso especial de listas anidadas donde todas las sublistas tienen la misma longitud. Hay varias formas de crear matrices en Python:
+
+* Definición literal:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Usando comprensión de listas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Crear una matriz 3x3 con valores del 1 al 9
+matriz = [[i*3 + j + 1 for j in range(3)] for i in range(3)]
+print(matriz)  # [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+# Matriz de ceros 4x4
+matriz_ceros = [[0 for _ in range(4)] for _ in range(4)]
+print(matriz_ceros)  # [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Inicialización dinámica:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Crear una matriz m×n
+def crear_matriz(m, n, valor_inicial=0):
+    return [[valor_inicial for _ in range(n)] for _ in range(m)]
+
+# Matriz 2×3 con valor inicial 1
+matriz_2x3 = crear_matriz(2, 3, 1)
+print(matriz_2x3)  # [[1, 1, 1], [1, 1, 1]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operaciones con matrices
+
+──▶ Recorrido de matrices
+
+Para procesar todos los elementos de una matriz, podemos usar bucles anidados:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Recorrer e imprimir cada elemento
+for i in range(len(matriz)):
+    for j in range(len(matriz[i])):
+        print(f"Elemento en posición [{i}][{j}]: {matriz[i][j]}")
+
+# Alternativa más pythónica usando enumerate
+for i, fila in enumerate(matriz):
+    for j, elemento in enumerate(fila):
+        print(f"Elemento en posición [{i}][{j}]: {elemento}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Suma de matrices
+
+La suma de matrices requiere sumar los elementos correspondientes:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def sumar_matrices(matriz_a, matriz_b):
+    # Verificar que las matrices tengan las mismas dimensiones
+    if len(matriz_a) != len(matriz_b) or len(matriz_a[0]) != len(matriz_b[0]):
+        raise ValueError("Las matrices deben tener las mismas dimensiones")
+    
+    # Crear matriz resultado con las mismas dimensiones
+    filas = len(matriz_a)
+    columnas = len(matriz_a[0])
+    resultado = crear_matriz(filas, columnas)
+    
+    # Sumar elementos correspondientes
+    for i in range(filas):
+        for j in range(columnas):
+            resultado[i][j] = matriz_a[i][j] + matriz_b[i][j]
+    
+    return resultado
+
+# Ejemplo de uso
+a = [[1, 2], [3, 4]]
+b = [[5, 6], [7, 8]]
+c = sumar_matrices(a, b)
+print(c)  # [[6, 8], [10, 12]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Transposición de matrices
+
+La transposición intercambia filas por columnas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def transponer(matriz):
+    filas = len(matriz)
+    columnas = len(matriz[0])
+    
+    # Crear matriz transpuesta (columnas × filas)
+    transpuesta = [[0 for _ in range(filas)] for _ in range(columnas)]
+    
+    # Intercambiar filas por columnas
+    for i in range(filas):
+        for j in range(columnas):
+            transpuesta[j][i] = matriz[i][j]
+    
+    return transpuesta
+
+# Ejemplo
+matriz = [[1, 2, 3], [4, 5, 6]]
+transpuesta = transponer(matriz)
+print(transpuesta)  # [[1, 4], [2, 5], [3, 6]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Una forma más concisa usando comprensión de listas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+matriz = [[1, 2, 3], [4, 5, 6]]
+transpuesta = [[matriz[j][i] for j in range(len(matriz))] for i in range(len(matriz[0]))]
+print(transpuesta)  # [[1, 4], [2, 5], [3, 6]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Listas anidadas irregulares
+
+Las listas anidadas en Python no necesitan tener la misma longitud:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Lista anidada irregular
+triangular = [
+    [1],
+    [2, 3],
+    [4, 5, 6],
+    [7, 8, 9, 10]
+]
+
+# Acceder a elementos
+print(triangular[2][1])  # 5
+
+# Recorrer una lista irregular
+for fila in triangular:
+    for elemento in fila:
+        print(elemento, end=" ")
+    print()  # Nueva línea después de cada fila
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Matrices tridimensionales y más
+
+Podemos extender el concepto a más dimensiones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Matriz 3D (2×2×3)
+cubo = [
+    [[1, 2, 3], [4, 5, 6]],
+    [[7, 8, 9], [10, 11, 12]]
+]
+
+# Acceder a elementos
+print(cubo[0][1][2])  # 6 (primer "plano", segunda fila, tercer elemento)
+
+# Recorrer un cubo
+for i, plano in enumerate(cubo):
+    print(f"Plano {i}:")
+    for fila in plano:
+        print(fila)
+    print()
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Aplicaciones prácticas
+
+──▶ Juego del tres en raya (tic-tac-toe)
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def imprimir_tablero(tablero):
+    for fila in tablero:
+        print("|", end=" ")
+        for celda in fila:
+            print(celda if celda != " " else "_", end=" | ")
+        print()
+
+# Tablero inicial
+tablero = [
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "]
+]
+
+# Realizar un movimiento
+tablero[1][1] = "X"  # Marcar el centro
+tablero[0][0] = "O"  # Respuesta del oponente
+
+imprimir_tablero(tablero)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Procesamiento de imágenes simplificado
+
+Una imagen puede representarse como una matriz de píxeles:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Representación simplificada de una imagen en escala de grises (3×3)
+imagen = [
+    [120, 80, 200],
+    [30, 150, 100],
+    [10, 70, 190]
+]
+
+# Aplicar un umbral para binarizar la imagen
+umbral = 100
+imagen_binaria = [[1 if pixel >= umbral else 0 for pixel in fila] for fila in imagen]
+print(imagen_binaria)  # [[1, 0, 1], [0, 1, 1], [0, 0, 1]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Análisis de datos tabulares
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Datos de ventas por región y trimestre
+ventas = [
+    ["Norte", 100, 120, 90, 110],
+    ["Sur", 80, 95, 100, 120],
+    ["Este", 110, 105, 95, 130],
+    ["Oeste", 90, 100, 115, 125]
+]
+
+# Calcular el total de ventas por región
+for region in ventas:
+    nombre = region[0]
+    total = sum(region[1:])
+    print(f"Región {nombre}: {total} unidades")
+
+# Calcular el total de ventas por trimestre
+for i in range(1, 5):
+    total_trimestre = sum(region[i] for region in ventas)
+    print(f"Trimestre {i}: {total_trimestre} unidades")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Buenas prácticas con listas anidadas
+
+* Validar dimensiones: Siempre verifica que las matrices tengan las dimensiones esperadas antes de operar con ellas.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def validar_matriz(matriz, filas_esperadas, columnas_esperadas):
+    if len(matriz) != filas_esperadas:
+        return False
+    for fila in matriz:
+        if len(fila) != columnas_esperadas:
+            return False
+    return True
+
+matriz = [[1, 2, 3], [4, 5, 6]]
+es_valida = validar_matriz(matriz, 2, 3)
+print(es_valida)  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Evitar la trampa de la multiplicación de listas: Cuidado con la inicialización incorrecta de matrices.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# INCORRECTO: todas las filas son referencias a la misma lista
+matriz_incorrecta = [[0] * 3] * 3
+matriz_incorrecta[0][0] = 1
+print(matriz_incorrecta)  # [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
+
+# CORRECTO: cada fila es una lista independiente
+matriz_correcta = [[0 for _ in range(3)] for _ in range(3)]
+matriz_correcta[0][0] = 1
+print(matriz_correcta)  # [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Usar funciones auxiliares: Crea funciones para operaciones comunes con matrices.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def obtener_dimensiones(matriz):
+    filas = len(matriz)
+    columnas = len(matriz[0]) if filas > 0 else 0
+    return filas, columnas
+
+def imprimir_matriz(matriz):
+    for fila in matriz:
+        print(" ".join(str(x) for x in fila))
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las listas anidadas y matrices son herramientas poderosas en Python que te permiten organizar datos en múltiples dimensiones. 
+Dominar su manejo te ayudará a resolver problemas complejos de manera elegante y eficiente en campos como análisis de datos, 
+procesamiento de imágenes, juegos y simulaciones.
+
+
+Aprendizajes de esta lección
+
+Comprender cómo crear y modificar listas en Python, incluyendo indexación y slicing. Aprender a utilizar los métodos principales 
+para añadir, eliminar y buscar elementos en listas. Entender el concepto y manejo de listas anidadas y matrices multidimensionales. 
+Aplicar técnicas para copiar listas correctamente y desempaquetar sus elementos. Desarrollar habilidades para manipular matrices, 
+incluyendo operaciones como suma y transposición.

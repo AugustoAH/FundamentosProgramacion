@@ -265,3 +265,913 @@ formato = f"{2 + 2} = 4"     # f-string (Python 3.6+)
 Estos tipos básicos son los bloques fundamentales con los que construirás tus programas en Python. A medida que avances, 
 aprenderás a combinarlos con estructuras de datos más complejas y a utilizar sus métodos específicos para manipular la 
 información de manera eficiente.
+
+
+──▶ Operaciones y métodos específicos de cada tipo de dato
+
+Cada tipo de dato en Python ofrece operaciones y métodos específicos que nos permiten manipular y transformar valores de manera 
+eficiente. Vamos a explorar las capacidades particulares de cada tipo básico, profundizando en funcionalidades que van más allá de 
+las operaciones elementales.
+
+──▶ Operaciones con enteros (int)
+Los enteros en Python soportan todas las operaciones aritméticas estándar:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+a = 10
+b = 3
+
+# Operaciones básicas
+suma = a + b          # 13
+resta = a - b         # 7
+multiplicación = a * b  # 30
+división = a / b      # 3.3333... (devuelve float)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Python también ofrece operaciones aritméticas especializadas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# División entera (trunca el resultado)
+división_entera = a // b    # 3
+
+# Módulo (resto de la división)
+resto = a % b               # 1
+
+# Potencia
+potencia = a ** b           # 1000 (10^3)
+
+# Operador @ (multiplicación de matrices desde Python 3.5)
+# Usado principalmente con bibliotecas como NumPy
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los enteros incluyen métodos de bits para manipulaciones a nivel binario:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+x = 5      # 101 en binario
+y = 3      # 011 en binario
+
+# Operaciones a nivel de bits
+print(x & y)    # AND: 1 (001 en binario)
+print(x | y)    # OR: 7 (111 en binario)
+print(x ^ y)    # XOR: 6 (110 en binario)
+print(~x)       # NOT: -6 (complemento a 2)
+print(x << 1)   # Desplazamiento izquierda: 10 (1010 en binario)
+print(x >> 1)   # Desplazamiento derecha: 2 (010 en binario)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La clase int proporciona algunos métodos útiles:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Convertir entero a diferentes bases
+num = 42
+print(num.bit_length())      # 6 (bits necesarios para representar el número)
+print(bin(num))              # '0b101010' (representación binaria)
+print(num.to_bytes(2, byteorder='big'))  # b'\x00*' (representación en bytes)
+
+# Comprobar propiedades
+print((-3).conjugate())      # -3 (útil para compatibilidad con complex)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operaciones con flotantes (float)
+
+Los flotantes admiten las mismas operaciones aritméticas que los enteros, pero con algunas consideraciones especiales:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+x = 2.5
+y = 1.5
+
+# División siempre devuelve float
+resultado = x / y    # 1.6666...
+
+# División entera con flotantes
+resultado = x // y   # 1.0 (nota que sigue siendo float)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los flotantes tienen límites de precisión que debemos considerar:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Límites de representación
+print(1e308)         # Un número muy grande
+# print(1e309)       # Demasiado grande: inf (infinito)
+
+# Operaciones especiales
+print(float('inf'))  # Infinito positivo
+print(float('-inf')) # Infinito negativo
+print(float('nan'))  # Not a Number (NaN)
+
+# Comprobaciones
+x = float('nan')
+print(x != x)        # True (NaN no es igual a nada, ni siquiera a sí mismo)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La clase float ofrece métodos específicos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+num = 3.14159
+
+# Descomponer en parte entera y fraccionaria
+parte_entera, parte_fraccionaria = num.as_integer_ratio()
+print(f"{parte_entera}/{parte_fraccionaria}")  # 314159/100000
+
+# Comprobar si es entero
+print(num.is_integer())      # False
+print((3.0).is_integer())    # True
+
+# Representación hexadecimal
+print(num.hex())             # '0x1.921f9f01b866ep+1'
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El módulo math proporciona funciones adicionales para operaciones matemáticas avanzadas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+import math
+
+# Funciones trigonométricas
+print(math.sin(math.pi/2))   # 1.0
+print(math.cos(0))           # 1.0
+print(math.tan(math.pi/4))   # 1.0
+
+# Redondeo
+print(math.floor(3.7))       # 3 (redondeo hacia abajo)
+print(math.ceil(3.2))        # 4 (redondeo hacia arriba)
+print(math.trunc(-3.7))      # -3 (truncamiento hacia cero)
+
+# Otras funciones matemáticas
+print(math.sqrt(16))         # 4.0 (raíz cuadrada)
+print(math.log(math.e))      # 1.0 (logaritmo natural)
+print(math.log10(100))       # 2.0 (logaritmo base 10)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operaciones con booleanos (bool)
+
+Los booleanos participan en operaciones lógicas fundamentales:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+a = True
+b = False
+
+# Operadores lógicos
+print(a and b)       # False (AND lógico)
+print(a or b)        # True (OR lógico)
+print(not a)         # False (NOT lógico)
+
+# Operadores de comparación
+print(a == b)        # False (igualdad)
+print(a != b)        # True (desigualdad)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los booleanos también pueden usarse en operaciones de cortocircuito:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# El operador and evalúa el segundo operando solo si el primero es True
+resultado = a and print("Evaluado")  # Imprime "Evaluado" y resultado = None
+
+# El operador or evalúa el segundo operando solo si el primero es False
+resultado = a or print("No evaluado")  # No imprime nada y resultado = True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Al ser subclase de int, los booleanos pueden participar en operaciones aritméticas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Booleanos en operaciones aritméticas
+print(True + True)           # 2
+print(True * 5)              # 5
+print(10 / (False + 1))      # 10.0 (evita división por cero)
+
+# Útil para contar elementos que cumplen una condición
+valores = [1, 0, 3, 0, 5]
+print(sum(v > 0 for v in valores))  # 3 (cuenta valores positivos)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operaciones con cadenas (str)
+
+Las cadenas ofrecen una amplia gama de operaciones de concatenación y repetición:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+a = "Hola"
+b = "mundo"
+
+# Concatenación
+saludo = a + " " + b + "!"   # "Hola mundo!"
+
+# Repetición
+eco = a * 3                  # "HolaHolaHola"
+
+# Concatenación implícita (solo con literales)
+mensaje = "Esto " "es " "una " "cadena"  # "Esto es una cadena"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las cadenas proporcionan potentes métodos de búsqueda y reemplazo:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python es un lenguaje de programación versátil"
+
+# Búsqueda
+print(texto.find("lenguaje"))      # 13 (posición donde comienza)
+print(texto.find("Java"))          # -1 (no encontrado)
+print(texto.index("Python"))       # 0 (como find pero lanza error si no encuentra)
+print(texto.count("a"))            # 4 (número de ocurrencias)
+
+# Reemplazo
+print(texto.replace("Python", "JavaScript"))  # Reemplaza todas las ocurrencias
+print(texto.replace("a", "A", 2))  # Reemplaza solo las 2 primeras ocurrencias
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para manipulación de formato y caso, las cadenas ofrecen:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "  python es genial  "
+
+# Manipulación de espacios
+print(texto.strip())               # "python es genial" (elimina espacios inicio/fin)
+print(texto.lstrip())              # "python es genial  " (elimina espacios inicio)
+print(texto.rstrip())              # "  python es genial" (elimina espacios final)
+
+# Manipulación de caso
+print(texto.upper())               # "  PYTHON ES GENIAL  "
+print(texto.lower())               # "  python es genial  "
+print(texto.capitalize())          # "  python es genial  " (primera letra a mayúscula)
+print(texto.title())               # "  Python Es Genial  " (primera letra de cada palabra)
+print(texto.swapcase())            # "  PYTHON ES GENIAL  " (invierte mayúsculas/minúsculas)
+
+# Alineación y relleno
+nombre = "Ana"
+print(nombre.ljust(10, '-'))       # "Ana-------" (alinea a izquierda)
+print(nombre.rjust(10, '-'))       # "-------Ana" (alinea a derecha)
+print(nombre.center(10, '-'))      # "---Ana----" (centra)
+print(nombre.zfill(5))             # "00Ana" (rellena con ceros a la izquierda)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las cadenas incluyen métodos de validación muy útiles:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Comprobación de contenido
+print("123".isdigit())             # True (solo dígitos)
+print("abc123".isalnum())          # True (alfanumérico)
+print("Abc".isalpha())             # True (solo letras)
+print("Abc".isupper())             # False (no todo mayúsculas)
+print("ABC".isupper())             # True (todo mayúsculas)
+print("abc".islower())             # True (todo minúsculas)
+print("Abc Def".istitle())         # True (formato título)
+print("  ".isspace())              # True (solo espacios)
+print("123.45".isdecimal())        # False (punto no es decimal)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para división y unión de cadenas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python,Java,C++,JavaScript"
+
+# División
+lenguajes = texto.split(",")       # ['Python', 'Java', 'C++', 'JavaScript']
+print(lenguajes)
+
+líneas = "Línea 1\nLínea 2\nLínea 3"
+print(líneas.splitlines())         # ['Línea 1', 'Línea 2', 'Línea 3']
+
+# Unión
+print(",".join(lenguajes))         # "Python,Java,C++,JavaScript"
+print("\n".join(lenguajes))        # Cada lenguaje en una línea
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las cadenas ofrecen métodos de formato avanzados:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Método format()
+plantilla = "Hola, me llamo {nombre} y tengo {edad} años"
+print(plantilla.format(nombre="Carlos", edad=30))
+
+# Especificadores de formato
+print("{:.2f}".format(3.14159))    # "3.14" (2 decimales)
+print("{:>10}".format("texto"))    # "     texto" (alineación derecha, ancho 10)
+print("{:^10}".format("texto"))    # "   texto  " (centrado, ancho 10)
+print("{:,}".format(1000000))      # "1,000,000" (separador de miles)
+
+# f-strings (Python 3.6+)
+nombre = "Laura"
+edad = 28
+print(f"Hola, me llamo {nombre} y tengo {edad} años")
+print(f"El año que viene tendré {edad + 1} años")
+print(f"Pi con 2 decimales: {3.14159:.2f}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las cadenas también permiten codificación y decodificación de bytes:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Codificación
+texto = "Hola, mundo"
+bytes_utf8 = texto.encode('utf-8')
+print(bytes_utf8)                  # b'Hola, mundo'
+
+# Decodificación
+texto_recuperado = bytes_utf8.decode('utf-8')
+print(texto_recuperado)            # "Hola, mundo"
+
+# Manejo de caracteres especiales
+texto_con_acentos = "café"
+bytes_latin1 = texto_con_acentos.encode('latin-1')
+print(bytes_latin1)                # b'caf\xe9'
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Métodos comunes a varios tipos
+
+Algunos métodos están disponibles para múltiples tipos de datos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# El método __str__ (representación informal como cadena)
+print(str(42))                     # "42"
+print(str(3.14))                   # "3.14"
+print(str(True))                   # "True"
+
+# El método __repr__ (representación oficial)
+print(repr("Hola"))                # "'Hola'"
+print(repr(3.14))                  # "3.14"
+
+# Conversión entre tipos
+entero = int("42")                 # 42
+flotante = float("3.14")           # 3.14
+booleano = bool(1)                 # True
+cadena = str(42)                   # "42"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Dominar estas operaciones y métodos específicos te permitirá manipular datos de manera eficiente y expresiva en Python. 
+Cada tipo de dato ofrece herramientas optimizadas para resolver problemas particulares, y conocerlas en profundidad te 
+ayudará a escribir código más limpio y efectivo.
+
+──▶ Conversión entre tipos y verificación con funciones isinstance() y type()
+
+En Python, la conversión entre tipos (también conocida como casting o coerción) es una operación fundamental que permite 
+transformar un valor de un tipo de dato a otro. Además, Python proporciona herramientas para verificar el tipo de un objeto en 
+tiempo de ejecución, lo que resulta especialmente útil en un lenguaje de tipado dinámico.
+
+──▶ Conversión explícita entre tipos básicos
+
+Python ofrece funciones constructoras para convertir explícitamente entre los tipos básicos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Conversión a entero (int)
+entero_desde_float = int(3.7)      # 3 (trunca la parte decimal)
+entero_desde_string = int("42")    # 42
+entero_desde_bool = int(True)      # 1
+
+# Conversión a flotante (float)
+float_desde_int = float(5)         # 5.0
+float_desde_string = float("3.14") # 3.14
+float_desde_bool = float(False)    # 0.0
+
+# Conversión a booleano (bool)
+bool_desde_int = bool(0)           # False (0 es el único entero que evalúa a False)
+bool_desde_float = bool(0.0)       # False (0.0 es el único flotante que evalúa a False)
+bool_desde_string = bool("")       # False (cadena vacía evalúa a False)
+bool_desde_string2 = bool("False") # True (¡cuidado! cualquier cadena no vacía evalúa a True)
+
+# Conversión a cadena (str)
+string_desde_int = str(42)         # "42"
+string_desde_float = str(3.14159)  # "3.14159"
+string_desde_bool = str(True)      # "True"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Es importante tener en cuenta algunas particularidades y limitaciones de estas conversiones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Conversiones que generan errores
+try:
+    int("3.14")    # Error: no puede convertir directamente un float en string a int
+except ValueError as e:
+    print(f"Error: {e}")  # Error: invalid literal for int() with base 10: '3.14'
+
+try:
+    int("abc")     # Error: no puede convertir letras a entero
+except ValueError as e:
+    print(f"Error: {e}")  # Error: invalid literal for int() with base 10: 'abc'
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para casos especiales, podemos usar parámetros adicionales en las funciones de conversión:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Parámetros adicionales para int()
+binario_a_int = int("1010", 2)     # 10 (convierte desde binario)
+hex_a_int = int("1A", 16)          # 26 (convierte desde hexadecimal)
+
+# Parámetros para float()
+notación_científica = float("1e-3") # 0.001 (notación científica)
+
+# Parámetros para str()
+personalizado = str([1, 2, 3])     # "[1, 2, 3]" (convierte cualquier objeto a su representación)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Conversión implícita (coerción)
+
+Python realiza algunas conversiones implícitas en determinadas operaciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Entero a flotante en operaciones mixtas
+resultado = 5 + 3.14               # 8.14 (int se convierte a float)
+
+# Número a booleano en contextos condicionales
+if 42:
+    print("Los números distintos de 0 son True")  # Se imprime
+
+# Número a cadena en concatenación (requiere conversión explícita)
+try:
+    mensaje = "Tengo " + 25 + " años"  # Error: no se puede concatenar str e int
+except TypeError as e:
+    print(f"Error: {e}")  # Error: can only concatenate str (not "int") to str
+
+# Forma correcta
+mensaje = "Tengo " + str(25) + " años"  # "Tengo 25 años"
+# O mejor aún, usando f-strings
+edad = 25
+mensaje = f"Tengo {edad} años"     # "Tengo 25 años"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Verificación de tipos con isinstance()
+
+La función isinstance() es la forma recomendada para verificar el tipo de un objeto, ya que también considera la herencia de clases:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+valor = 42
+
+# Verificación básica de tipo
+print(isinstance(valor, int))      # True
+print(isinstance(valor, float))    # False
+print(isinstance(valor, (int, float)))  # True (comprueba si es alguno de los tipos)
+
+# Verificación con herencia
+print(isinstance(True, int))       # True (bool hereda de int)
+print(isinstance(3.14, (int, float)))  # True (es float)
+
+# Verificación con tipos personalizados
+class MiClase:
+    pass
+
+obj = MiClase()
+print(isinstance(obj, MiClase))    # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La función isinstance() es especialmente útil en funciones que deben manejar diferentes tipos de entrada:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def duplicar(valor):
+    """Duplica un valor numérico o repite una cadena."""
+    if isinstance(valor, (int, float)):
+        return valor * 2
+    elif isinstance(valor, str):
+        return valor * 2
+    else:
+        raise TypeError("Solo se aceptan números o cadenas")
+
+print(duplicar(5))         # 10
+print(duplicar(3.14))      # 6.28
+print(duplicar("abc"))     # "abcabc"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Verificación de tipos con type()
+
+La función type() devuelve el tipo exacto de un objeto, sin considerar la herencia:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Obtener el tipo de un objeto
+print(type(42))            # <class 'int'>
+print(type(3.14))          # <class 'float'>
+print(type("Hola"))        # <class 'str'>
+print(type(True))          # <class 'bool'>
+
+# Comparación con tipos
+print(type(42) is int)     # True
+print(type(True) is int)   # False (a diferencia de isinstance())
+print(type(True) is bool)  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La principal diferencia entre isinstance() y type() se evidencia al trabajar con herencia:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Diferencia con herencia
+print(isinstance(True, int))  # True (bool hereda de int)
+print(type(True) is int)      # False (el tipo exacto es bool, no int)
+
+# Ejemplo con clases personalizadas
+class Padre:
+    pass
+
+class Hijo(Padre):
+    pass
+
+obj = Hijo()
+print(isinstance(obj, Padre))  # True (obj es instancia de Hijo, que hereda de Padre)
+print(type(obj) is Padre)      # False (el tipo exacto es Hijo)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Casos prácticos de verificación y conversión
+
+Veamos algunos escenarios comunes donde la verificación y conversión de tipos son útiles:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Función que acepta diferentes tipos de entrada
+def procesar_entrada(valor):
+    if isinstance(valor, str):
+        # Intentar convertir a número si es posible
+        if valor.isdigit():
+            return int(valor)
+        try:
+            return float(valor)
+        except ValueError:
+            return valor.upper()  # Si no es número, convertir a mayúsculas
+    elif isinstance(valor, (int, float)):
+        return valor * 2
+    else:
+        return None
+
+print(procesar_entrada("42"))      # 42 (int)
+print(procesar_entrada("3.14"))    # 3.14 (float)
+print(procesar_entrada("hola"))    # "HOLA" (str en mayúsculas)
+print(procesar_entrada(10))        # 20 (int duplicado)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Un caso común es la validación de tipos en funciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def calcular_área_rectángulo(base, altura):
+    # Verificar que los parámetros son numéricos
+    if not isinstance(base, (int, float)) or not isinstance(altura, (int, float)):
+        raise TypeError("Base y altura deben ser valores numéricos")
+    
+    # Verificar que son positivos
+    if base <= 0 or altura <= 0:
+        raise ValueError("Base y altura deben ser valores positivos")
+    
+    return base * altura
+
+# Uso correcto
+print(calcular_área_rectángulo(5, 3))      # 15
+
+# Uso incorrecto
+try:
+    calcular_área_rectángulo("5", 3)
+except TypeError as e:
+    print(f"Error: {e}")  # Error: Base y altura deben ser valores numéricos
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Verificación de subclases con issubclass()
+
+La función issubclass() permite verificar si una clase es subclase de otra:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Verificación de relaciones de herencia
+print(issubclass(bool, int))       # True (bool hereda de int)
+print(issubclass(float, int))      # False (float no hereda de int)
+print(issubclass(bool, bool))      # True (una clase es subclase de sí misma)
+
+# Con clases personalizadas
+class Animal:
+    pass
+
+class Perro(Animal):
+    pass
+
+class Gato(Animal):
+    pass
+
+print(issubclass(Perro, Animal))   # True
+print(issubclass(Gato, Perro))     # False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Obtener información de tipo como cadena
+
+A veces necesitamos obtener el nombre del tipo como cadena:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+valor = 42
+tipo = type(valor)
+
+# Obtener el nombre del tipo
+nombre_tipo = tipo.__name__
+print(nombre_tipo)                 # "int"
+
+# Alternativa usando el módulo typing
+import typing
+print(typing.get_type_hints(lambda x: x))  # {} (vacío para esta función simple)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Conversiones avanzadas entre tipos
+
+Python permite definir cómo se comportan las conversiones personalizadas mediante métodos especiales:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+class Temperatura:
+    def __init__(self, celsius):
+        self.celsius = celsius
+    
+    # Conversión a float
+    def __float__(self):
+        return float(self.celsius)
+    
+    # Conversión a int
+    def __int__(self):
+        return int(self.celsius)
+    
+    # Conversión a str
+    def __str__(self):
+        return f"{self.celsius}°C"
+    
+    # Representación oficial
+    def __repr__(self):
+        return f"Temperatura({self.celsius})"
+
+# Uso de las conversiones
+temp = Temperatura(36.5)
+print(float(temp))         # 36.5
+print(int(temp))           # 36
+print(str(temp))           # "36.5°C"
+print(repr(temp))          # "Temperatura(36.5)"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La verificación y conversión de tipos son herramientas fundamentales en Python que te permiten escribir código más robusto y flexible.
+Aunque Python es un lenguaje de tipado dinámico, estas funciones te ayudan a controlar el flujo de tu programa y a manejar 
+diferentes tipos de datos de manera segura y eficiente.
+
+──▶ Variables y referencias a objetos en memoria
+
+En Python, las variables funcionan de manera diferente a otros lenguajes de programación. En lugar de ser contenedores que almacenan 
+valores, las variables en Python son referencias o "etiquetas" que apuntan a objetos en memoria. Esta distinción es fundamental 
+para entender el comportamiento de Python y evitar errores comunes.
+
+──▶ El modelo de objetos y referencias
+
+Cuando creamos una variable en Python, ocurren dos cosas:
+
+    Se crea un objeto en memoria con un valor específico
+    La variable se convierte en una referencia que apunta a ese objeto
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Se crea un objeto entero con valor 42 en memoria
+# y la variable 'x' apunta a ese objeto
+x = 42
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Podemos visualizar este concepto como una etiqueta (la variable) adherida a una caja (el objeto):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Creamos dos variables
+a = 10
+b = 20
+
+# Ahora 'a' y 'b' apuntan a objetos diferentes en memoria
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Identificadores únicos con id()
+
+Cada objeto en Python tiene un identificador único que podemos obtener con la función id(). Este identificador representa la 
+dirección de memoria donde se almacena el objeto:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+x = 42
+y = 42
+z = x
+
+print(id(x))  # Por ejemplo: 140715689587792
+print(id(y))  # Podría ser el mismo o diferente, dependiendo de la implementación
+print(id(z))  # Mismo id que x, ya que z apunta al mismo objeto
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El comportamiento de Python con los identificadores puede variar según la implementación y optimizaciones internas. Por ejemplo, 
+Python puede reutilizar objetos para valores pequeños e inmutables como enteros pequeños o cadenas cortas.
+
+──▶ Asignación de variables y referencias múltiples
+
+Cuando asignamos una variable a otra, no se copia el valor, sino que ambas variables apuntan al mismo objeto:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+a = [1, 2, 3]  # 'a' apunta a una lista
+b = a          # 'b' ahora apunta al mismo objeto que 'a'
+
+print(id(a) == id(b))  # True, ambas variables apuntan al mismo objeto
+
+# Modificar el objeto a través de cualquier referencia afecta a todas
+b.append(4)
+print(a)  # [1, 2, 3, 4] - ¡'a' también se ve afectado!
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este comportamiento es crucial para entender cómo funcionan las mutaciones de objetos en Python.
+
+──▶ Inmutabilidad vs mutabilidad
+
+El comportamiento de las referencias varía según si el objeto es inmutable o mutable:
+
+    Objetos inmutables: No pueden cambiar después de crearse (int, float, str, tuple, frozenset)
+    Objetos mutables: Pueden modificarse después de crearse (list, dict, set)
+
+Con objetos inmutables, cualquier "modificación" crea un nuevo objeto:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Con objetos inmutables
+x = 10
+y = x
+
+print(id(x) == id(y))  # True, ambos apuntan al mismo objeto
+
+x += 5  # Esto crea un nuevo objeto, no modifica el existente
+print(x)  # 15
+print(y)  # 10 - 'y' sigue apuntando al objeto original
+
+print(id(x) == id(y))  # False, ahora apuntan a objetos diferentes
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Con objetos mutables, las modificaciones afectan al objeto original:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Con objetos mutables
+lista_a = [1, 2, 3]
+lista_b = lista_a
+
+print(id(lista_a) == id(lista_b))  # True, ambos apuntan al mismo objeto
+
+lista_a.append(4)  # Modifica el objeto existente
+print(lista_a)  # [1, 2, 3, 4]
+print(lista_b)  # [1, 2, 3, 4] - 'lista_b' refleja los cambios
+
+print(id(lista_a) == id(lista_b))  # True, siguen apuntando al mismo objeto
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Creación de copias independientes
+
+Para crear una copia independiente de un objeto mutable, podemos usar varios métodos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Copia superficial (shallow copy)
+original = [1, 2, [3, 4]]
+copia1 = original.copy()  # Método específico de listas
+copia2 = original[:]      # Slicing (rebanado)
+copia3 = list(original)   # Constructor de lista
+
+# Todas son copias independientes del objeto original
+copia1.append(5)
+print(original)  # [1, 2, [3, 4]] - No se ve afectado
+
+# PERO: los objetos anidados siguen siendo compartidos
+copia1[2].append(5)
+print(original)  # [1, 2, [3, 4, 5]] - ¡El objeto anidado sí se ve afectado!
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para una copia completa (deep copy), usamos el módulo copy:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+import copy
+
+original = [1, 2, [3, 4]]
+copia_profunda = copy.deepcopy(original)
+
+# Ahora los objetos anidados también son independientes
+copia_profunda[2].append(5)
+print(original)      # [1, 2, [3, 4]] - No se ve afectado
+print(copia_profunda)  # [1, 2, [3, 4, 5]]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Paso de argumentos a funciones
+
+En Python, los argumentos se pasan a las funciones por referencia (o más precisamente, por "valor de referencia"):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def modificar_lista(lista):
+    lista.append(4)  # Modifica el objeto original
+    
+def reemplazar_lista(lista):
+    lista = [7, 8, 9]  # Crea una nueva referencia local, no afecta al original
+    
+mi_lista = [1, 2, 3]
+
+modificar_lista(mi_lista)
+print(mi_lista)  # [1, 2, 3, 4] - La lista original se modificó
+
+reemplazar_lista(mi_lista)
+print(mi_lista)  # [1, 2, 3, 4] - La lista original no cambió
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este comportamiento explica por qué las funciones pueden modificar objetos mutables pasados como argumentos, pero no pueden 
+cambiar a qué objeto apunta una variable externa.
+
+──▶ Optimizaciones internas y comportamientos especiales
+
+Python implementa varias optimizaciones internas que pueden afectar cómo se comportan las referencias:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Enteros pequeños suelen compartir el mismo objeto
+a = 5
+b = 5
+print(id(a) == id(b))  # Probablemente True
+
+# Cadenas cortas e idénticas pueden compartir el mismo objeto
+c = "hola"
+d = "hola"
+print(id(c) == id(d))  # Probablemente True
+
+# Pero esto puede variar con valores más grandes o complejos
+x = 1000000
+y = 1000000
+print(id(x) == id(y))  # Podría ser False en algunas implementaciones
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Variables y recolección de basura
+
+Python utiliza un recolector de basura que libera automáticamente la memoria de objetos que ya no tienen referencias:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+x = [1, 2, 3]  # Se crea un objeto lista
+x = "hola"     # La lista original ya no tiene referencias
+               # y eventualmente será eliminada por el recolector de basura
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Podemos ver cuántas referencias tiene un objeto con la función sys.getrefcount():
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+import sys
+
+a = [1, 2, 3]
+b = a
+c = a
+
+# El +1 es porque getrefcount() crea una referencia temporal adicional
+print(sys.getrefcount(a))  # 4 (a, b, c, más la referencia temporal)
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Uso práctico del modelo de referencias
+
+Entender el modelo de referencias nos permite escribir código más eficiente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Intercambio de valores sin variable temporal
+a, b = 10, 20
+a, b = b, a
+print(a, b)  # 20 10
+
+# Pasar objetos grandes a funciones sin copiarlos
+def procesar_datos(datos):
+    # Trabajamos directamente con la referencia, sin copiar el objeto
+    return [x * 2 for x in datos]
+
+# Detectar si dos variables apuntan al mismo objeto
+def son_mismo_objeto(x, y):
+    return id(x) == id(y)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Buenas prácticas con referencias
+
+Para evitar errores comunes relacionados con referencias:
+
+    1. Ten cuidado al modificar objetos mutables que se comparten entre varias partes del código:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Potencialmente peligroso
+def añadir_elemento(elemento, lista=[]):  # ¡La lista por defecto se crea una sola vez!
+    lista.append(elemento)
+    return lista
+
+print(añadir_elemento(1))  # [1]
+print(añadir_elemento(2))  # [1, 2] - ¡La lista se comparte entre llamadas!
+
+# Mejor alternativa
+def añadir_elemento_seguro(elemento, lista=None):
+    if lista is None:
+        lista = []
+    lista.append(elemento)
+    return lista
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+2. Usa el operador is para comprobar identidad (si dos variables apuntan al mismo objeto) y == para comprobar igualdad 
+(si dos objetos tienen el mismo valor):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a == b)  # True - Mismo valor
+print(a is b)  # False - Objetos diferentes
+print(a is c)  # True - Mismo objeto
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+3. Crea copias explícitas cuando necesites versiones independientes de objetos mutables:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+original = [1, 2, 3]
+
+# Hacer explícito que estamos creando una copia
+copia = original.copy()  # o list(original) o original[:]
+
+# Ahora podemos modificar la copia sin afectar al original
+copia.append(4)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Comprender cómo funcionan las variables como referencias a objetos en memoria es esencial para dominar Python y evitar errores 
+sutiles en tu código. Este modelo de referencias es una de las características fundamentales que hace que Python sea flexible 
+y potente, pero también requiere una comprensión clara para utilizarlo correctamente.
+
+
+Aprendizajes de esta lección
+
+    Comprender los tipos de datos básicos en Python: enteros, flotantes, booleanos y cadenas.
+    Aprender las operaciones y métodos específicos de cada tipo de dato.
+    Entender cómo realizar conversiones explícitas e implícitas entre tipos y verificar tipos con isinstance() y type().
+    Conocer el modelo de variables en Python como referencias a objetos en memoria y la diferencia entre objetos mutables e inmutables.
+    Aplicar buenas prácticas para evitar errores comunes relacionados con referencias y mutabilidad en Python.
+
