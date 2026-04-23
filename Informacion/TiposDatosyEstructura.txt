@@ -1,0 +1,267 @@
+Python Tema 2: Tipos de datos y estructuras 
+
+En este segundo tema exploraremos uno de los fundamentos más importantes de Python: los tipos y estructuras de datos. 
+La forma en que Python maneja y organiza los datos es una de sus grandes fortalezas, ofreciendo estructuras versátiles y de fácil 
+uso que permiten resolver problemas complejos con código elegante y eficiente.
+
+https://docs.python.org/3/
+
+Contenidos del Tema 2
+
+1. Tipos de datos en Python
+Estudiaremos los tipos de datos fundamentales como enteros, flotantes, booleanos, cadenas de texto y NoneType. 
+Comprenderemos cómo Python gestiona dinámicamente los tipos y las operaciones básicas que podemos realizar con cada uno de ellos.
+
+2. Ejercicio tipos de datos
+Pondremos en práctica lo aprendido mediante ejercicios que nos permitirán familiarizarnos con las conversiones entre tipos, 
+operaciones y métodos específicos de cada tipo de dato.
+
+3. Estructuras de datos: Listas
+Aprenderemos sobre las listas, una de las estructuras más versátiles y utilizadas en Python. Veremos cómo crear, 
+modificar, acceder y manipular elementos en listas, así como los métodos más importantes que nos ofrece esta estructura.
+
+4. Ejercicio listas
+Resolveremos problemas prácticos trabajando con listas para consolidar conceptos como slicing, métodos de lista y manipulación de elementos.
+
+5. Estructuras de datos: Tuplas
+Conoceremos las tuplas, estructuras inmutables que tienen usos específicos en Python, y entenderemos cuándo utilizarlas en 
+lugar de las listas.
+
+6. Ejercicio tuplas
+Practicaremos con ejercicios diseñados para comprender las diferencias entre tuplas y listas, y los escenarios donde las tuplas 
+son la mejor opción.
+
+7. Estructuras de datos: Diccionarios
+Exploraremos los diccionarios, estructuras basadas en pares clave-valor que permiten acceso rápido a datos y son fundamentales 
+para muchas aplicaciones en Python.
+
+8. Ejercicio diccionarios
+Trabajaremos con ejercicios prácticos para dominar la creación, modificación y consulta de diccionarios en diferentes contextos.
+
+9. Estructuras de datos: Conjuntos
+Estudiaremos los conjuntos (sets), estructuras que almacenan elementos únicos y permiten operaciones matemáticas de conjuntos 
+como uniones e intersecciones.
+
+10. Ejercicio conjuntos
+Resolveremos problemas utilizando las propiedades especiales de los conjuntos y sus métodos específicos.
+
+11. Módulo collections
+Descubriremos el módulo collections, que proporciona alternativas especializadas a las estructuras de datos estándar como Counter, 
+defaultdict, OrderedDict y deque.
+
+12. Ejercicio collections
+Practicaremos con las estructuras avanzadas del módulo collections para resolver problemas específicos de manera eficiente.
+
+13. Test Tema 2
+Finalizaremos el tema con una evaluación que nos permitirá comprobar nuestra comprensión de los tipos de datos y estructuras en 
+Python antes de avanzar al siguiente tema.
+
+Al terminar este tema, tendremos una sólida comprensión de cómo Python organiza y manipula datos, habilidades fundamentales que 
+aplicaremos constantemente en nuestro camino como programadores Python.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+──▶ Tipos básicos: enteros, flotantes, booleanos y cadenas
+
+Python es un lenguaje de programación con tipado dinámico, lo que significa que no necesitas declarar el tipo de una variable antes de usarla. 
+El intérprete de Python determina automáticamente el tipo de dato basándose en el valor asignado. Vamos a explorar los cuatro tipos de 
+datos fundamentales que forman la base de cualquier programa Python.
+
+──▶ Números enteros (int)
+Los enteros representan números sin parte decimal. En Python 3, los enteros tienen precisión ilimitada, lo que significa que 
+pueden ser tan grandes como la memoria de tu computadora permita.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Declaración de enteros                                                      |                                                     
+edad = 25                                                                     |
+temperatura_bajo_cero = -10                                                   |
+población_mundial = 8_000_000_000  # Los guiones bajos mejoran la legibilidad |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Los enteros en Python 3 pueden usar guiones bajos como separadores visuales para mejorar la legibilidad de números grandes, 
+como se muestra en el ejemplo anterior.
+
+También puedes representar enteros en diferentes sistemas numéricos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Diferentes bases numéricas                |
+decimal = 42        # Base 10 (por defecto) |
+binario = 0b101010  # Base 2 (binario)      |
+octal = 0o52        # Base 8 (octal)        |
+hexadecimal = 0x2A  # Base 16 (hexadecimal) |
+                                            |
+print(decimal)      # Salida: 42            |
+print(binario)      # Salida: 42            |
+print(octal)        # Salida: 42            |
+print(hexadecimal)  # Salida: 42            |
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Números de punto flotante (float)
+
+Los flotantes representan números con parte decimal. Están implementados usando el estándar IEEE 754 de doble precisión.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Declaración de flotantes
+altura = 1.75
+pi = 3.14159
+pequeño = 1.7e-5    # Notación científica: 1.7 × 10^-5 = 0.000017
+grande = 6.022e23   # Notación científica: 6.022 × 10^23
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Es importante tener en cuenta que los flotantes pueden tener imprecisiones debido a cómo se representan internamente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+resultado = 0.1 + 0.2
+print(resultado)                 # Salida: 0.30000000000000004
+print(round(resultado, 1))       # Salida: 0.3
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para comparaciones de igualdad con flotantes, es mejor usar una tolerancia en lugar de comparación directa:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Comparación de flotantes
+a = 0.1 + 0.2
+b = 0.3
+
+# Evitar esto:
+print(a == b)                    # Salida: False
+
+# Preferir esto:
+print(abs(a - b) < 1e-10)        # Salida: True
+# o usar el módulo math para comparaciones más robustas
+import math
+print(math.isclose(a, b))        # Salida: True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Booleanos (bool)
+
+Los booleanos representan valores de verdad y solo pueden ser True o False. Son fundamentales para el control de flujo y las 
+expresiones condicionales.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Declaración de booleanos
+es_estudiante = True
+tiene_licencia = False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los booleanos en Python son una subclase de enteros, donde True equivale a 1 y False a 0:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+print(True + True)        # Salida: 2
+print(True * 8)           # Salida: 8
+print(False * 100)        # Salida: 0
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Cualquier valor en Python puede ser evaluado en un contexto booleano. Los siguientes valores se consideran False:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Valores que evalúan a False
+print(bool(0))            # Entero cero
+print(bool(0.0))          # Flotante cero
+print(bool(""))           # Cadena vacía
+print(bool([]))           # Lista vacía
+print(bool({}))           # Diccionario vacío
+print(bool(None))         # Valor None
+
+# Todo lo demás evalúa a True
+print(bool(1))            # Salida: True
+print(bool(-5))           # Salida: True
+print(bool("Hola"))       # Salida: True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Cadenas de texto (str)
+
+Las cadenas representan secuencias de caracteres. En Python 3, las cadenas son secuencias Unicode por defecto, lo que permite 
+manejar caracteres internacionales.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Declaración de cadenas
+nombre = "Ana"
+apellido = 'García'
+mensaje = '''Este es un texto
+que ocupa varias líneas'''
+ruta = r"C:\Users\nombre\documentos"  # Cadena raw (r) - no interpreta caracteres de escape
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Python permite usar comillas simples ('), dobles (") o triples (''' o """) para definir cadenas. Las comillas triples permiten 
+cadenas multilínea.
+
+Las cadenas en Python son inmutables, lo que significa que no puedes cambiar un carácter individual una vez creada la cadena:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre = "Juan"
+# nombre[0] = "P"  # Esto generaría un error: TypeError: 'str' object does not support item assignment
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Sin embargo, puedes crear nuevas cadenas a partir de existentes:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Concatenación y repetición
+saludo = "Hola " + nombre + "!"
+print(saludo)                # Salida: Hola Juan!
+
+repetición = "eco " * 3
+print(repetición)            # Salida: eco eco eco 
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las cadenas en Python soportan indexación y slicing (rebanado):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python"
+print(texto[0])              # Salida: P
+print(texto[-1])             # Salida: n (indexación negativa, desde el final)
+print(texto[0:3])            # Salida: Pyt (caracteres del 0 al 2)
+print(texto[:2])             # Salida: Py (desde el inicio hasta el índice 1)
+print(texto[2:])             # Salida: thon (desde el índice 2 hasta el final)
+print(texto[::2])            # Salida: Pto (cada segundo carácter)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Python 3 incluye f-strings (cadenas formateadas), una forma elegante de insertar valores en cadenas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre = "María"
+edad = 29
+# Usando f-strings (Python 3.6+)
+presentación = f"Me llamo {nombre} y tengo {edad} años"
+print(presentación)          # Salida: Me llamo María y tengo 29 años
+
+# Expresiones en f-strings
+print(f"El año que viene tendré {edad + 1} años")  # Salida: El año que viene tendré 30 años
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las cadenas tienen muchos métodos incorporados útiles:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "  Python es genial  "
+print(texto.upper())         # Salida: "  PYTHON ES GENIAL  "
+print(texto.lower())         # Salida: "  python es genial  "
+print(texto.strip())         # Salida: "Python es genial"
+print(texto.replace("genial", "increíble"))  # Salida: "  Python es increíble  "
+print(texto.split())         # Salida: ['Python', 'es', 'genial']
+print("Python" in texto)     # Salida: True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Literales numéricos y de cadena
+
+Python permite personalizar la forma en que escribes los literales para mejorar la legibilidad:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Literales numéricos con guiones bajos (Python 3.6+)
+millón = 1_000_000
+print(millón)                # Salida: 1000000
+
+# Prefijos para sistemas numéricos
+binario = 0b1010             # Binario (base 2)
+octal = 0o12                 # Octal (base 8)
+hexadecimal = 0xFF           # Hexadecimal (base 16)
+
+# Prefijos para cadenas
+unicode = u"äöü"             # Cadena Unicode (redundante en Python 3)
+raw = r"C:\nueva\carpeta"    # Cadena raw (no procesa escapes como \n)
+formato = f"{2 + 2} = 4"     # f-string (Python 3.6+)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Estos tipos básicos son los bloques fundamentales con los que construirás tus programas en Python. A medida que avances, 
+aprenderás a combinarlos con estructuras de datos más complejas y a utilizar sus métodos específicos para manipular la 
+información de manera eficiente.
