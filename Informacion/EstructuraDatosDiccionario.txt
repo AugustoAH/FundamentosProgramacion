@@ -1,101 +1,129 @@
 Estructuras de datos: Diccionarios
 
-Estructura clave-valor y uso de hashing en Python
+──▶ Estructura clave-valor y uso de hashing en Python
 
-Los diccionarios en Python son estructuras de datos extremadamente versátiles que implementan un mapeo entre claves y valores. A diferencia de las listas o tuplas que acceden a los elementos mediante índices numéricos, los diccionarios permiten utilizar claves de diversos tipos para acceder a sus valores correspondientes.
-Fundamentos de la estructura clave-valor
+Los diccionarios en Python son estructuras de datos extremadamente versátiles que implementan un mapeo entre claves y valores. 
+A diferencia de las listas o tuplas que acceden a los elementos mediante índices numéricos, los diccionarios permiten utilizar 
+claves de diversos tipos para acceder a sus valores correspondientes.
+
+──▶ Fundamentos de la estructura clave-valor
 
 Un diccionario en Python se basa en el concepto de pares clave-valor, donde:
 
-    Cada clave actúa como un identificador único que apunta a un valor
-    Cada valor es el dato asociado a una clave específica
+* Cada clave actúa como un identificador único que apunta a un valor
+* Cada valor es el dato asociado a una clave específica
 
 Esta relación se puede visualizar de la siguiente manera:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 clave1 → valor1
 clave2 → valor2
 clave3 → valor3
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 En Python, esta estructura se representa utilizando llaves {} con los pares clave-valor separados por dos puntos:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 mi_diccionario = {
     "nombre": "Ana",
     "edad": 28,
     "ciudad": "Madrid"
 }
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-La potencia de los diccionarios radica en que permiten acceso directo a los valores a través de sus claves, sin necesidad de recorrer toda la estructura secuencialmente.
-Funcionamiento interno: Hashing
+La potencia de los diccionarios radica en que permiten acceso directo a los valores a través de sus claves, sin necesidad de 
+recorrer toda la estructura secuencialmente.
 
-Detrás de la eficiencia de los diccionarios está el concepto de hashing, un mecanismo fundamental que permite el acceso rápido a los valores. El proceso funciona así:
+──▶ Funcionamiento interno: Hashing
 
-    Cuando se crea un diccionario, Python reserva espacio en memoria (una tabla hash)
-    Para cada clave, Python calcula un valor hash utilizando la función hash()
-    Este valor hash determina la posición exacta donde se almacenará el valor en la tabla
-    Al buscar un valor, Python calcula nuevamente el hash de la clave y va directamente a esa posición
+Detrás de la eficiencia de los diccionarios está el concepto de hashing, un mecanismo fundamental que permite el acceso rápido 
+a los valores. 
+
+El proceso funciona así:
+
+    1. Cuando se crea un diccionario, Python reserva espacio en memoria (una tabla hash)
+    2. Para cada clave, Python calcula un valor hash utilizando la función hash()
+    3. Este valor hash determina la posición exacta donde se almacenará el valor en la tabla
+    4. Al buscar un valor, Python calcula nuevamente el hash de la clave y va directamente a esa posición
 
 Podemos ver el valor hash de diferentes objetos:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Valores hash de diferentes tipos de datos
 print(hash("python"))  # String
 print(hash(42))        # Entero
 print(hash(3.14))      # Flotante
 print(hash(True))      # Booleano
 print(hash((1, 2, 3))) # Tupla
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Este mecanismo permite que las operaciones de búsqueda, inserción y eliminación en diccionarios tengan una complejidad promedio de O(1), lo que significa que el tiempo de acceso es constante independientemente del tamaño del diccionario.
-Requisitos para las claves: inmutabilidad
+Este mecanismo permite que las operaciones de búsqueda, inserción y eliminación en diccionarios tengan una complejidad promedio 
+de O(1), lo que significa que el tiempo de acceso es constante independientemente del tamaño del diccionario.
 
-Para que el hashing funcione correctamente, las claves de un diccionario deben cumplir un requisito esencial: ser inmutables. Esto significa que una vez creadas, su valor no puede cambiar. La razón es simple: si una clave cambiara después de calcular su hash, sería imposible encontrar el valor asociado.
+──▶ Requisitos para las claves: inmutabilidad
+
+Para que el hashing funcione correctamente, las claves de un diccionario deben cumplir un requisito esencial: ser inmutables. 
+Esto significa que una vez creadas, su valor no puede cambiar. La razón es simple: si una clave cambiara después de calcular su hash, 
+sería imposible encontrar el valor asociado.
 
 Tipos de datos que pueden usarse como claves:
 
-    Strings: "nombre"
-    Números: 42, 3.14
-    Tuplas (si contienen solo elementos inmutables): (1, 2, 3)
-    Booleanos: True, False
-    Frozensets: frozenset([1, 2, 3])
+    * Strings: "nombre"
+    * Números: 42, 3.14
+    * Tuplas (si contienen solo elementos inmutables): (1, 2, 3)
+    * Booleanos: True, False
+    * Frozensets: frozenset([1, 2, 3])
 
 Tipos que NO pueden usarse como claves:
 
-    Listas: [1, 2, 3] (son mutables)
-    Diccionarios: {"a": 1} (son mutables)
-    Sets: {1, 2, 3} (son mutables)
+    * Listas: [1, 2, 3] (son mutables)
+    * Diccionarios: {"a": 1} (son mutables)
+    * Sets: {1, 2, 3} (son mutables)
 
 Si intentamos usar un objeto mutable como clave, Python lanzará un error:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Esto generará un TypeError
 mi_dict = {[1, 2, 3]: "valor"}  # TypeError: unhashable type: 'list'
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Colisiones de hash y su manejo
+──▶ Colisiones de hash y su manejo
 
-A pesar de que la función hash está diseñada para distribuir los valores uniformemente, existe la posibilidad de que dos claves diferentes generen el mismo valor hash, lo que se conoce como colisión. Python maneja estas colisiones internamente mediante técnicas como el encadenamiento, donde las entradas con el mismo hash se almacenan en una pequeña lista enlazada.
+A pesar de que la función hash está diseñada para distribuir los valores uniformemente, existe la posibilidad de que dos claves 
+diferentes generen el mismo valor hash, lo que se conoce como colisión. 
+Python maneja estas colisiones internamente mediante técnicas como el encadenamiento, donde las entradas con el mismo hash 
+se almacenan en una pequeña lista enlazada.
 
-Este manejo de colisiones es transparente para el usuario, pero explica por qué en raras ocasiones el rendimiento puede degradarse ligeramente.
-Ventajas de la estructura clave-valor
+Este manejo de colisiones es transparente para el usuario, pero explica por qué en raras ocasiones el rendimiento puede degradarse 
+ligeramente.
+
+──▶ Ventajas de la estructura clave-valor
 
 La estructura clave-valor de los diccionarios ofrece numerosas ventajas:
 
-    Acceso rápido: Recuperación de valores en tiempo constante O(1)
-    Flexibilidad: Las claves pueden ser de cualquier tipo inmutable
-    Expresividad: Representación natural de relaciones entre datos
-    Eficiencia en memoria: Solo almacena los datos necesarios
+    * Acceso rápido: Recuperación de valores en tiempo constante O(1)
+    * Flexibilidad: Las claves pueden ser de cualquier tipo inmutable
+    * Expresividad: Representación natural de relaciones entre datos
+    * Eficiencia en memoria: Solo almacena los datos necesarios
 
-Aplicaciones prácticas
+──▶ Aplicaciones prácticas
 
 Los diccionarios son ideales para:
 
-    Almacenar configuraciones:
+* Almacenar configuraciones:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 config = {
     "debug": True,
     "puerto": 8080,
     "host": "localhost",
     "timeout": 30
 }
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Contar frecuencias:
+* Contar frecuencias:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 texto = "hola mundo hola python"
 frecuencias = {}
 
@@ -106,9 +134,11 @@ for palabra in texto.split():
         frecuencias[palabra] = 1
         
 print(frecuencias)  # {'hola': 2, 'mundo': 1, 'python': 1}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Mapear relaciones:
+* Mapear relaciones:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Mapeo de códigos de país a nombres
 paises = {
     "ES": "España",
@@ -120,9 +150,11 @@ paises = {
 # Uso
 codigo = "ES"
 print(f"El código {codigo} corresponde a {paises[codigo]}")
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Caché de resultados:
+* Caché de resultados:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Caché para la secuencia de Fibonacci
 cache_fibonacci = {}
 
@@ -143,20 +175,24 @@ def fibonacci(n):
 
 # Ahora las llamadas repetidas son instantáneas
 print(fibonacci(30))  # Rápido incluso para valores grandes
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Consideraciones de rendimiento
+──▶ Consideraciones de rendimiento
 
 El rendimiento de los diccionarios depende de varios factores:
 
-    Distribución de hash: Una buena función hash distribuye las claves uniformemente
-    Factor de carga: Relación entre el número de elementos y el tamaño de la tabla hash
-    Tamaño inicial: Python redimensiona automáticamente los diccionarios, pero un tamaño inicial adecuado puede mejorar el rendimiento
+    * Distribución de hash: Una buena función hash distribuye las claves uniformemente
+    * Factor de carga: Relación entre el número de elementos y el tamaño de la tabla hash
+    * Tamaño inicial: Python redimensiona automáticamente los diccionarios, pero un tamaño inicial adecuado puede mejorar el 
+      rendimiento
 
 En la práctica, Python optimiza estos aspectos automáticamente, por lo que los diccionarios mantienen un excelente rendimiento incluso con grandes cantidades de datos.
-Diccionarios ordenados (Python 3.7+)
+
+──▶ Diccionarios ordenados (Python 3.7+)
 
 Desde Python 3.7, los diccionarios mantienen el orden de inserción de sus elementos. Esto significa que al iterar sobre un diccionario, los elementos aparecerán en el mismo orden en que fueron añadidos:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 colores = {}
 colores["rojo"] = "#FF0000"
 colores["verde"] = "#00FF00"
@@ -165,33 +201,44 @@ colores["azul"] = "#0000FF"
 # En Python 3.7+ esto imprimirá los colores en orden: rojo, verde, azul
 for color, codigo in colores.items():
     print(f"{color}: {codigo}")
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Esta característica, que antes requería el uso de collections.OrderedDict, ahora es parte del comportamiento estándar de los diccionarios en Python moderno.
-Creación, acceso y modificación de elementos en diccionarios
+Esta característica, que antes requería el uso de collections.OrderedDict, ahora es parte del comportamiento estándar de los 
+diccionarios en Python moderno.
 
-Los diccionarios en Python son estructuras de datos extremadamente flexibles que nos permiten almacenar información en pares clave-valor. Ahora que conocemos los fundamentos de su estructura interna, vamos a explorar cómo crear diccionarios, acceder a sus elementos y modificarlos de manera eficiente.
-Creación de diccionarios
+──▶ Creación, acceso y modificación de elementos en diccionarios
+
+Los diccionarios en Python son estructuras de datos extremadamente flexibles que nos permiten almacenar información en pares 
+clave-valor. Ahora que conocemos los fundamentos de su estructura interna, vamos a explorar cómo crear diccionarios, acceder a 
+sus elementos y modificarlos de manera eficiente.
+
+──▶ Creación de diccionarios
 
 Existen varias formas de crear un diccionario en Python:
 
-    Usando llaves {} (la forma más común):
+* Usando llaves {} (la forma más común):
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Diccionario con elementos iniciales
 estudiante = {"nombre": "Carlos", "edad": 22, "carrera": "Informática"}
 
 # Diccionario vacío
 configuracion = {}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Usando el constructor dict():
+* Usando el constructor dict():
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # A partir de pares clave-valor
 opciones = dict(color="azul", tamaño="mediano", disponible=True)
 
 # A partir de una lista de tuplas (clave, valor)
 coordenadas = dict([("x", 10), ("y", 20), ("z", 30)])
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    **Usando la comprensión de diccionarios (dict comprehensión):
+* (**) Usando la comprensión de diccionarios (dict comprehensión):
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Crear un diccionario de cuadrados de números
 cuadrados = {x: x**2 for x in range(1, 6)}
 print(cuadrados)  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
@@ -199,9 +246,11 @@ print(cuadrados)  # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 # Filtrar elementos en la comprensión
 pares = {x: x**2 for x in range(10) if x % 2 == 0}
 print(pares)  # {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Usando el método fromkeys() para crear un diccionario con las mismas claves y un valor predeterminado:
+* Usando el método fromkeys() para crear un diccionario con las mismas claves y un valor predeterminado:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Crear un diccionario con múltiples claves y el mismo valor
 usuarios = dict.fromkeys(["admin", "editor", "invitado"], False)
 print(usuarios)  # {'admin': False, 'editor': False, 'invitado': False}
@@ -209,13 +258,15 @@ print(usuarios)  # {'admin': False, 'editor': False, 'invitado': False}
 # Si omitimos el segundo parámetro, el valor predeterminado es None
 campos = dict.fromkeys(["nombre", "email", "teléfono"])
 print(campos)  # {'nombre': None, 'email': None, 'teléfono': None}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Acceso a elementos
+──▶ Acceso a elementos
 
 Hay varias formas de acceder a los valores almacenados en un diccionario:
 
-    Usando la notación de corchetes []:
+* Usando la notación de corchetes []:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 producto = {"id": 1001, "nombre": "Teclado", "precio": 45.99}
 
 # Acceder a un valor mediante su clave
@@ -226,29 +277,35 @@ try:
     print(producto["color"])
 except KeyError:
     print("La clave 'color' no existe en el diccionario")
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Usando el método get() (más seguro, evita errores):
+* Usando el método get() (más seguro, evita errores):
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Acceder con get() - devuelve None si la clave no existe
 print(producto.get("precio"))  # 45.99
 print(producto.get("color"))   # None
 
 # Podemos especificar un valor predeterminado si la clave no existe
 print(producto.get("color", "No especificado"))  # No especificado
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Verificando la existencia de claves antes de acceder:
+* Verificando la existencia de claves antes de acceder:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 if "precio" in producto:
     print(f"El precio es: {producto['precio']}")
 else:
     print("No se ha especificado el precio")
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Modificación de elementos
+──▶ Modificación de elementos
 
 Los diccionarios son estructuras mutables, lo que significa que podemos modificar su contenido después de crearlos:
 
-    Añadir o actualizar elementos:
+* Añadir o actualizar elementos:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 usuario = {"nombre": "Ana", "email": "ana@ejemplo.com"}
 
 # Añadir un nuevo par clave-valor
@@ -259,9 +316,11 @@ usuario["email"] = "ana.lopez@ejemplo.com"
 
 print(usuario)  
 # {'nombre': 'Ana', 'email': 'ana.lopez@ejemplo.com', 'rol': 'administrador'}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Usando el método update() para añadir o actualizar múltiples elementos a la vez:
+* Usando el método update() para añadir o actualizar múltiples elementos a la vez:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 perfil = {"usuario": "jsmith", "activo": True}
 
 # Actualizar con otro diccionario
@@ -273,9 +332,11 @@ perfil.update(ubicacion="Madrid", departamento="Desarrollo")
 
 print(perfil)
 # {'usuario': 'jsmith', 'activo': True, 'nombre': 'John Smith', 'edad': 35, 'ubicacion': 'Madrid', 'departamento': 'Desarrollo'}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Eliminar elementos de un diccionario:
+* Eliminar elementos de un diccionario:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 inventario = {"manzanas": 50, "peras": 30, "uvas": 45, "naranjas": 20}
 
 # Eliminar un elemento específico con del
@@ -290,17 +351,21 @@ ultimo_elemento = inventario.popitem()
 print(f"Se eliminó: {ultimo_elemento}")
 
 print(inventario)  # {'manzanas': 50}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Limpiar completamente un diccionario:
+* Limpiar completamente un diccionario:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 carrito = {"producto1": 2, "producto2": 1}
 carrito.clear()  # Elimina todos los elementos
 print(carrito)  # {}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Técnicas avanzadas de manipulación
+──▶ Técnicas avanzadas de manipulación
 
-    Fusionar diccionarios (Python 3.9+):
+* Fusionar diccionarios (Python 3.9+):
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # En Python 3.9+ podemos usar el operador |
 defaults = {"tema": "claro", "idioma": "es"}
 preferencias_usuario = {"tema": "oscuro"}
@@ -310,18 +375,22 @@ print(configuracion)  # {'tema': 'oscuro', 'idioma': 'es'}
 # También funciona con |=
 defaults |= {"notificaciones": True}
 print(defaults)  # {'tema': 'claro', 'idioma': 'es', 'notificaciones': True}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Asignación con valores predeterminados:
+* Asignación con valores predeterminados:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Asignar un valor solo si la clave no existe
 opciones = {"debug": True}
 opciones.setdefault("timeout", 30)  # Añade la clave si no existe
 opciones.setdefault("debug", False)  # No modifica el valor existente
 
 print(opciones)  # {'debug': True, 'timeout': 30}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Crear copias de diccionarios:
+* Crear copias de diccionarios:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 original = {"a": 1, "b": 2}
 
 # Copia superficial
@@ -332,9 +401,11 @@ copia2 = dict(original)
 copia1["c"] = 3
 print(original)  # {'a': 1, 'b': 2}
 print(copia1)    # {'a': 1, 'b': 2, 'c': 3}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Manejo de diccionarios anidados:
+* Manejo de diccionarios anidados:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 empleado = {
     "datos_personales": {
         "nombre": "Laura",
@@ -353,11 +424,13 @@ empleado["datos_personales"]["edad"] = 30
 # Añadir elementos a una lista dentro del diccionario
 empleado["habilidades"].append("Docker")
 print(empleado["habilidades"])  # ['Python', 'SQL', 'JavaScript', 'Docker']
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Patrones comunes de uso
+──▶ Patrones comunes de uso
 
-    Contadores (contar ocurrencias):
+* Contadores (contar ocurrencias):
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Contar palabras en un texto
 texto = "el perro persigue al gato y el gato corre"
 contador = {}
@@ -368,9 +441,11 @@ for palabra in texto.split():
 
 print(contador)  
 # {'el': 2, 'perro': 1, 'persigue': 1, 'al': 1, 'gato': 2, 'y': 1, 'corre': 1}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Agrupar datos por una propiedad:
+* Agrupar datos por una propiedad:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 estudiantes = [
     {"nombre": "Ana", "curso": "Python"},
     {"nombre": "Luis", "curso": "JavaScript"},
@@ -388,9 +463,11 @@ for estudiante in estudiantes:
 
 print(por_curso)
 # {'Python': ['Ana', 'Carlos'], 'JavaScript': ['Luis'], 'Java': ['María']}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Transformación de datos:
+* Transformación de datos:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Convertir una lista de tuplas en un diccionario
 datos = [("nombre", "Tablet Pro"), ("precio", 299.99), ("stock", 15)]
 producto = dict(datos)
@@ -401,20 +478,23 @@ precios = {"producto1": 10, "producto2": 20, "producto3": 30}
 precios_con_iva = {k: v * 1.21 for k, v in precios.items()}
 print(precios_con_iva)  
 # {'producto1': 12.1, 'producto2': 24.2, 'producto3': 36.3}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Consideraciones prácticas
+──▶ Consideraciones prácticas
 
-    Rendimiento: El acceso a elementos en diccionarios es muy eficiente (O(1) en promedio), lo que los hace ideales para búsquedas frecuentes.
+    * Rendimiento: El acceso a elementos en diccionarios es muy eficiente (O(1) en promedio), lo que los hace ideales para 
+      búsquedas frecuentes.
+    * Uso de memoria: Los diccionarios consumen más memoria que las listas debido a su estructura de tabla hash.
+    * Claves duplicadas: Si intentas añadir una clave que ya existe, el valor anterior será sobrescrito:
 
-    Uso de memoria: Los diccionarios consumen más memoria que las listas debido a su estructura de tabla hash.
-
-    Claves duplicadas: Si intentas añadir una clave que ya existe, el valor anterior será sobrescrito:
-
+- - - - - - - - - - - - - - - - - - - - - - - 
 config = {"debug": False}
 config["debug"] = True  # Sobrescribe el valor anterior
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    Iteración: Puedes recorrer un diccionario de varias formas:
+* Iteración: Puedes recorrer un diccionario de varias formas:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 producto = {"id": 100, "nombre": "Monitor", "precio": 150}
 
 # Iterar sobre las claves (comportamiento predeterminado)
@@ -428,15 +508,23 @@ for valor in producto.values():
 # Iterar sobre pares clave-valor
 for clave, valor in producto.items():
     print(f"{clave}: {valor}")
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Los diccionarios son una de las estructuras de datos más versátiles en Python, y dominar su creación, acceso y modificación te permitirá escribir código más eficiente y expresivo para una amplia variedad de aplicaciones.
-Métodos principales: get, update, items, keys y values
+Los diccionarios son una de las estructuras de datos más versátiles en Python, y dominar su creación, acceso y modificación 
+te permitirá escribir código más eficiente y expresivo para una amplia variedad de aplicaciones.
 
-Los diccionarios en Python ofrecen un conjunto de métodos integrados que facilitan la manipulación y exploración de sus datos. Estos métodos proporcionan funcionalidades específicas para trabajar con diccionarios de manera eficiente y segura. Vamos a explorar los cinco métodos más importantes que todo programador debe conocer.
-El método get()
+──▶ Métodos principales: get, update, items, keys y values
 
-El método get() proporciona una forma segura de acceder a los valores de un diccionario sin riesgo de generar errores cuando una clave no existe:
+Los diccionarios en Python ofrecen un conjunto de métodos integrados que facilitan la manipulación y exploración de sus datos. 
+Estos métodos proporcionan funcionalidades específicas para trabajar con diccionarios de manera eficiente y segura. 
+Vamos a explorar los cinco métodos más importantes que todo programador debe conocer.
 
+──▶ El método get()
+
+El método get() proporciona una forma segura de acceder a los valores de un diccionario sin riesgo de generar errores cuando 
+una clave no existe:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
 inventario = {"manzanas": 25, "plátanos": 40, "naranjas": 30}
 
 # Acceso seguro a un valor existente
@@ -446,9 +534,11 @@ print(cantidad_manzanas)  # 25
 # Acceso a una clave que no existe
 cantidad_peras = inventario.get("peras")
 print(cantidad_peras)  # None
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 La principal ventaja de get() es que podemos especificar un valor predeterminado que se devolverá si la clave no existe:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Especificar un valor predeterminado
 cantidad_peras = inventario.get("peras", 0)
 print(f"Cantidad de peras: {cantidad_peras}")  # Cantidad de peras: 0
@@ -456,17 +546,19 @@ print(f"Cantidad de peras: {cantidad_peras}")  # Cantidad de peras: 0
 # Útil para mensajes personalizados
 estado = inventario.get("cerezas", "No disponible en inventario")
 print(estado)  # No disponible en inventario
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 Este método es especialmente útil en situaciones donde:
 
-    Necesitamos manejar valores ausentes de forma elegante
-    Queremos evitar excepciones KeyError en nuestro código
-    Necesitamos proporcionar valores predeterminados para claves que podrían no existir
+    * Necesitamos manejar valores ausentes de forma elegante
+    * Queremos evitar excepciones KeyError en nuestro código
+    * Necesitamos proporcionar valores predeterminados para claves que podrían no existir
 
-El método update()
+──▶ El método update()
 
 El método update() permite combinar o actualizar un diccionario con los pares clave-valor de otro diccionario o de una secuencia de pares clave-valor:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Diccionario base
 producto = {"nombre": "Laptop", "precio": 899.99}
 
@@ -474,24 +566,28 @@ producto = {"nombre": "Laptop", "precio": 899.99}
 producto.update({"precio": 799.99, "stock": 10, "modelo": "X1"})
 print(producto)  
 # {'nombre': 'Laptop', 'precio': 799.99, 'stock': 10, 'modelo': 'X1'}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 También podemos usar argumentos con nombre para actualizar el diccionario:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 cliente = {"id": 1001, "nombre": "Ana García"}
 
 # Actualizar usando argumentos con nombre
 cliente.update(email="ana@ejemplo.com", telefono="555-1234")
 print(cliente)
 # {'id': 1001, 'nombre': 'Ana García', 'email': 'ana@ejemplo.com', 'telefono': '555-1234'}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 El método update() es particularmente útil para:
 
-    Combinar información de múltiples fuentes
-    Actualizar varios campos a la vez
-    Establecer valores predeterminados para un diccionario
+    * Combinar información de múltiples fuentes
+    * Actualizar varios campos a la vez
+    * Establecer valores predeterminados para un diccionario
 
 Un caso de uso común es la configuración de parámetros con valores predeterminados:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Configuración predeterminada
 config_predeterminada = {
     "modo": "producción",
@@ -512,11 +608,13 @@ config_final.update(config_usuario)
 
 print(config_final)
 # {'modo': 'desarrollo', 'debug': True, 'cache': True, 'timeout': 30}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-El método items()
+──▶ El método items()
 
 El método items() devuelve una vista de los pares clave-valor del diccionario como una secuencia de tuplas (clave, valor). Es especialmente útil para iterar sobre todo el contenido del diccionario:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 empleado = {
     "nombre": "Carlos",
     "puesto": "Desarrollador",
@@ -533,9 +631,11 @@ for clave, valor in empleado.items():
 # puesto: Desarrollador
 # departamento: Tecnología
 # antigüedad: 3
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 La vista devuelta por items() se actualiza dinámicamente cuando el diccionario cambia:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 datos = {"a": 1, "b": 2}
 vista_items = datos.items()
 
@@ -547,26 +647,30 @@ datos["a"] = 10
 
 # La vista refleja los cambios automáticamente
 print(list(vista_items))  # [('a', 10), ('b', 2), ('c', 3)]
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 Este método es ideal para:
 
-    Procesar simultáneamente claves y valores
-    Convertir diccionarios a otros formatos
-    Realizar operaciones que requieren acceso a pares completos
+    * Procesar simultáneamente claves y valores
+    * Convertir diccionarios a otros formatos
+    * Realizar operaciones que requieren acceso a pares completos
 
 Un ejemplo práctico es la transformación de datos:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 precios = {"camisa": 25, "pantalón": 35, "zapatos": 60}
 
 # Aplicar descuento del 20% a todos los productos
 precios_con_descuento = {producto: precio * 0.8 for producto, precio in precios.items()}
 print(precios_con_descuento)
 # {'camisa': 20.0, 'pantalón': 28.0, 'zapatos': 48.0}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-El método keys()
+──▶ El método keys()
 
 El método keys() devuelve una vista de todas las claves presentes en el diccionario:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 configuracion = {
     "idioma": "es",
     "tema": "oscuro",
@@ -577,9 +681,11 @@ configuracion = {
 # Obtener todas las claves
 claves = configuracion.keys()
 print(list(claves))  # ['idioma', 'tema', 'notificaciones', 'autoguardado']
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 Al igual que con items(), la vista devuelta por keys() se actualiza automáticamente cuando el diccionario cambia:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 opciones = {"ancho": 100, "alto": 200}
 vista_claves = opciones.keys()
 
@@ -588,15 +694,17 @@ opciones["color"] = "azul"
 
 # La vista se actualiza automáticamente
 print(list(vista_claves))  # ['ancho', 'alto', 'color']
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 El método keys() es especialmente útil para:
 
-    Verificar la existencia de claves específicas
-    Iterar solo sobre las claves de un diccionario
-    Realizar operaciones de conjuntos con las claves
+    * Verificar la existencia de claves específicas
+    * Iterar solo sobre las claves de un diccionario
+    * Realizar operaciones de conjuntos con las claves
 
 Por ejemplo, podemos comparar las claves de dos diccionarios:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 formulario_requerido = {"nombre", "email", "teléfono"}
 datos_enviados = {"nombre": "Laura", "email": "laura@ejemplo.com", "ciudad": "Valencia"}
 
@@ -609,11 +717,13 @@ else:
     print("Todos los campos requeridos están presentes")
 
 # Salida: Faltan los siguientes campos: teléfono
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-El método values()
+──▶ El método values()
 
 El método values() devuelve una vista de todos los valores almacenados en el diccionario:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 calificaciones = {
     "Matemáticas": 85,
     "Historia": 92,
@@ -628,9 +738,11 @@ print(list(notas))  # [85, 92, 78, 90]
 # Calcular el promedio
 promedio = sum(notas) / len(notas)
 print(f"Promedio: {promedio:.2f}")  # Promedio: 86.25
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 Como ocurre con los otros métodos de vista, values() se actualiza automáticamente con los cambios en el diccionario:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 contador = {"a": 3, "b": 5}
 vista_valores = contador.values()
 
@@ -639,15 +751,17 @@ contador["a"] = 10
 
 # La vista refleja el cambio
 print(list(vista_valores))  # [10, 5]
+- - - - - - - - - - - - - - - - - - - - - - - 
 
 Este método es particularmente útil para:
 
-    Realizar cálculos estadísticos sobre los valores
-    Verificar la presencia de ciertos valores
-    Extraer solo los datos sin preocuparse por las claves
+    * Realizar cálculos estadísticos sobre los valores
+    * Verificar la presencia de ciertos valores
+    * Extraer solo los datos sin preocuparse por las claves
 
 Un ejemplo práctico es el análisis de datos:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 ventas_por_producto = {
     "producto_a": 120,
     "producto_b": 85,
@@ -668,11 +782,13 @@ print(f"Venta más baja: {venta_minima}")
 productos_exitosos = [producto for producto, ventas in ventas_por_producto.items() 
                      if ventas > 100]
 print(f"Productos con más de 100 ventas: {productos_exitosos}")
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Combinando métodos para soluciones potentes
+──▶ Combinando métodos para soluciones potentes
 
 La verdadera potencia de estos métodos se revela cuando los combinamos para resolver problemas complejos:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 # Datos de una tienda online
 productos = {
     "SKU001": {"nombre": "Teclado", "precio": 45.99, "stock": 10},
@@ -703,21 +819,25 @@ for producto in productos.values():
 # Verificar los nuevos precios
 for codigo, info in productos.items():
     print(f"{info['nombre']}: ${info['precio']:.2f}")
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Métodos adicionales relacionados
+──▶ Métodos adicionales relacionados
 
 Además de los cinco métodos principales, existen otros métodos útiles que complementan su funcionalidad:
 
-    setdefault(clave, valor_predeterminado): Similar a get(), pero además añade la clave con el valor predeterminado si no existe:
+    * setdefault(clave, valor_predeterminado): Similar a get(), pero además añade la clave con el valor predeterminado si no existe:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 preferencias = {"tema": "claro"}
 # Obtiene el valor si existe, o establece un valor predeterminado si no
 idioma = preferencias.setdefault("idioma", "es")
 print(idioma)  # es
 print(preferencias)  # {'tema': 'claro', 'idioma': 'es'}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    pop(clave[, valor_predeterminado]): Elimina la clave y devuelve su valor:
+    * pop(clave[, valor_predeterminado]): Elimina la clave y devuelve su valor:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 datos = {"a": 1, "b": 2, "c": 3}
 valor_b = datos.pop("b")
 print(valor_b)  # 2
@@ -726,9 +846,11 @@ print(datos)  # {'a': 1, 'c': 3}
 # Con valor predeterminado para evitar KeyError
 valor_d = datos.pop("d", "No existe")
 print(valor_d)  # No existe
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-    popitem(): Elimina y devuelve el último par clave-valor insertado:
+    * popitem(): Elimina y devuelve el último par clave-valor insertado:
 
+- - - - - - - - - - - - - - - - - - - - - - - 
 historial = {}
 historial["acción1"] = "login"
 historial["acción2"] = "búsqueda"
@@ -738,8 +860,14 @@ historial["acción3"] = "compra"
 ultima_accion = historial.popitem()
 print(ultima_accion)  # ('acción3', 'compra')
 print(historial)  # {'acción1': 'login', 'acción2': 'búsqueda'}
+- - - - - - - - - - - - - - - - - - - - - - - 
 
-Estos métodos principales de los diccionarios en Python proporcionan un conjunto completo de herramientas para manipular datos estructurados de manera eficiente, permitiéndote escribir código más limpio, seguro y expresivo.
+Estos métodos principales de los diccionarios en Python proporcionan un conjunto completo de herramientas para manipular datos 
+estructurados de manera eficiente, permitiéndote escribir código más limpio, seguro y expresivo.
+
 Aprendizajes de esta lección
 
-Comprender la estructura clave-valor y el mecanismo de hashing en diccionarios de Python. Aprender a crear, acceder y modificar diccionarios de forma eficiente. Conocer los requisitos para las claves y cómo se manejan las colisiones. Dominar los métodos principales: get, update, items, keys y values. Aplicar patrones comunes y técnicas avanzadas para manipular diccionarios.
+Comprender la estructura clave-valor y el mecanismo de hashing en diccionarios de Python. Aprender a crear, acceder y modificar 
+diccionarios de forma eficiente. Conocer los requisitos para las claves y cómo se manejan las colisiones. 
+Dominar los métodos principales: get, update, items, keys y values. Aplicar patrones comunes y técnicas avanzadas para manipular 
+diccionarios.
