@@ -30,6 +30,8 @@ contacto_completo = contacto + ("Madrid",)
 # Mostrar la nueva tupla para verificar
 print("\nTupla contacto_completo:")
 print(contacto_completo)
+
+
 '''
 La solución cumple correctamente con los pasos solicitados en el enunciado:
 
