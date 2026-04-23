@@ -65,5 +65,4 @@ Implementación de funciones y estructura
 * Validación de entrada y manejo de errores: Validación adecuada de las entradas del usuario (calificaciones entre 0 y 10, conversión de tipos) y manejo de posibles errores o casos especiales.
 
 Tecnología a Utilizar
-
 Python
