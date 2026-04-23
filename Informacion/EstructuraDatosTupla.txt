@@ -1,0 +1,752 @@
+Estructuras de datos: Tuplas
+
+──▶ Características de inmutabilidad y ventajas de rendimiento
+
+Las tuplas son una estructura de datos fundamental en Python que se distingue principalmente por su inmutabilidad. A diferencia de 
+las listas, una vez que creas una tupla, no puedes modificar su contenido. Esta característica aparentemente restrictiva 
+ofrece ventajas significativas en términos de rendimiento y seguridad de datos.
+
+──▶ Inmutabilidad: concepto y consecuencias
+
+La inmutabilidad significa que, una vez creada una tupla, sus elementos no pueden ser:
+
+* Modificados
+* Añadidos
+* Eliminados
+* Reordenados
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Creamos una tupla
+coordenadas = (10, 20)
+
+# Esto generará un error
+# TypeError: 'tuple' object does not support item assignment
+coordenadas[0] = 15
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Esta característica tiene importantes implicaciones:
+
+* Integridad de datos: Garantiza que los datos permanezcan constantes durante toda la ejecución del programa.
+* Seguridad: Previene modificaciones accidentales de datos que deberían permanecer constantes.
+* Claridad de intención: Al usar una tupla, comunicas explícitamente que esos datos no deben cambiar.
+
+──▶ Ventajas de rendimiento
+
+Las tuplas ofrecen ventajas significativas de rendimiento sobre estructuras mutables como las listas:
+
+* Menor consumo de memoria: Las tuplas requieren menos memoria que las listas equivalentes porque Python no necesita asignar 
+espacio extra para posibles modificaciones.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+import sys
+
+mi_lista = [1, 2, 3, 4, 5]
+mi_tupla = (1, 2, 3, 4, 5)
+
+# Comparación de tamaño en bytes
+print(f"Tamaño de la lista: {sys.getsizeof(mi_lista)} bytes")
+print(f"Tamaño de la tupla: {sys.getsizeof(mi_tupla)} bytes")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Mayor velocidad de creación: La creación de tuplas es más rápida que la de listas, especialmente para estructuras grandes.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+import timeit
+
+# Medición de tiempo para crear una lista vs una tupla
+tiempo_lista = timeit.timeit(stmt="[1, 2, 3, 4, 5]", number=1000000)
+tiempo_tupla = timeit.timeit(stmt="(1, 2, 3, 4, 5)", number=1000000)
+
+print(f"Tiempo para crear 1,000,000 de listas: {tiempo_lista:.6f} segundos")
+print(f"Tiempo para crear 1,000,000 de tuplas: {tiempo_tupla:.6f} segundos")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Operaciones de búsqueda más rápidas: Las búsquedas en tuplas son ligeramente más rápidas que en listas.
+
+* Hashing: A diferencia de las listas, las tuplas son hashables, lo que significa que pueden usarse como claves en 
+diccionarios y como elementos en conjuntos.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Las tuplas pueden ser claves de diccionarios
+coordenadas = {}
+coordenadas[(0, 0)] = "Origen"
+coordenadas[(10, 20)] = "Punto A"
+
+# Esto funcionará
+print(coordenadas[(0, 0)])  # Imprime: Origen
+
+# Pero esto generaría un error
+# TypeError: unhashable type: 'list'
+# coordenadas[[0, 0]] = "Esto causará error"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Uso de tuplas como valores inmutables
+
+Las tuplas son ideales para representar colecciones de datos que conceptualmente no deberían cambiar:
+
+* Coordenadas geográficas: (latitud, longitud)
+* Información personal: (nombre, apellido, fecha_nacimiento)
+* Dimensiones: (ancho, alto, profundidad)
+* Configuraciones: (puerto, host, protocolo)
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Representación de un punto RGB
+color_rojo = (255, 0, 0)
+
+# Representación de una persona
+persona = ("Ana", "García", "1990-05-15")
+
+# Configuración de conexión
+config_db = ("localhost", 5432, "postgres", "ssl")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Tuplas como retorno múltiple de funciones
+
+Python aprovecha las tuplas para permitir que las funciones devuelvan múltiples valores de forma elegante:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def obtener_dimensiones_imagen(ruta_imagen):
+    # Código para procesar la imagen
+    # ...
+    return (1920, 1080)  # Ancho, alto
+
+# Desempaquetado directo del retorno
+ancho, alto = obtener_dimensiones_imagen("foto.jpg")
+print(f"La imagen tiene {ancho}x{alto} píxeles")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Inmutabilidad parcial: elementos mutables dentro de tuplas
+
+Es importante entender que la inmutabilidad de las tuplas se aplica a la estructura de la tupla, no necesariamente a sus elementos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Tupla que contiene una lista
+datos = (1, 2, [3, 4])
+
+# No podemos cambiar la estructura de la tupla
+# datos[0] = 5  # Esto generaría error
+
+# Pero podemos modificar el contenido de la lista dentro de la tupla
+datos[2].append(5)
+print(datos)  # Imprime: (1, 2, [3, 4, 5])
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Esta característica requiere precaución cuando necesitamos garantizar la inmutabilidad completa de los datos.
+
+──▶  Optimizaciones del intérprete
+
+Python implementa optimizaciones internas para las tuplas:
+
+* Interning: Python puede reutilizar tuplas pequeñas en memoria, lo que ahorra recursos.
+* Caching: El intérprete puede almacenar en caché resultados de operaciones con tuplas.
+
+Estas optimizaciones son posibles precisamente porque las tuplas son inmutables, lo que permite al intérprete hacer suposiciones 
+seguras sobre su comportamiento.
+
+──▶ Cuándo usar tuplas vs listas
+
+Las tuplas son la elección ideal cuando:
+
+* Los datos no deben cambiar
+* Necesitas una estructura hashable (para usar como clave)
+* Quieres comunicar que los datos son constantes
+* Buscas mejor rendimiento para datos inmutables
+
+Las listas son preferibles cuando:
+
+* Los datos necesitan ser modificados
+* Requieres añadir o eliminar elementos
+* La colección debe ser dinámica
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Uso apropiado de tupla: datos que no cambian
+punto_cardinal = ("Norte", 0)
+
+# Uso apropiado de lista: colección que crece
+temperaturas = [22.5, 23.1, 21.9]
+temperaturas.append(22.8)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Creación y acceso a elementos de tuplas
+
+Las tuplas en Python son estructuras de datos que permiten almacenar colecciones ordenadas de elementos. A diferencia de las listas, 
+que ya hemos estudiado anteriormente, las tuplas tienen una naturaleza inmutable. Veamos cómo podemos crear tuplas y acceder a sus 
+elementos de manera eficiente.
+
+──▶ Creación de tuplas
+
+Existen varias formas de crear tuplas en Python, cada una con sus propios casos de uso:
+
+* Usando paréntesis y comas: La forma más común y explícita.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Tupla con elementos
+colores = ("rojo", "verde", "azul")
+
+# Tupla vacía
+tupla_vacia = ()
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Sin paréntesis: Python permite crear tuplas usando solo comas (aunque menos recomendable por legibilidad).
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Tupla creada solo con comas
+puntos = 10, 20, 30
+print(type(puntos))  # <class 'tuple'>
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Tupla de un solo elemento: Requiere una coma después del elemento para distinguirla de una expresión entre paréntesis.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Incorrecto - Python lo interpreta como un entero entre paréntesis
+no_es_tupla = (42)
+print(type(no_es_tupla))  # <class 'int'>
+
+# Correcto - La coma indica que es una tupla
+tupla_singleton = (42,)
+print(type(tupla_singleton))  # <class 'tuple'>
+
+# También funciona sin paréntesis
+otra_singleton = 42,
+print(type(otra_singleton))  # <class 'tuple'>
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Usando el constructor tuple(): Convierte otros iterables en tuplas.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Desde una lista
+numeros = tuple([1, 2, 3, 4])
+
+# Desde una cadena
+letras = tuple("Python")
+print(letras)  # ('P', 'y', 't', 'h', 'o', 'n')
+
+# Desde un rango
+secuencia = tuple(range(5))
+print(secuencia)  # (0, 1, 2, 3, 4)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Tuplas anidadas: Pueden contener otras tuplas como elementos.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Matriz como tupla de tuplas
+matriz = (
+    (1, 2, 3),
+    (4, 5, 6),
+    (7, 8, 9)
+)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Tuplas con diferentes tipos de datos: Pueden contener elementos de cualquier tipo.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Tupla heterogénea
+datos_mixtos = (42, "Python", True, 3.14)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Acceso a elementos de tuplas
+
+El acceso a los elementos de una tupla es similar al de las listas, utilizando índices que comienzan en 0:
+
+* Acceso por índice positivo: Desde el principio de la tupla.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+dias = ("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
+
+# Acceso al primer elemento (índice 0)
+primer_dia = dias[0]
+print(primer_dia)  # Lunes
+
+# Acceso al tercer elemento (índice 2)
+tercer_dia = dias[2]
+print(tercer_dia)  # Miércoles
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Acceso por índice negativo: Desde el final de la tupla.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Último elemento (índice -1)
+ultimo_dia = dias[-1]
+print(ultimo_dia)  # Domingo
+
+# Penúltimo elemento (índice -2)
+penultimo_dia = dias[-2]
+print(penultimo_dia)  # Sábado
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Manejo de errores de índice: Intentar acceder a un índice fuera de rango generará un error.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+try:
+    dia_inexistente = dias[7]  # IndexError
+except IndexError as e:
+    print(f"Error: {e}")  # Error: tuple index out of range
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Slicing (rebanado) de tuplas
+
+El slicing permite extraer subtuplas especificando un rango de índices:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+dias_laborables = dias[0:5]  # Desde el índice 0 hasta el 4 (sin incluir el 5)
+print(dias_laborables)  # ('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes')
+
+# Forma abreviada para el mismo resultado
+dias_laborables = dias[:5]
+
+# Fin de semana
+fin_de_semana = dias[5:7]  # o simplemente dias[5:]
+print(fin_de_semana)  # ('Sábado', 'Domingo')
+
+# Slicing con paso
+dias_alternos = dias[::2]  # Toma elementos saltando de 2 en 2
+print(dias_alternos)  # ('Lunes', 'Miércoles', 'Viernes', 'Domingo')
+
+# Slicing inverso
+dias_inverso = dias[::-1]  # Invierte el orden de la tupla
+print(dias_inverso)  # ('Domingo', 'Sábado', 'Viernes', 'Jueves', 'Miércoles', 'Martes', 'Lunes')
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Acceso a tuplas anidadas
+
+Para acceder a elementos dentro de tuplas anidadas, se utilizan múltiples índices:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Matriz como tupla de tuplas
+matriz = (
+    (1, 2, 3),
+    (4, 5, 6),
+    (7, 8, 9)
+)
+
+# Acceso a un elemento específico (fila 1, columna 2)
+elemento = matriz[1][2]
+print(elemento)  # 6
+
+# Acceso a una fila completa
+segunda_fila = matriz[1]
+print(segunda_fila)  # (4, 5, 6)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Verificación de pertenencia
+
+Podemos comprobar si un elemento está presente en una tupla usando el operador in:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+frutas = ("manzana", "naranja", "plátano", "uva")
+
+# Verificar si un elemento existe
+tiene_naranja = "naranja" in frutas
+print(tiene_naranja)  # True
+
+tiene_pera = "pera" in frutas
+print(tiene_pera)  # False
+
+# Uso en condicionales
+fruta_buscar = "plátano"
+if fruta_buscar in frutas:
+    print(f"Tenemos {fruta_buscar} en stock")
+else:
+    print(f"No tenemos {fruta_buscar} en stock")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Métodos de tuplas
+
+Aunque las tuplas son inmutables, ofrecen algunos métodos útiles para consultar información:
+
+* count(): Cuenta las ocurrencias de un elemento.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = (1, 2, 3, 2, 4, 2, 5)
+ocurrencias = numeros.count(2)
+print(ocurrencias)  # 3
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* index(): Encuentra la primera posición de un elemento.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+posicion = numeros.index(4)
+print(posicion)  # 4
+
+# Con rango de búsqueda (Busqueda,inicio, fin)
+posicion_2 = numeros.index(2, 2, 6)  # Busca '2' entre los índices 2 y 5
+print(posicion_2)  # 3
+
+# Manejo de errores si el elemento no existe
+try:
+    posicion_inexistente = numeros.index(9)
+except ValueError as e:
+    print(f"Error: {e}")  # Error: tuple.index(x): x not in tuple
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Iteración sobre tuplas
+
+Las tuplas son iterables, lo que permite recorrerlas fácilmente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Iteración básica
+colores = ("rojo", "verde", "azul", "amarillo")
+for color in colores:
+    print(f"Color: {color}")
+
+# Iteración con índice usando enumerate()
+for indice, color in enumerate(colores):
+    print(f"Posición {indice}: {color}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Conversión entre tuplas y otras estructuras
+
+Es posible convertir entre tuplas y otras estructuras de datos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# De lista a tupla
+lista_numeros = [10, 20, 30, 40]
+tupla_numeros = tuple(lista_numeros)
+
+# De tupla a lista
+colores_tupla = ("rojo", "verde", "azul")
+colores_lista = list(colores_tupla)
+colores_lista.append("amarillo")  # Ahora podemos modificarla
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Uso de tuplas en operaciones
+
+Las tuplas admiten varias operaciones que resultan útiles:
+
+* Concatenación: Unir tuplas con el operador ( + ) .
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+tupla1 = (1, 2, 3)
+tupla2 = (4, 5, 6)
+tupla_combinada = tupla1 + tupla2
+print(tupla_combinada)  # (1, 2, 3, 4, 5, 6)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Repetición: Multiplicar una tupla por un número entero.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+patron = (1, 2) * 3
+print(patron)  # (1, 2, 1, 2, 1, 2)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Comparación: Las tuplas se comparan elemento por elemento.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+tupla_a = (1, 2, 3)
+tupla_b = (1, 2, 4)
+tupla_c = (1, 2, 3)
+
+print(tupla_a == tupla_c)  # True
+print(tupla_a < tupla_b)   # True (compara el primer elemento diferente: 3 < 4)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Uso práctico en Visual Studio Code
+
+Al trabajar con tuplas en Visual Studio Code, puedes aprovechar varias características:
+
+* Autocompletado: VS Code sugerirá métodos disponibles para tuplas.
+* Depuración: Puedes inspeccionar el contenido de las tuplas durante la ejecución.
+* Extensiones: Instala extensiones como "Python" de Microsoft para mejorar la experiencia.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplo para probar en VS Code
+def analizar_datos(valores):
+    minimo = min(valores)
+    maximo = max(valores)
+    promedio = sum(valores) / len(valores)
+    return (minimo, maximo, promedio)
+
+# Llamada a la función y desempaquetado
+datos = (4, 7, 2, 9, 5, 1, 8)
+min_val, max_val, prom = analizar_datos(datos)
+
+print(f"Mínimo: {min_val}, Máximo: {max_val}, Promedio: {prom:.2f}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Al ejecutar este código en VS Code, podrás ver los resultados en la terminal integrada y usar el depurador para examinar los valores 
+de las tuplas paso a paso.
+
+──▶ Desempaquetado de tuplas y su uso en asignaciones múltiples
+
+El desempaquetado de tuplas es una de las características más elegantes y prácticas de Python que permite extraer los valores 
+individuales de una tupla y asignarlos a variables separadas en una sola operación. Esta funcionalidad hace que el código sea más 
+limpio, legible y expresivo.
+
+──▶ Fundamentos del desempaquetado
+
+El desempaquetado básico consiste en asignar cada elemento de una tupla a una variable independiente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Tupla con información de un producto
+producto = ("Laptop", 1299.99, "Electrónica")
+
+# Desempaquetado básico
+nombre, precio, categoria = producto
+
+print(nombre)     # Laptop
+print(precio)     # 1299.99
+print(categoria)  # Electrónica
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La clave para un desempaquetado exitoso es que el número de variables debe coincidir exactamente con el número de elementos en 
+la tupla. Si intentamos desempaquetar con un número diferente de variables, Python generará un error:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+coordenadas = (10, 20, 30)  # Tupla con 3 elementos
+
+# Esto generará un error: ValueError: too many values to unpack
+# x, y = coordenadas
+
+# Esto también generará un error: ValueError: not enough values to unpack
+# x, y, z, w = coordenadas
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Desempaquetado con operador asterisco
+
+Python 3 introdujo una poderosa extensión al desempaquetado mediante el operador asterisco (*), que permite capturar múltiples 
+elementos en una lista:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Tupla con resultados de una competencia
+resultados = ("Ana", "Carlos", "Berta", "David", "Elena")
+
+# Desempaquetado con operador asterisco
+ganador, segundo, *resto = resultados
+
+print(f"Oro: {ganador}")    # Oro: Ana
+print(f"Plata: {segundo}")  # Plata: Carlos
+print(f"Otros: {resto}")    # Otros: ['Berta', 'David', 'Elena']
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El operador asterisco puede colocarse en cualquier posición de la asignación:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Al inicio
+*primeros, ultimo = resultados
+print(primeros)  # ['Ana', 'Carlos', 'Berta', 'David']
+print(ultimo)    # Elena
+
+# En medio
+primero, *intermedios, ultimo = resultados
+print(primero)      # Ana
+print(intermedios)  # ['Carlos', 'Berta', 'David']
+print(ultimo)       # Elena
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Es importante notar que la variable con el asterisco siempre se convierte en una lista, incluso si captura un solo elemento o ninguno:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+dupla = (1, 2)
+a, *b = dupla
+print(b)  # [2]
+
+solo_uno = (42,)
+primero, *resto = solo_uno
+print(resto)  # [] (lista vacía)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Desempaquetado anidado
+
+El desempaquetado también funciona con estructuras anidadas, permitiendo extraer elementos de tuplas dentro de tuplas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Información de estudiante con datos anidados
+estudiante = ("María López", (9.5, 8.7, 9.2), "Informática")
+
+# Desempaquetado con estructura anidada
+nombre, (nota1, nota2, nota3), carrera = estudiante
+
+print(nombre)   # María López
+print(nota1)    # 9.5
+print(nota2)    # 8.7
+print(nota3)    # 9.2
+print(carrera)  # Informática
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este tipo de desempaquetado es especialmente útil cuando trabajamos con datos estructurados como registros o resultados de consultas.
+
+──▶ Intercambio de variables
+
+Una aplicación elegante del desempaquetado es el intercambio de valores entre variables sin necesidad de una variable temporal:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Método tradicional con variable temporal
+x = 10
+y = 20
+temp = x
+x = y
+y = temp
+
+# Con desempaquetado de tuplas
+a = 5
+b = 10
+a, b = b, a  # Intercambio en una sola línea
+
+print(a, b)  # 10 5
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Esta técnica es concisa y menos propensa a errores que el enfoque tradicional.
+
+──▶ Desempaquetado en bucles for
+
+El desempaquetado brilla especialmente cuando se combina con bucles for para iterar sobre secuencias de tuplas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Lista de contactos (nombre, email, teléfono)
+contactos = [
+    ("Juan Pérez", "juan@ejemplo.com", "555-1234"),
+    ("Ana García", "ana@ejemplo.com", "555-5678"),
+    ("Carlos López", "carlos@ejemplo.com", "555-9012")
+]
+
+# Desempaquetado en el bucle for
+for nombre, email, telefono in contactos:
+    print(f"Nombre: {nombre}")
+    print(f"Email: {email}")
+    print(f"Teléfono: {telefono}")
+    print("-" * 20)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Esta técnica es particularmente útil al trabajar con la función enumerate():
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+lenguajes = ("Python", "JavaScript", "Java", "C++")
+
+# Desempaquetado con enumerate para obtener índice y valor
+for indice, lenguaje in enumerate(lenguajes, 1):  # Comienza desde 1
+    print(f"{indice}. {lenguaje}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Y con el método items() de los diccionarios:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+calificaciones = {"Matemáticas": 95, "Historia": 88, "Programación": 100}
+
+# Desempaquetado de clave-valor
+for asignatura, nota in calificaciones.items():
+    print(f"{asignatura}: {nota}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Desempaquetado en comprensiones de listas
+
+El desempaquetado también puede utilizarse en comprensiones de listas para transformar datos estructurados:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Lista de coordenadas (x, y)
+puntos = [(2, 3), (4, 1), (6, 5), (1, 7)]
+
+# Calcular la distancia al origen de cada punto
+distancias = [round((x**2 + y**2)**0.5, 2) for x, y in puntos]
+print(distancias)  # [3.61, 4.12, 7.81, 7.07]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Desempaquetado en funciones
+
+El desempaquetado es especialmente útil al trabajar con funciones que retornan múltiples valores:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def estadisticas(numeros):
+    """Calcula estadísticas básicas de una secuencia de números."""
+    return min(numeros), max(numeros), sum(numeros)/len(numeros)
+
+datos = [4, 7, 2, 9, 5, 1, 8]
+minimo, maximo, promedio = estadisticas(datos)
+
+print(f"Mínimo: {minimo}")
+print(f"Máximo: {maximo}")
+print(f"Promedio: {promedio:.2f}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También podemos usar el desempaquetado para ignorar valores que no necesitamos, utilizando el guion bajo como variable:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Solo nos interesa el valor máximo
+_, maximo, _ = estadisticas(datos)
+print(f"El valor máximo es: {maximo}")
+
+# Ignorar múltiples valores con el operador asterisco
+primero, *_, ultimo = range(1, 10)
+print(f"Primero: {primero}, Último: {ultimo}")  # Primero: 1, Último: 9
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Aplicaciones prácticas
+
+El desempaquetado de tuplas tiene numerosas aplicaciones en código real:
+
+* Procesamiento de datos CSV:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+import csv
+
+with open('datos.csv', 'r') as archivo:
+    lector = csv.reader(archivo)
+    next(lector)  # Saltar encabezados
+    
+    for id, nombre, edad, ciudad in lector:
+        print(f"ID: {id}, Nombre: {nombre}, Edad: {edad}, Ciudad: {ciudad}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Manejo de resultados de bases de datos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Simulación de resultados de una consulta SQL
+resultados = [
+    (1, "Proyecto A", "2023-01-15", "Completado"),
+    (2, "Proyecto B", "2023-03-22", "En progreso"),
+    (3, "Proyecto C", "2023-05-10", "Pendiente")
+]
+
+for id, nombre, fecha, estado in resultados:
+    print(f"Proyecto {id}: {nombre} ({fecha}) - {estado}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Procesamiento de coordenadas geográficas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Lista de ubicaciones (ciudad, latitud, longitud)
+ubicaciones = [
+    ("Madrid", 40.4168, -3.7038),
+    ("Barcelona", 41.3851, 2.1734),
+    ("Valencia", 39.4699, -0.3763)
+]
+
+for ciudad, lat, lon in ubicaciones:
+    print(f"{ciudad}: {lat}° N, {lon}° E")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Desempaquetado en asignaciones múltiples
+
+El desempaquetado permite realizar asignaciones múltiples en una sola línea, lo que resulta útil para inicializar varias variables 
+relacionadas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Inicialización de variables para un rectángulo
+ancho, alto = 800, 600
+
+# Inicialización de variables para un juego
+vidas, nivel, puntuacion = 3, 1, 0
+
+# Inicialización de variables para una aplicación
+host, puerto, debug = "localhost", 8000, True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Esta técnica hace que el código sea más compacto y mantiene juntas las variables relacionadas, mejorando la legibilidad.
+
+──▶ Buenas prácticas
+
+Para aprovechar al máximo el desempaquetado de tuplas:
+
+* Mantén la simetría: Asegúrate de que el número de variables coincida con el número de elementos.
+* Usa nombres descriptivos: Elige nombres de variables que reflejen claramente lo que representan.
+* Utiliza el guion bajo (_) para valores que no necesitas.
+* Considera la legibilidad: A veces, múltiples líneas pueden ser más claras que un desempaquetado complejo.
+* Documenta estructuras complejas: Si el desempaquetado involucra estructuras anidadas complejas, añade comentarios explicativos.
+
+El desempaquetado de tuplas es una característica que, una vez dominada, se convierte en una herramienta indispensable para escribir código Python más elegante, conciso y expresivo.
+
+──▶ Aprendizajes de esta lección
+
+Comprender la inmutabilidad de las tuplas y sus implicaciones. Aprender a crear y acceder a elementos de tuplas, incluyendo 
+tuplas anidadas. Utilizar el desempaquetado de tuplas para asignaciones múltiples y en estructuras de control. 
+Identificar las ventajas de rendimiento y casos de uso adecuados para las tuplas. Aplicar técnicas avanzadas como desempaquetado 
+con operador asterisco y anidado.

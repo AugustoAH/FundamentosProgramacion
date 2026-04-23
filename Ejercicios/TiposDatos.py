@@ -5,15 +5,15 @@ Objetivo: Crear variables con diferentes tipos de datos en Python
 
 Crea cuatro variables en Python, cada una con un tipo de dato diferente:
 
-    Una variable llamada age que contenga tu edad como número entero.
-    Una variable llamada height que contenga tu altura en metros como número flotante (por ejemplo 1.75).
-    Una variable llamada is_student que contenga un valor booleano (True o False) indicando si eres estudiante o no.
-    Una variable llamada name que contenga tu nombre como cadena de texto.
+    * Una variable llamada age que contenga tu edad como número entero.
+    * Una variable llamada height que contenga tu altura en metros como número flotante (por ejemplo 1.75).
+    * Una variable llamada is_student que contenga un valor booleano (True o False) indicando si eres estudiante o no.
+    * Una variable llamada name que contenga tu nombre como cadena de texto.
 
-Finalmente, imprime cada variable en una línea separada usando la función print().
+    Finalmente, imprime cada variable en una línea separada usando la función print().
 
 
-Solución:
+                Solución:
 '''
 
 # Ejercicio tipos de datos en Python
@@ -31,3 +31,18 @@ print(height)
 print(is_student)
 print(name)
 
+'''
+Tu solución cumple exactamente con todos los requisitos del enunciado:
+
+    * Has creado la variable age como número entero (int).
+    * Has definido height como número flotante (float).
+    * Has usado is_student como valor booleano (True).
+    * Has almacenado tu nombre en name como cadena de texto (str).
+    * Imprimes cada variable en una línea separada usando print().
+
+El código es sencillo, correcto y legible. Como mejora estilística opcional (no afecta a la nota), podrías añadir un pequeño comentario al inicio indicando el propósito del script, por ejemplo:
+
+# Ejercicio: variables con diferentes tipos de datos
+
+Enhorabuena, la implementación se ajusta perfectamente a lo pedido. ¡Buen trabajo!
+'''
