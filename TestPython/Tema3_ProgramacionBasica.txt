@@ -1,0 +1,183 @@
+1. En Python, la estructura condicional básica comienza con la palabra clave ____ seguida de una condición y dos puntos.
+
+a) condition
+b) check
+c) if
+d) when
+
+Respuesta: c) 
+
+2. Para ejecutar un bloque de código cuando la condición de un if es falsa, se utiliza la palabra clave ____.
+
+a) except
+b) default
+c) otherwise
+d) else
+
+Respuesta: d)
+
+3. En Python, para evaluar múltiples condiciones en secuencia, después de un if se utiliza la estructura ____.
+
+a) elif
+b) else if
+c) case
+d) elseif
+
+Respuesta: a)
+
+4. En Python, la ____ es crucial en las estructuras condicionales para definir los bloques de código.
+
+a) tabulación obligatoria
+b) puntuación
+c) capitalización
+d) indentación
+
+Respuesta: d) 
+
+5. El operador lógico ____ devuelve True si al menos una de las condiciones es verdadera.
+
+a) or
+b) xor
+c) nor  
+d) and
+
+Respuesta: a)
+
+6. El operador lógico ____ devuelve True solo si ambas condiciones son verdaderas.
+
+a) all
+b) and
+c) both
+d) or
+
+Respuesta: b)
+
+7. El operador lógico ____ invierte el valor de verdad de una expresión.
+
+a) inverse
+b) reverse
+c) neg
+d) not
+
+Respuesta: d)
+
+8. En Python, el valor ____ se considera falso en una evaluación condicional.
+
+a) 1
+b) -1
+c) 0
+d) "False"
+
+Respuesta: c)
+
+9. En Python, la cadena vacía "" se evalúa como ____ en una condición.
+
+a) Error
+b) False
+c) True
+d) None
+
+Respuesta: b)
+
+10. La sintaxis correcta del operador ternario en Python es ____.
+
+a) valor_si_verdadero if condición else valor_si_falso
+b) condición ? valor_si_verdadero : valor_si_falso
+c) if condición then valor_si_verdadero else valor_si_falso
+d) condición then valor_si_verdadero else valor_si_falso
+
+Respuesta: a)
+
+11. Para verificar si una variable x está dentro del rango de 10 a 20 inclusive, la expresión correcta es ____.
+
+a) between(x, 10, 20)
+b) x in range(10, 21)
+c) x >= 10 && x <= 20
+d) 10 <= x <= 20
+
+Respuesta: d)
+
+12. Si queremos ejecutar un bloque de código solo cuando una lista está vacía, la condición correcta es ____.
+
+a) if mi_lista.length == 0:
+b) if mi_lista == null:
+c) if not mi_lista:
+d) if mi_lista.empty():
+
+Respuesta: c) 
+
+13. La estructura match-case fue introducida en Python ____.
+
+a) 2.7
+b) 3.8
+c) 3.10
+d) 3.6
+
+Respuesta: c) 
+
+14. En una estructura match-case, el patrón ____ funciona como comodín que coincide con cualquier valor.
+
+a) _
+b) *
+c) any
+d) default
+
+Respuesta: a)
+
+15. Para combinar múltiples valores en un solo caso en una estructura match-case, se utiliza el operador ____.
+
+a) |
+b) ,
+c) or
+d) +
+
+Respuesta: a)
+
+16. Si x = 5, el resultado de la expresión "Positivo" if x > 0 else "Cero o negativo" es ____.
+
+a) "Cero o negativo"
+b) Error de sintaxis
+c) "Positivo"
+d) True
+
+Respuesta: c)
+
+17. El orden de precedencia correcto de los operadores lógicos en Python, de mayor a menor, es ____.
+
+a) not, and, or
+b) and, or, not
+c) or, and, not
+d) and, not, or
+
+Respuesta: a)
+
+18. En Python, cuando se utiliza el operador and con evaluación en cortocircuito y la primera condición es False, ____.
+
+a) la segunda condición siempre se evalúa
+b) el resultado es None
+c) se produce un error de sintaxis
+d) la segunda condición no se evalúa
+
+Respuesta: a)
+
+19. La instrucción ____ se utiliza en estructuras condicionales cuando temporalmente no queremos incluir código en alguno de los bloques.
+
+a) skip
+b) pass
+c) null
+d) continue
+
+Respuesta: b)
+
+20. Si tenemos x = 10 y y = 5, el resultado de x if x < y else y es ____.
+
+a) 5
+b) 10
+c) True
+d) False
+
+Respuesta: a)
+
+
+
+
