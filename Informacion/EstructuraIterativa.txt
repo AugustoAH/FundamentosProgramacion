@@ -1,0 +1,789 @@
+Estructuras de control iterativo
+
+──▶ Bucle for y su sintaxis para iterar sobre secuencias
+
+El bucle for es una de las estructuras de control iterativo más utilizadas en Python. A diferencia de otros lenguajes donde el bucle for se 
+basa en un contador, en Python está diseñado específicamente para iterar sobre los elementos de cualquier secuencia (como listas, tuplas, 
+cadenas de texto, etc.) de manera directa y elegante.
+
+──▶ Sintaxis básica
+
+La sintaxis básica del bucle for en Python es:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+for elemento in secuencia:
+    # Bloque de código a ejecutar en cada iteración
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Donde:
+
+    * elemento es una variable que tomará el valor de cada elemento de la secuencia en cada iteración
+    * secuencia es cualquier objeto iterable (que permite recorrer sus elementos uno a uno)
+
+──▶ Iterando sobre diferentes tipos de secuencias
+
+Python permite iterar sobre diversos tipos de secuencias de forma natural:
+
+* Listas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+frutas = ["manzana", "banana", "cereza"]
+for fruta in frutas:
+    print(f"Me gusta comer {fruta}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Cadenas de texto (strings):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre = "Python"
+for letra in nombre:
+    print(letra)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Tuplas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+coordenadas = (10, 20, 30)
+for coordenada in coordenadas:
+    print(f"Posición: {coordenada}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Conjuntos (sets):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+lenguajes = {"Python", "Java", "JavaScript"}
+for lenguaje in lenguajes:
+    print(f"{lenguaje} es un lenguaje de programación")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Diccionarios:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+usuario = {"nombre": "Ana", "edad": 25, "ciudad": "Madrid"}
+
+# Iterando sobre las claves
+for clave in usuario:
+    print(f"Clave: {clave}, Valor: {usuario[clave]}")
+
+# Iterando sobre los valores
+for valor in usuario.values():
+    print(f"Valor: {valor}")
+
+# Iterando sobre pares clave-valor
+for clave, valor in usuario.items():
+    print(f"{clave}: {valor}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Función range()
+
+La función range() es especialmente útil para generar secuencias numéricas sobre las que iterar:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# range(stop) - Genera números desde 0 hasta stop-1
+for i in range(5):
+    print(i)  # Imprime: 0, 1, 2, 3, 4
+
+# range(start, stop) - Genera números desde start hasta stop-1
+for i in range(2, 6):
+    print(i)  # Imprime: 2, 3, 4, 5
+
+# range(start, stop, step) - Genera números desde start hasta stop-1 con incremento step
+for i in range(1, 10, 2):
+    print(i)  # Imprime: 1, 3, 5, 7, 9
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Comprensiones de listas con for
+
+Las comprensiones de listas son una forma concisa y elegante de crear listas utilizando la sintaxis del bucle for:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Crear una lista con los cuadrados de los números del 0 al 9
+cuadrados = [x**2 for x in range(10)]
+print(cuadrados)  # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# Crear una lista con solo los números pares
+pares = [x for x in range(10) if x % 2 == 0]
+print(pares)  # [0, 2, 4, 6, 8]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También existen comprensiones para diccionarios y conjuntos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Comprensión de diccionario
+cuadrados_dict = {x: x**2 for x in range(5)}
+print(cuadrados_dict)  # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+
+# Comprensión de conjunto
+vocales_set = {letra for letra in "murcielago" if letra in "aeiou"}
+print(vocales_set)  # {'e', 'a', 'i', 'o', 'u'}
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Bucles for anidados
+
+Puedes anidar bucles for para iterar sobre estructuras de datos multidimensionales:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Matriz 3x3
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Iterar sobre cada fila y cada elemento de la fila
+for fila in matriz:
+    for elemento in fila:
+        print(elemento, end=" ")
+    print()  # Nueva línea después de cada fila
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Iterando con índices
+
+Si necesitas acceder al índice mientras iteras, puedes usar la función enumerate():
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+frutas = ["manzana", "banana", "cereza"]
+for indice, fruta in enumerate(frutas):
+    print(f"Índice {indice}: {fruta}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para empezar la enumeración desde un número diferente a 0:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+for indice, fruta in enumerate(frutas, start=1):
+    print(f"Fruta #{indice}: {fruta}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Iterando sobre múltiples secuencias
+
+La función zip() permite iterar simultáneamente sobre dos o más secuencias:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombres = ["Ana", "Carlos", "Elena"]
+edades = [25, 30, 22]
+ciudades = ["Madrid", "Barcelona", "Valencia"]
+
+for nombre, edad, ciudad in zip(nombres, edades, ciudades):
+    print(f"{nombre} tiene {edad} años y vive en {ciudad}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Si las secuencias tienen longitudes diferentes, zip() se detiene cuando se agota la secuencia más corta. Para iterar hasta la secuencia más 
+larga (rellenando con None los valores faltantes), puedes usar itertools.zip_longest():
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+from itertools import zip_longest
+
+a = [1, 2]
+b = [10, 20, 30, 40]
+
+for x, y in zip_longest(a, b):
+    print(f"x: {x}, y: {y}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Iterando en orden inverso
+
+Para iterar sobre una secuencia en orden inverso, puedes usar la función reversed():
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+for i in reversed(range(1, 6)):
+    print(i)  # Imprime: 5, 4, 3, 2, 1
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Iterando sobre archivos
+
+Los bucles for son ideales para procesar archivos línea por línea:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+with open("ejemplo.txt", "r") as archivo:
+    for linea in archivo:
+        print(linea.strip())  # strip() elimina espacios y saltos de línea
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Iteradores personalizados
+
+En Python 3.13, puedes crear tus propios iteradores personalizados implementando los métodos __iter__() y __next__():
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+class ContadorRegresivo:
+    def __init__(self, inicio):
+        self.inicio = inicio
+        self.actual = inicio
+        
+    def __iter__(self):
+        return self
+        
+    def __next__(self):
+        if self.actual <= 0:
+            raise StopIteration
+        self.actual -= 1
+        return self.actual + 1
+
+# Uso del iterador personalizado
+for numero in ContadorRegresivo(5):
+    print(numero)  # Imprime: 5, 4, 3, 2, 1
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Rendimiento y optimización
+
+El bucle for en Python está optimizado para trabajar con iteradores, lo que significa que procesa los elementos uno por uno sin cargar 
+toda la secuencia en memoria. Esto es especialmente útil cuando se trabaja con secuencias grandes o infinitas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Generador (no carga todos los elementos en memoria)
+numeros_grandes = (x for x in range(10**8))  # No consume memoria para 100 millones de números
+
+# Iterar sobre los primeros 5 elementos
+for i, num in enumerate(numeros_grandes):
+    if i >= 5:
+        break
+    print(num)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Bucle while para iteración controlada por condición
+
+El bucle while es una estructura de control iterativa fundamental en Python que ejecuta un bloque de código repetidamente mientras una condición 
+específica se evalúe como verdadera. A diferencia del bucle for, que itera sobre secuencias predefinidas, el bucle while está diseñado para 
+situaciones donde no conocemos de antemano cuántas iteraciones serán necesarias.
+
+──▶ Sintaxis básica
+
+La estructura básica de un bucle while en Python es:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+while condición:
+    # Bloque de código a ejecutar mientras la condición sea True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Donde:
+
+    * condición es una expresión booleana que se evalúa antes de cada iteración
+    * El bloque de código se ejecuta repetidamente hasta que la condición se evalúe como False
+
+──▶ Ejemplos básicos
+
+Un simple contador:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+contador = 0
+while contador < 5:
+    print(contador)
+    contador += 1  # Incrementar el contador en cada iteración
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este código imprime los números del 0 al 4. Es crucial modificar la variable que controla la condición dentro del bucle para evitar un bucle infinito.
+
+──▶ Bucles controlados por entrada del usuario
+
+El bucle while es ideal para situaciones donde la iteración depende de la interacción del usuario:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+respuesta = ""
+while respuesta.lower() != "salir":
+    respuesta = input("Escribe 'salir' para terminar: ")
+    print(f"Has escrito: {respuesta}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este programa continuará solicitando entrada hasta que el usuario escriba "salir".
+
+──▶ Bucles con condiciones complejas
+
+Puedes utilizar operadores lógicos para crear condiciones más complejas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+x = 0
+y = 10
+while x < 5 and y > 0:
+    print(f"x = {x}, y = {y}")
+    x += 1
+    y -= 2
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Bucles while con else
+
+Al igual que con los bucles for, puedes usar una cláusula else con un bucle while. El bloque else se ejecuta una vez cuando la condición del bucle se vuelve False (pero no si el bucle se interrumpe con break):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+contador = 0
+while contador < 3:
+    print(contador)
+    contador += 1
+else:
+    print("Bucle completado normalmente")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Bucles infinitos controlados
+
+A veces, es útil crear un bucle infinito deliberado que se controla internamente con una instrucción break:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+while True:
+    comando = input("Ingrese un comando (o 'salir' para terminar): ")
+    if comando.lower() == "salir":
+        break
+    print(f"Ejecutando: {comando}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Validación de entrada con while
+
+El bucle while es perfecto para validar entradas hasta que cumplan ciertos criterios:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+while True:
+    try:
+        edad = int(input("Ingresa tu edad (entre 1 y 120): "))
+        if 1 <= edad <= 120:
+            break
+        print("La edad debe estar entre 1 y 120.")
+    except ValueError:
+        print("Por favor, ingresa un número válido.")
+
+print(f"Edad registrada: {edad}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Procesamiento de datos hasta una condición
+
+El bucle while es útil para procesar datos hasta encontrar un valor específico:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [1, 3, 5, 7, 9, 2, 4, 6, 8]
+indice = 0
+
+while indice < len(numeros) and numeros[indice] % 2 != 0:
+    print(f"Número impar encontrado: {numeros[indice]}")
+    indice += 1
+
+if indice < len(numeros):
+    print(f"Primer número par encontrado: {numeros[indice]}")
+else:
+    print("No se encontraron números pares")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Simulaciones y aproximaciones
+
+Los bucles while son excelentes para algoritmos iterativos que convergen hacia una solución:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Aproximación de la raíz cuadrada de 25 usando el método de Newton
+objetivo = 25
+estimacion = 10.0
+precision = 0.0001
+
+while abs(estimacion**2 - objetivo) > precision:
+    estimacion = (estimacion + objetivo/estimacion) / 2
+    print(f"Estimación actual: {estimacion}")
+
+print(f"Raíz cuadrada aproximada de {objetivo}: {estimacion}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Bucles while con contadores múltiples
+
+Puedes manipular múltiples variables en cada iteración:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+a, b = 0, 1
+while a < 100:
+    print(a, end=" ")
+    a, b = b, a + b  # Secuencia de Fibonacci
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este código genera la secuencia de Fibonacci hasta que el valor supera 100. La asignación múltiple a, b = b, a + b es una característica 
+elegante de Python que permite actualizar ambas variables simultáneamente.
+
+──▶ Técnicas para evitar bucles infinitos
+
+Los bucles infinitos son un error común al trabajar con while. Algunas técnicas para evitarlos:
+
+* Establecer un contador máximo de iteraciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+max_iteraciones = 1000
+contador = 0
+
+while condicion and contador < max_iteraciones:
+    # código del bucle
+    contador += 1
+
+if contador >= max_iteraciones:
+    print("Posible bucle infinito detectado")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Verificar progreso en cada iteración:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+valor_anterior = None
+valor_actual = inicial
+
+while condicion:
+    # Guardar el valor actual antes de modificarlo
+    valor_anterior = valor_actual
+    
+    # Modificar el valor actual
+    valor_actual = calcular_nuevo_valor()
+    
+    # Verificar si hay progreso
+    if valor_actual == valor_anterior:
+        print("Estancado en un valor, saliendo del bucle")
+        break
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Patrones comunes con while
+
+──▶ Procesamiento hasta EOF (fin de archivo)
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+with open("datos.txt", "r") as archivo:
+    linea = archivo.readline()
+    while linea:
+        print(linea.strip())
+        linea = archivo.readline()
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Implementación de un menú interactivo
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def mostrar_menu():
+    print("\n--- MENÚ ---")
+    print("1. Ver datos")
+    print("2. Agregar dato")
+    print("3. Eliminar dato")
+    print("0. Salir")
+    return input("Seleccione una opción: ")
+
+opcion = ""
+while opcion != "0":
+    opcion = mostrar_menu()
+    
+    if opcion == "1":
+        print("Mostrando datos...")
+    elif opcion == "2":
+        print("Agregando dato...")
+    elif opcion == "3":
+        print("Eliminando dato...")
+    elif opcion != "0":
+        print("Opción no válida")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Implementación de algoritmos de búsqueda
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def busqueda_binaria(lista, objetivo):
+    izquierda, derecha = 0, len(lista) - 1
+    
+    while izquierda <= derecha:
+        medio = (izquierda + derecha) // 2
+        
+        if lista[medio] == objetivo:
+            return medio  # Encontrado
+        elif lista[medio] < objetivo:
+            izquierda = medio + 1  # Buscar en la mitad derecha
+        else:
+            derecha = medio - 1  # Buscar en la mitad izquierda
+            
+    return -1  # No encontrado
+
+# Ejemplo de uso
+numeros = [1, 3, 5, 7, 9, 11, 13, 15]
+indice = busqueda_binaria(numeros, 7)
+print(f"El número 7 está en el índice: {indice}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Comparación con el bucle for
+
+Aunque el bucle for es más adecuado para iterar sobre secuencias conocidas, hay situaciones donde while es la mejor opción:
+
+    * Cuando el número de iteraciones es desconocido de antemano
+    * Cuando la iteración depende de condiciones dinámicas
+    * Para implementar algoritmos iterativos que convergen a una solución
+    * Cuando necesitas control preciso sobre cuándo terminar el bucle
+
+En general, usa for cuando sabes exactamente sobre qué iterar, y while cuando necesitas continuar hasta que se cumpla una condición específica.
+
+──▶ Rendimiento y consideraciones
+
+    * Los bucles while pueden ser menos eficientes que los bucles for para iterar sobre secuencias, ya que Python optimiza internamente los bucles 
+       for para trabajar con iteradores.
+    * Siempre asegúrate de que la condición del bucle while eventualmente se vuelva False para evitar bucles infinitos.
+    * Considera usar un contador de seguridad para bucles complejos donde no estés seguro si terminarán.
+
+──▶ Control de flujo con break, continue y else en bucles
+
+Python ofrece herramientas especiales para controlar el flujo de ejecución dentro de los bucles, permitiéndote personalizar cómo se comportan 
+en diferentes situaciones. Estas herramientas te dan un control preciso sobre cuándo terminar un bucle prematuramente, cuándo saltar iteraciones 
+específicas o cuándo ejecutar código adicional al finalizar un bucle normalmente.
+
+──▶ La instrucción break
+
+La instrucción break te permite salir inmediatamente de un bucle, independientemente de la condición de control. 
+Cuando Python encuentra un break, abandona el bucle actual y continúa con el código que sigue después del bucle.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+for numero in range(1, 10):
+    if numero == 5:
+        print("Encontrado el 5, saliendo del bucle")
+        break
+    print(f"Número actual: {numero}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, el bucle imprimirá los números del 1 al 4, pero cuando llega al 5, ejecuta el break y sale del bucle sin procesar los números restantes.
+
+Un caso de uso común es buscar un elemento en una colección:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+usuarios = ["Ana", "Carlos", "Elena", "David", "Beatriz"]
+usuario_buscado = "Elena"
+
+for usuario in usuarios:
+    if usuario == usuario_buscado:
+        print(f"¡{usuario_buscado} encontrado!")
+        break
+else:
+    print(f"{usuario_buscado} no está en la lista")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El break es especialmente útil en bucles while para evitar bucles infinitos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Implementación de un algoritmo de búsqueda simple
+def buscar_elemento(lista, elemento):
+    indice = 0
+    while indice < len(lista):
+        if lista[indice] == elemento:
+            return indice  # Encontrado, retorna posición
+        indice += 1
+    return -1  # No encontrado
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ La instrucción continue
+
+Mientras que break sale completamente del bucle, continue salta a la siguiente iteración del bucle, omitiendo el resto del código en la iteración 
+actual:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+for i in range(10):
+    if i % 2 == 0:  # Si el número es par
+        continue    # Salta a la siguiente iteración
+    print(i)        # Solo se ejecuta para números impares
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este código imprimirá solo los números impares del 1 al 9, ya que la instrucción continue hace que se salten todas las iteraciones donde i es par.
+
+El continue es útil para filtrar elementos durante el procesamiento:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Procesar solo líneas no vacías de un archivo
+with open("datos.txt", "r") as archivo:
+    for linea in archivo:
+        linea = linea.strip()
+        if not linea or linea.startswith("#"):  # Línea vacía o comentario
+            continue
+        # Procesar la línea
+        print(f"Procesando: {linea}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También puedes usar continue para implementar lógica compleja de filtrado:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [10, 15, 20, 25, 30, 35, 40]
+for num in numeros:
+    # Saltar números que son múltiplos de 3 o menores que 20
+    if num % 3 == 0 or num < 20:
+        continue
+    print(f"Número procesado: {num}")  # Solo imprime 25, 35, 40
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ La cláusula else en bucles
+
+Una característica única de Python es la capacidad de añadir una cláusula else a los bucles for y while. El bloque else se ejecuta solo si el bucle termina normalmente (sin encontrar un break):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+for i in range(5):
+    print(i)
+else:
+    print("Bucle completado sin interrupciones")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La cláusula else es particularmente útil para algoritmos de búsqueda, donde quieres ejecutar un código específico solo si no se encontró lo que buscabas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def verificar_primo(numero):
+    if numero < 2:
+        return False
+    
+    for i in range(2, int(numero**0.5) + 1):
+        if numero % i == 0:
+            return False  # No es primo, encontramos un divisor
+    else:
+        return True  # Es primo, el bucle terminó sin encontrar divisores
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Otro ejemplo práctico es la validación de datos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def validar_contraseña(contraseña):
+    requisitos = [
+        lambda p: len(p) >= 8,                    # Longitud mínima
+        lambda p: any(c.isupper() for c in p),    # Al menos una mayúscula
+        lambda p: any(c.isdigit() for c in p)     # Al menos un número
+    ]
+    
+    for validar in requisitos:
+        if not validar(contraseña):
+            print("La contraseña no cumple todos los requisitos")
+            break
+    else:
+        print("Contraseña válida")
+        return True
+    
+    return False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Combinando break, continue y else
+
+Estas tres herramientas pueden combinarse para crear lógicas de control de flujo sofisticadas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def procesar_datos(datos):
+    resultados = []
+    
+    for valor in datos:
+        # Ignorar valores negativos
+        if valor < 0:
+            continue
+            
+        # Detener si encontramos un valor demasiado grande
+        if valor > 1000:
+            print("Valor demasiado grande encontrado")
+            break
+            
+        # Procesar valores válidos
+        resultados.append(valor * 2)
+    else:
+        print("Todos los datos fueron procesados correctamente")
+        return resultados
+    
+    print("Procesamiento interrumpido")
+    return resultados
+
+# Ejemplos de uso
+print(procesar_datos([5, 10, 15, -3, 20, 25]))  # Procesa todos excepto -3
+print(procesar_datos([5, 10, 1500, 20]))        # Se interrumpe en 1500
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Anidamiento y alcance
+
+Cuando trabajas con bucles anidados, break y continue afectan solo al bucle más interno en el que aparecen:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+for i in range(3):
+    print(f"Bucle externo: {i}")
+    for j in range(3):
+        if j == 1:
+            print(f"  Saltando j={j}")
+            continue  # Solo afecta al bucle interno
+        print(f"  Bucle interno: j={j}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Si necesitas controlar un bucle externo desde uno interno, puedes usar variables de control:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+encontrado = False
+for i in range(5):
+    for j in range(5):
+        if i * j > 10:
+            print(f"Valor {i}*{j}={i*j} excede 10")
+            encontrado = True
+            break  # Sale del bucle interno
+    if encontrado:
+        break  # Sale del bucle externo
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Patrones avanzados
+
+Implementación de un "do-while" en Python
+
+Python no tiene una estructura do-while nativa, pero puedes simularla con while y break:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+while True:
+    # Este código se ejecuta al menos una vez
+    respuesta = input("¿Continuar? (s/n): ")
+    if respuesta.lower() != 's':
+        break
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Bucle con reintentos limitados
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+max_intentos = 3
+intentos = 0
+
+while intentos < max_intentos:
+    try:
+        # Intentar operación
+        resultado = operacion_que_puede_fallar()
+        print("Operación exitosa")
+        break  # Salir si tiene éxito
+    except Exception as e:
+        intentos += 1
+        print(f"Error: {e}. Intento {intentos}/{max_intentos}")
+else:
+    print("Se agotaron los intentos")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Procesamiento por lotes con control de errores
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def procesar_lotes(items, tamaño_lote=10):
+    total = len(items)
+    procesados = 0
+    
+    for i in range(0, total, tamaño_lote):
+        lote = items[i:i+tamaño_lote]
+        print(f"Procesando lote {i//tamaño_lote + 1}")
+        
+        for item in lote:
+            try:
+                # Procesar item
+                resultado = procesar_item(item)
+                procesados += 1
+            except Exception as e:
+                print(f"Error procesando {item}: {e}")
+                continue
+    
+    print(f"Procesados {procesados} de {total} items")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Consideraciones de rendimiento
+
+* Usar break para salir temprano de bucles grandes puede mejorar significativamente el rendimiento.
+* La cláusula else no tiene impacto en el rendimiento, pero mejora la legibilidad del código.
+* Evita usar demasiados continue anidados, ya que pueden hacer que el código sea difícil de seguir.
+
+──▶ Buenas prácticas
+
+* Usa break cuando encuentres lo que buscas o cuando una condición haga innecesario continuar.
+* Usa continue para filtrar casos que no necesitan procesamiento completo.
+* Usa la cláusula else para ejecutar código que debe ejecutarse solo si el bucle completa todas sus iteraciones.
+* Añade comentarios claros cuando uses estas instrucciones en lógicas complejas.
+* Evita anidar demasiados niveles de bucles con múltiples break y continue, ya que dificulta el seguimiento del flujo.
+# Mejor: Extraer a una función con un propósito claro
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def encontrar_primer_valido(elementos, validador):
+    for elemento in elementos:
+        if validador(elemento):
+            return elemento
+    return None
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Estas herramientas de control de flujo, cuando se usan correctamente, te permiten escribir código más eficiente y expresivo, adaptando el 
+comportamiento de tus bucles a las necesidades específicas de tu programa.
+
+──▶ Aprendizajes de esta lección
+
+* Comprender la sintaxis y uso del bucle for para iterar sobre diferentes tipos de secuencias.
+* Aprender a utilizar la función range() y las comprensiones de listas para crear secuencias y colecciones de forma eficiente.
+* Dominar el uso del bucle while para iteraciones controladas por condiciones dinámicas y su comparación con for.
+* Conocer las instrucciones break, continue y la cláusula else para controlar el flujo dentro de los bucles.
+* Aplicar buenas prácticas y técnicas para evitar bucles infinitos y optimizar el rendimiento en estructuras iterativas.

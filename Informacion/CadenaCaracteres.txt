@@ -1,0 +1,1265 @@
+Trabajo con cadenas de caracteres
+
+──▶ Métodos principales para manipulación de cadenas
+
+Las cadenas de texto (strings) en Python son secuencias inmutables de caracteres que ofrecen una amplia variedad de métodos para su manipulación. 
+Estos métodos nos permiten transformar el texto sin modificar la cadena original, ya que siempre devuelven una nueva cadena con los cambios aplicados.
+
+Vamos a explorar los métodos más importantes para manipular cadenas, que te permitirán realizar transformaciones comunes en tus aplicaciones.
+
+──▶ Métodos de cambio de mayúsculas y minúsculas
+
+Python ofrece varios métodos para cambiar entre mayúsculas y minúsculas:
+
+* upper(): Convierte todos los caracteres de la cadena a mayúsculas.
+* lower(): Convierte todos los caracteres de la cadena a minúsculas.
+* capitalize(): Convierte el primer carácter a mayúscula y el resto a minúsculas.
+* title(): Convierte la primera letra de cada palabra a mayúscula.
+* swapcase(): Invierte mayúsculas y minúsculas.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python es Genial"
+
+print(texto.upper())       # PYTHON ES GENIAL
+print(texto.lower())       # python es genial
+print(texto.capitalize())  # Python es genial
+print(texto.title())       # Python Es Genial
+print(texto.swapcase())    # pYTHON ES gENIAL
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Estos métodos son especialmente útiles para normalizar texto, por ejemplo, cuando necesitas comparar cadenas sin distinguir entre 
+mayúsculas y minúsculas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+usuario_input = "Python"
+lenguaje = "python"
+
+# Comparación segura ignorando mayúsculas/minúsculas
+if usuario_input.lower() == lenguaje.lower():
+    print("Coincidencia encontrada")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Métodos para eliminar espacios y caracteres
+
+Para eliminar espacios en blanco u otros caracteres, Python proporciona los siguientes métodos:
+
+* strip(): Elimina espacios en blanco (o los caracteres especificados) al inicio y final.
+* lstrip(): Elimina espacios en blanco (o los caracteres especificados) solo al inicio.
+* rstrip(): Elimina espacios en blanco (o los caracteres especificados) solo al final.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto_con_espacios = "   Python   "
+
+print(f"Con espacios: '{texto_con_espacios}'")
+print(f"strip(): '{texto_con_espacios.strip()}'")
+print(f"lstrip(): '{texto_con_espacios.lstrip()}'")
+print(f"rstrip(): '{texto_con_espacios.rstrip()}'")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Salida:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+Con espacios: '   Python   '
+strip(): 'Python'
+lstrip(): 'Python   '
+rstrip(): '   Python'
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También puedes especificar qué caracteres quieres eliminar:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "###Python###"
+print(texto.strip('#'))    # Python
+print(texto.lstrip('#'))   # Python###
+print(texto.rstrip('#'))   # ###Python
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Estos métodos son muy útiles para limpiar datos de entrada, como cuando procesas información de formularios o archivos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Limpieza de datos de entrada de usuario
+correo = input("Ingresa tu correo: ").strip()
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Métodos de reemplazo y división
+
+Para modificar o dividir el contenido de las cadenas:
+
+* replace(): Reemplaza todas las ocurrencias de una subcadena por otra.
+* split(): Divide la cadena en una lista de subcadenas según un separador.
+* join(): Une una lista de cadenas usando la cadena actual como separador.
+
+──▶ Método replace()
+
+El método replace() permite sustituir todas las ocurrencias de una subcadena por otra:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python es genial, Python es potente"
+
+# Reemplazar todas las ocurrencias
+nuevo_texto = texto.replace("Python", "JavaScript")
+print(nuevo_texto)  # JavaScript es genial, JavaScript es potente
+
+# Limitar el número de reemplazos
+nuevo_texto = texto.replace("Python", "JavaScript", 1)
+print(nuevo_texto)  # JavaScript es genial, Python es potente
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este método es extremadamente útil para:
+
+* Corregir errores tipográficos
+* Normalizar datos
+* Sustituir palabras o frases en textos largos
+
+Un caso práctico sería normalizar rutas de archivos en diferentes sistemas operativos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+ruta = "C:\\Users\\nombre\\documentos"
+ruta_normalizada = ruta.replace("\\", "/")
+print(ruta_normalizada)  # C:/Users/nombre/documentos
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Combinando métodos
+
+Una característica poderosa de los métodos de cadenas es que se pueden encadenar, ya que cada método devuelve una nueva cadena:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "   python es GENIAL   "
+
+# Encadenamiento de métodos
+resultado = texto.strip().capitalize().replace("genial", "increíble")
+print(resultado)  # Python es increíble
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Métodos para rellenar y alinear texto
+
+Para formatear la presentación de texto:
+
+center(): Centra el texto en un campo de ancho especificado.
+ljust(): Alinea el texto a la izquierda en un campo de ancho especificado.
+rjust(): Alinea el texto a la derecha en un campo de ancho especificado.
+zfill(): Rellena la cadena con ceros a la izquierda hasta alcanzar la longitud especificada.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python"
+
+print(texto.center(20))        # '       Python       '
+print(texto.center(20, '-'))   # '-------Python-------'
+print(texto.ljust(20, '*'))    # 'Python**************'
+print(texto.rjust(20, '*'))    # '**************Python'
+print("42".zfill(5))           # '00042'
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Estos métodos son especialmente útiles para crear tablas de texto o alinear datos en informes:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Crear una tabla simple
+nombres = ["Ana", "Juan", "María", "Carlos"]
+edades = [25, 34, 29, 42]
+
+print("NOMBRE".ljust(10), "EDAD".rjust(5))
+print("-" * 15)
+
+for nombre, edad in zip(nombres, edades):
+    print(nombre.ljust(10), str(edad).rjust(5))
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Salida:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+NOMBRE       EDAD
+---------------
+Ana            25
+Juan           34
+María          29
+Carlos         42
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Métodos para dividir y unir cadenas
+
+* partition(): Divide la cadena en tres partes (antes, separador, después) según el separador especificado.
+* splitlines(): Divide la cadena en líneas.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+email = "usuario@ejemplo.com"
+antes, separador, despues = email.partition("@")
+print(f"Usuario: {antes}, Dominio: {despues}")  # Usuario: usuario, Dominio: ejemplo.com
+
+texto_multilinea = "Línea 1\nLínea 2\nLínea 3"
+lineas = texto_multilinea.splitlines()
+print(lineas)  # ['Línea 1', 'Línea 2', 'Línea 3']
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Caso práctico: Procesamiento de datos de usuario
+
+Veamos un ejemplo completo que combina varios métodos para procesar datos de usuario:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def procesar_nombre_usuario(nombre_completo):
+    # Eliminar espacios extra y normalizar
+    nombre_limpio = nombre_completo.strip()
+    
+    # Convertir a formato estándar (Primera letra mayúscula, resto minúscula)
+    nombre_formateado = nombre_limpio.title()
+    
+    # Reemplazar caracteres especiales
+    nombre_final = nombre_formateado.replace("Á", "A").replace("É", "E").replace("Í", "I")
+    
+    return nombre_final
+
+# Ejemplo de uso
+nombres = ["  juan PÉREZ  ", "MARÍA lópez", "carlos GONZÁLEZ  "]
+nombres_procesados = [procesar_nombre_usuario(nombre) for nombre in nombres]
+
+print(nombres_procesados)  # ['Juan Perez', 'Maria Lopez', 'Carlos Gonzalez']
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este ejemplo muestra cómo podemos combinar varios métodos de manipulación de cadenas para normalizar datos de entrada, algo muy común en 
+aplicaciones reales.
+
+──▶ Rendimiento y consideraciones
+
+Al trabajar con grandes volúmenes de texto, es importante considerar el rendimiento. Como las cadenas son inmutables en Python, cada operación 
+crea una nueva cadena. Para operaciones complejas con muchas transformaciones, considera usar:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Más eficiente para múltiples concatenaciones
+partes = []
+for i in range(1000):
+    partes.append(f"Parte {i}")
+    
+resultado = "".join(partes)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En lugar de:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Menos eficiente
+resultado = ""
+for i in range(1000):
+    resultado += f"Parte {i}"  # Crea una nueva cadena en cada iteración
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los métodos de manipulación de cadenas en Python son herramientas fundamentales para el procesamiento de texto, limpieza de datos y formateo de salida. Dominarlos te permitirá escribir código más limpio y eficiente para trabajar con información textual.
+
+──▶ Operaciones de formato: f-strings, método format() y plantillas
+
+El formato de cadenas en Python es una habilidad esencial que permite crear textos dinámicos combinando valores variables con texto estático. 
+Python ofrece varias técnicas para dar formato a las cadenas, cada una con sus propias ventajas y casos de uso.
+
+──▶ F-strings (Cadenas literales formateadas)
+
+Introducidas en Python 3.6, las f-strings representan la forma más moderna, concisa y eficiente de formatear cadenas. Se crean añadiendo 
+el prefijo f o F antes de las comillas que delimitan la cadena.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre = "Ana"
+edad = 28
+f_string = f"Hola, me llamo {nombre} y tengo {edad} años."
+print(f_string)  # Hola, me llamo Ana y tengo 28 años.
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las f-strings permiten insertar expresiones Python directamente entre llaves {}. Estas expresiones se evalúan en tiempo de ejecución:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+precio = 19.95
+cantidad = 3
+print(f"Total: ${precio * cantidad:.2f}")  # Total: $59.85
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Algunas características avanzadas de las f-strings incluyen:
+
+* Formateo de números con precisión específica:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+pi = 3.14159265359
+print(f"Pi redondeado a 3 decimales: {pi:.3f}")  # Pi redondeado a 3 decimales: 3.142
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Alineación y relleno de texto:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+for i in range(1, 4):
+    print(f"Elemento {i:3}: {i**2:4}")
+
+# Salida:
+# Elemento   1:    1
+# Elemento   2:    4
+# Elemento   3:    9
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Formateo de fechas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+from datetime import datetime
+ahora = datetime.now()
+print(f"Fecha actual: {ahora:%d/%m/%Y %H:%M}")  # Ej: Fecha actual: 15/04/2023 14:30
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Expresiones y llamadas a funciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def saludar(nombre):
+    return f"¡Hola, {nombre}!"
+
+usuario = "Carlos"
+print(f"{saludar(usuario)} Bienvenido a Python.")  # ¡Hola, Carlos! Bienvenido a Python.
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Depuración simplificada (Python 3.8+):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+x = 10
+y = 20
+print(f"{x=}, {y=}, {x+y=}")  # x=10, y=20, x+y=30
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método format()
+
+Antes de las f-strings, el método format() era la forma recomendada para formatear cadenas. Aunque menos conciso que las f-strings, 
+sigue siendo útil en ciertos escenarios:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre = "Luis"
+edad = 35
+mensaje = "Hola, me llamo {} y tengo {} años.".format(nombre, edad)
+print(mensaje)  # Hola, me llamo Luis y tengo 35 años.
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El método format() ofrece varias opciones de formateo:
+
+* Posicionamiento por índice:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+mensaje = "El {0} es más {1} que el {2}.".format("Python", "legible", "C++")
+print(mensaje)  # El Python es más legible que el C++.
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Posicionamiento por nombre:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+mensaje = "Hola {nombre}, tu puntuación es {puntos}.".format(nombre="Elena", puntos=95)
+print(mensaje)  # Hola Elena, tu puntuación es 95.
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Acceso a atributos y elementos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Acceso a elementos de diccionario
+datos = {"nombre": "Juan", "profesion": "ingeniero"}
+print("Nombre: {0[nombre]}, Profesión: {0[profesion]}".format(datos))
+# Nombre: Juan, Profesión: ingeniero
+
+# Acceso a atributos de objetos
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+p = Persona("María", 29)
+print("Persona: {0.nombre}, Edad: {0.edad}".format(p))
+# Persona: María, Edad: 29
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Formateo de números y alineación:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Formateo de números
+print("Pi: {:.4f}".format(3.14159))  # Pi: 3.1416
+
+# Alineación y ancho
+for i in range(1, 4):
+    print("Valor: {:5d}, Cuadrado: {:5d}".format(i, i**2))
+
+# Salida:
+# Valor:     1, Cuadrado:     1
+# Valor:     2, Cuadrado:     4
+# Valor:     3, Cuadrado:     9
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Plantillas de cadenas (string.Template)
+
+Para casos donde la seguridad es prioritaria o cuando el formato proviene de fuentes externas, Python ofrece la clase Template del módulo string:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+from string import Template
+
+plantilla = Template("Hola, $nombre. Bienvenido a $plataforma.")
+mensaje = plantilla.substitute(nombre="Miguel", plataforma="Python")
+print(mensaje)  # Hola, Miguel. Bienvenido a Python.
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las plantillas son más seguras frente a ataques de inyección porque solo permiten sustituciones simples:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+from string import Template
+
+# Datos que podrían venir de una fuente externa
+datos_usuario = {"nombre": "Ana", "mensaje": "Hola"}
+
+# Usando Template (seguro)
+plantilla = Template("Usuario: $nombre dice: $mensaje")
+print(plantilla.substitute(datos_usuario))  # Usuario: Ana dice: Hola
+
+# Si falta algún valor, podemos usar safe_substitute
+datos_incompletos = {"nombre": "Pedro"}
+print(plantilla.safe_substitute(datos_incompletos))  # Usuario: Pedro dice: $mensaje
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Comparación y casos de uso
+
+Cada método de formateo tiene sus propios casos de uso ideales:
+
+* F-strings: Ideal para la mayoría de los casos por su concisión y rendimiento.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplo de informe con f-strings
+nombre = "Proyecto Alpha"
+progreso = 75.5
+fecha = "2023-04-15"
+
+informe = f"""
+INFORME DE ESTADO
+================
+Proyecto: {nombre}
+Progreso: {progreso:.1f}%
+Fecha: {fecha}
+Estado: {"Completado" if progreso == 100 else "En progreso"}
+"""
+print(informe)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Método format(): Útil cuando necesitas reutilizar una plantilla o cuando el formato es complejo.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Plantilla reutilizable
+plantilla_tabla = """
++{:-^20}+{:-^10}+{:-^10}+
+|{:^20}|{:^10}|{:^10}|
++{:-^20}+{:-^10}+{:-^10}+
+|{:^20}|{:^10}|{:^10}|
+|{:^20}|{:^10}|{:^10}|
++{:-^20}+{:-^10}+{:-^10}+
+"""
+
+print(plantilla_tabla.format(
+    "PRODUCTO", "PRECIO", "CANTIDAD",
+    "", "", "",
+    "Laptop", "999€", "5",
+    "Smartphone", "599€", "10"
+))
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* Template: Ideal para entornos donde la seguridad es crítica o cuando los formatos provienen de fuentes externas.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+from string import Template
+
+# Plantillas que podrían venir de un archivo de configuración
+plantillas = {
+    "bienvenida": Template("Hola $nombre, bienvenido a $app"),
+    "error": Template("Error $codigo: $mensaje")
+}
+
+# Uso en diferentes partes de la aplicación
+print(plantillas["bienvenida"].substitute(nombre="Sara", app="MiApp"))
+print(plantillas["error"].substitute(codigo="404", mensaje="Página no encontrada"))
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Caso práctico: Generación de informes
+
+Veamos un ejemplo completo que combina diferentes técnicas de formateo para generar un informe de ventas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def generar_informe_ventas(ventas, fecha):
+    # Cálculos
+    total = sum(venta["monto"] for venta in ventas)
+    promedio = total / len(ventas) if ventas else 0
+    
+    # Encabezado con f-strings
+    informe = f"""
+INFORME DE VENTAS - {fecha}
+==========================
+Total de ventas: ${total:.2f}
+Promedio por venta: ${promedio:.2f}
+Número de transacciones: {len(ventas)}
+
+DETALLE DE TRANSACCIONES:
+"""
+    
+    # Tabla de detalle con format()
+    formato_linea = "|{id:^5}|{cliente:^20}|{producto:^15}|${monto:^10.2f}|"
+    formato_separador = "+{:-^5}+{:-^20}+{:-^15}+{:-^11}+"
+    
+    informe += formato_separador.format("", "", "", "") + "\n"
+    informe += formato_linea.format(id="ID", cliente="CLIENTE", producto="PRODUCTO", monto=0) + "\n"
+    informe += formato_separador.format("", "", "", "") + "\n"
+    
+    for venta in ventas:
+        informe += formato_linea.format(**venta) + "\n"
+    
+    informe += formato_separador.format("", "", "", "")
+    
+    return informe
+
+# Datos de ejemplo
+ventas_del_dia = [
+    {"id": 1, "cliente": "Juan Pérez", "producto": "Laptop", "monto": 1299.99},
+    {"id": 2, "cliente": "María López", "producto": "Smartphone", "monto": 699.50},
+    {"id": 3, "cliente": "Carlos Ruiz", "producto": "Monitor", "monto": 349.95}
+]
+
+print(generar_informe_ventas(ventas_del_dia, "15/04/2023"))
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este ejemplo muestra cómo combinar f-strings para partes dinámicas simples y el método format() para estructuras tabulares más complejas.
+
+──▶ Rendimiento y consideraciones
+
+* Las f-strings son generalmente las más rápidas, seguidas por format() y luego Template.
+* Para aplicaciones críticas donde el rendimiento es esencial, las f-strings son la mejor opción.
+* Para entornos donde la seguridad es prioritaria, como cuando se procesan formatos proporcionados por usuarios, Template es más seguro.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Medición simple de rendimiento
+import timeit
+
+setup = "nombre = 'Python'; edad = 30"
+
+f_string_code = "f'Hola, {nombre} tienes {edad} años.'"
+format_code = "'Hola, {} tienes {} años.'.format(nombre, edad)"
+template_code = "from string import Template; Template('Hola, $nombre tienes $edad años.').substitute(nombre=nombre, edad=edad)"
+
+print(f"F-string: {timeit.timeit(f_string_code, setup, number=1000000):.4f} segundos")
+print(f"Format: {timeit.timeit(format_code, setup, number=1000000):.4f} segundos")
+print(f"Template: {timeit.timeit(template_code, setup, number=1000000):.4f} segundos")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Las operaciones de formato en Python ofrecen una flexibilidad excepcional para crear cadenas dinámicas. Las f-strings representan la opción más 
+moderna y eficiente para la mayoría de los casos, mientras que format() y Template siguen siendo relevantes para escenarios específicos. 
+Dominar estas técnicas te permitirá generar texto dinámico de manera elegante y eficiente en tus aplicaciones Python.
+
+──▶ Indexación y slicing de cadenas para extraer subcadenas
+
+Las cadenas en Python son secuencias ordenadas de caracteres, lo que significa que cada carácter tiene una posición específica o índice. Esta característica nos permite acceder a caracteres individuales o extraer porciones de texto (subcadenas) mediante técnicas de indexación y slicing.
+
+──▶ Indexación básica
+
+En Python, la indexación comienza en 0, lo que significa que el primer carácter de una cadena tiene el índice 0, el segundo tiene el índice 1, 
+y así sucesivamente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python"
+print(texto[0])  # P
+print(texto[1])  # y
+print(texto[5])  # n
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También podemos usar índices negativos para acceder a los caracteres desde el final de la cadena. 
+El índice -1 representa el último carácter, -2 el penúltimo, y así sucesivamente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python"
+print(texto[-1])  # n
+print(texto[-2])  # o
+print(texto[-6])  # P
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Esta capacidad de indexación negativa es especialmente útil cuando necesitamos acceder a los últimos elementos 
+sin conocer la longitud exacta de la cadena.
+
+──▶ Slicing (rebanado) de cadenas
+
+El slicing nos permite extraer subcadenas especificando un rango de índices. La sintaxis básica es:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+cadena[inicio:fin:paso]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Donde:
+
+* inicio: Índice donde comienza la extracción (inclusivo)
+* fin: Índice donde termina la extracción (exclusivo)
+* paso: Incremento entre caracteres (opcional, valor predeterminado 1)
+
+Veamos algunos ejemplos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+mensaje = "Aprendiendo Python"
+
+# Extraer subcadena desde el índice 0 hasta el 10 (sin incluir el 10)
+print(mensaje[0:10])  # Aprendiend
+
+# Forma abreviada cuando se comienza desde el índice 0
+print(mensaje[:10])   # Aprendiend
+
+# Desde el índice 12 hasta el final
+print(mensaje[12:])   # Python
+
+# Últimos 6 caracteres
+print(mensaje[-6:])   # Python
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El parámetro paso nos permite tomar caracteres saltando posiciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python es divertido"
+
+# Tomar caracteres alternos (paso 2)
+print(texto[::2])     # Pto sdvrio
+
+# Invertir una cadena (paso -1)
+print(texto[::-1])    # oditrevid se nohtyP
+
+# Cada tercer carácter desde el índice 0 al 10
+print(texto[0:10:3])  # Pne
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Casos prácticos de slicing
+
+──▶ Extracción de componentes de una URL
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+url = "https://www.ejemplo.com/productos/categoria?id=123"
+
+# Extraer el protocolo
+protocolo = url[:url.find("://")]
+print(f"Protocolo: {protocolo}")  # Protocolo: https
+
+# Extraer el dominio
+inicio_dominio = url.find("://") + 3
+fin_dominio = url.find("/", inicio_dominio)
+dominio = url[inicio_dominio:fin_dominio]
+print(f"Dominio: {dominio}")      # Dominio: www.ejemplo.com
+
+# Extraer la ruta
+inicio_ruta = fin_dominio
+fin_ruta = url.find("?", inicio_ruta)
+ruta = url[inicio_ruta:fin_ruta] if fin_ruta != -1 else url[inicio_ruta:]
+print(f"Ruta: {ruta}")            # Ruta: /productos/categoria
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Manipulación de nombres de archivo
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre_archivo = "documento_importante.pdf"
+
+# Extraer el nombre sin extensión
+punto = nombre_archivo.rfind(".")
+nombre_base = nombre_archivo[:punto]
+print(f"Nombre base: {nombre_base}")  # Nombre base: documento_importante
+
+# Extraer la extensión
+extension = nombre_archivo[punto+1:]
+print(f"Extensión: {extension}")      # Extensión: pdf
+
+# Crear un nombre de archivo para una copia de seguridad
+backup = f"{nombre_base}_backup.{extension}"
+print(f"Archivo de respaldo: {backup}")  # Archivo de respaldo: documento_importante_backup.pdf
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Formateo de números de teléfono
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+telefono = "912345678"
+
+# Formatear como (91) 234-5678
+if len(telefono) == 9:
+    formateado = f"({telefono[:2]}) {telefono[2:5]}-{telefono[5:]}"
+    print(formateado)  # (91) 234-5678
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Técnicas avanzadas de slicing
+
+──▶ Extracción de palabras
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+frase = "Python es un lenguaje de programación versátil"
+palabras = frase.split()
+
+# Obtener las primeras tres palabras
+primeras_tres = palabras[:3]
+print(" ".join(primeras_tres))  # Python es un
+
+# Obtener las últimas dos palabras
+ultimas_dos = palabras[-2:]
+print(" ".join(ultimas_dos))    # programación versátil
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Extracción de subcadenas con condiciones
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "El precio es $1500 por unidad"
+
+# Extraer solo los dígitos
+inicio_precio = texto.find("$") + 1
+fin_precio = texto.find(" ", inicio_precio)
+precio = texto[inicio_precio:fin_precio]
+print(f"Precio: {precio}")  # Precio: 1500
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Rotación de cadenas
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def rotar_cadena(texto, posiciones):
+    """Rota una cadena hacia la derecha el número especificado de posiciones."""
+    if not texto:
+        return texto
+    
+    # Normalizar posiciones para evitar rotaciones innecesarias
+    posiciones = posiciones % len(texto)
+    
+    # Usar slicing para rotar
+    return texto[-posiciones:] + texto[:-posiciones]
+
+mensaje = "Python"
+print(rotar_cadena(mensaje, 2))  # onPyth
+print(rotar_cadena(mensaje, 4))  # thonPy
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Limitaciones y consideraciones
+
+Es importante recordar que las cadenas en Python son inmutables, lo que significa que no podemos modificar caracteres individuales directamente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python"
+# Esto generará un error:
+# texto[0] = "J"  # TypeError: 'str' object does not support item assignment
+
+# En su lugar, debemos crear una nueva cadena:
+texto = "J" + texto[1:]
+print(texto)  # Jython
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Cuando trabajamos con slicing, debemos tener en cuenta:
+
+* Los índices fuera de rango en slicing no generan errores, a diferencia de la indexación simple:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python"
+print(texto[100:200])  # '' (cadena vacía)
+# print(texto[100])    # IndexError: string index out of range
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+* El slicing siempre crea una nueva cadena, lo que puede afectar al rendimiento si se realiza repetidamente con cadenas muy largas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Enfoque ineficiente para construir una cadena
+resultado = ""
+for i in range(1000):
+    resultado = resultado + str(i)  # Crea una nueva cadena en cada iteración
+
+# Enfoque más eficiente
+partes = []
+for i in range(1000):
+    partes.append(str(i))
+resultado = "".join(partes)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Combinación con otros métodos de cadenas
+
+El slicing se puede combinar eficazmente con otros métodos de cadenas para realizar operaciones más complejas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+correo = "usuario@ejemplo.com"
+
+# Extraer nombre de usuario y dominio
+nombre, dominio = correo.split("@")
+print(f"Usuario: {nombre}")  # Usuario: usuario
+print(f"Dominio: {dominio}")  # Dominio: ejemplo.com
+
+# Verificar si el dominio es válido
+if dominio.endswith(".com") or dominio.endswith(".org"):
+    print("Dominio válido")
+
+# Censurar parte de una dirección de correo
+correo_censurado = nombre[:3] + "***@" + dominio
+print(correo_censurado)  # usu***@ejemplo.com
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Caso práctico: Análisis de texto
+
+Veamos un ejemplo más completo que combina indexación, slicing y otros métodos de cadenas para analizar un texto:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def analizar_texto(texto):
+    """Analiza un texto y devuelve estadísticas básicas."""
+    resultados = {}
+    
+    # Número total de caracteres
+    resultados["total_caracteres"] = len(texto)
+    
+    # Número de palabras
+    palabras = texto.split()
+    resultados["total_palabras"] = len(palabras)
+    
+    # Palabras más largas (top 3)
+    palabras_ordenadas = sorted(palabras, key=len, reverse=True)
+    resultados["palabras_mas_largas"] = palabras_ordenadas[:3]
+    
+    # Primera y última palabra
+    resultados["primera_palabra"] = palabras[0] if palabras else ""
+    resultados["ultima_palabra"] = palabras[-1] if palabras else ""
+    
+    # Primeros 10 caracteres
+    resultados["inicio"] = texto[:10]
+    
+    # Últimos 10 caracteres
+    resultados["final"] = texto[-10:]
+    
+    return resultados
+
+# Ejemplo de uso
+muestra = "Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código."
+analisis = analizar_texto(muestra)
+
+for clave, valor in analisis.items():
+    print(f"{clave}: {valor}")
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La indexación y el slicing son herramientas fundamentales para manipular cadenas en Python. Estas técnicas nos permiten extraer información 
+específica de textos de manera eficiente y elegante, sin necesidad de bucles explícitos en muchos casos. Dominar estas operaciones te permitirá 
+escribir código más conciso y expresivo cuando trabajes con datos textuales.
+
+──▶ Métodos de búsqueda y validación (find, startswith, endswith, isdigit)
+
+Las cadenas de texto en Python ofrecen un conjunto de métodos especializados para buscar patrones y validar el contenido de nuestros textos. 
+Estos métodos nos permiten localizar subcadenas, verificar prefijos y sufijos, y comprobar si una cadena cumple con determinados criterios.
+
+Métodos de búsqueda
+
+Python proporciona varios métodos para localizar subcadenas dentro de un texto, cada uno con características específicas que los hacen adecuados para diferentes situaciones.
+
+──▶ Método find()
+
+El método find() busca la primera ocurrencia de una subcadena y devuelve el índice donde comienza. Si la subcadena no se encuentra, 
+devuelve -1:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python es un lenguaje de programación Python"
+
+# Buscar la primera ocurrencia
+posicion = texto.find("Python")
+print(f"Primera ocurrencia: índice {posicion}")  # Primera ocurrencia: índice 0
+
+# Buscar a partir de una posición específica
+posicion = texto.find("Python", 10)
+print(f"Segunda ocurrencia: índice {posicion}")  # Segunda ocurrencia: índice 35
+
+# Buscar en un rango específico
+posicion = texto.find("lenguaje", 5, 20)
+print(f"Dentro del rango: índice {posicion}")  # Dentro del rango: índice 11
+
+# Subcadena no encontrada
+posicion = texto.find("Java")
+print(f"No encontrado: {posicion}")  # No encontrado: -1
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este método es particularmente útil cuando necesitamos:
+
+* Procesar texto secuencialmente
+* Extraer subcadenas basadas en delimitadores
+* Verificar la existencia de una subcadena sin generar excepciones
+
+──▶ Método rfind()
+
+El método rfind() funciona igual que find(), pero busca la última ocurrencia de la subcadena en lugar de la primera:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python es un lenguaje de programación Python"
+
+# Buscar la última ocurrencia
+posicion = texto.rfind("Python")
+print(f"Última ocurrencia: índice {posicion}")  # Última ocurrencia: índice 35
+
+# Buscar hacia atrás desde una posición específica
+posicion = texto.rfind("Python", 0, 30)
+print(f"Última antes del índice 30: {posicion}")  # Última antes del índice 30: 0
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Métodos index() y rindex()
+
+Estos métodos son similares a find() y rfind(), pero lanzan una excepción ValueError si la subcadena no se encuentra:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python es un lenguaje de programación"
+
+try:
+    posicion = texto.index("lenguaje")
+    print(f"Encontrado en: {posicion}")  # Encontrado en: 11
+    
+    posicion = texto.index("Java")  # Esto generará una excepción
+except ValueError as e:
+    print(f"Error: {e}")  # Error: substring not found
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La elección entre find() e index() depende de cómo queremos manejar el caso de subcadenas no encontradas:
+
+* Usa find() cuando quieras comprobar la existencia sin interrumpir el flujo
+* Usa index() cuando la ausencia de la subcadena deba tratarse como un error
+
+──▶ Método count()
+
+Aunque no es estrictamente un método de búsqueda, count() nos permite contar cuántas veces aparece una subcadena:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto = "Python es potente, Python es legible, Python es versátil"
+
+ocurrencias = texto.count("Python")
+print(f"'Python' aparece {ocurrencias} veces")  # 'Python' aparece 3 veces
+
+# Contar en un rango específico
+ocurrencias = texto.count("es", 10, 30)
+print(f"'es' aparece {ocurrencias} veces en el rango")  # 'es' aparece 1 veces en el rango
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Métodos de verificación de prefijos y sufijos
+
+Estos métodos nos permiten comprobar si una cadena comienza o termina con determinadas subcadenas.
+
+──▶ Método startswith()
+
+Verifica si una cadena comienza con una subcadena específica:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre_archivo = "documento.pdf"
+
+if nombre_archivo.startswith("doc"):
+    print("Es un documento")  # Se imprimirá
+
+# Comprobar múltiples prefijos posibles
+prefijos = ("img", "foto", "imagen")
+nombre_archivo = "imagen001.jpg"
+
+if nombre_archivo.startswith(prefijos):
+    print("Es un archivo de imagen")  # Se imprimirá
+    
+# Con posición de inicio opcional
+texto = "Python es genial"
+if texto.startswith("es", 7):
+    print("La palabra en posición 7 comienza con 'es'")  # Se imprimirá
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método endswith()
+
+Verifica si una cadena termina con una subcadena específica:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre_archivo = "informe.docx"
+
+if nombre_archivo.endswith(".docx"):
+    print("Es un documento de Word")  # Se imprimirá
+
+# Comprobar múltiples sufijos posibles
+extensiones_imagen = (".jpg", ".png", ".gif")
+if nombre_archivo.endswith(extensiones_imagen):
+    print("Es una imagen")  # No se imprimirá
+
+# Con rango opcional
+texto = "archivo.txt.bak"
+if texto.endswith(".txt", 0, 11):
+    print("El archivo original era un .txt")  # Se imprimirá
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Estos métodos son extremadamente útiles para:
+
+* Validar formatos de archivo
+* Verificar protocolos en URLs
+* Comprobar convenciones de nomenclatura
+* Filtrar elementos en listas basándose en patrones
+
+──▶ Métodos de validación de contenido
+
+Python ofrece una familia de métodos que permiten verificar si una cadena cumple con ciertos criterios de contenido.
+
+──▶ Método isdigit()
+
+Verifica si todos los caracteres de la cadena son dígitos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto1 = "12345"
+texto2 = "123.45"
+texto3 = "123a"
+
+print(texto1.isdigit())  # True
+print(texto2.isdigit())  # False (el punto no es un dígito)
+print(texto3.isdigit())  # False (contiene una letra)
+
+# Uso práctico: validación de entrada
+edad = input("Introduce tu edad: ")
+if edad.isdigit():
+    edad = int(edad)
+    print(f"En 10 años tendrás {edad + 10} años")
+else:
+    print("Por favor, introduce un número válido")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método isalpha()
+
+Verifica si todos los caracteres de la cadena son letras:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto1 = "Python"
+texto2 = "Python3"
+texto3 = "Python "  # Contiene un espacio
+
+print(texto1.isalpha())  # True
+print(texto2.isalpha())  # False (contiene un número)
+print(texto3.isalpha())  # False (contiene un espacio)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Método isalnum()
+
+Verifica si todos los caracteres son alfanuméricos (letras o números):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+texto1 = "Python3"
+texto2 = "Python 3"
+texto3 = "Python-3"
+
+print(texto1.isalnum())  # True
+print(texto2.isalnum())  # False (contiene un espacio)
+print(texto3.isalnum())  # False (contiene un guion)
+
+# Uso práctico: validar nombres de usuario
+username = "usuario123"
+if username.isalnum():
+    print("Nombre de usuario válido")
+else:
+    print("El nombre solo puede contener letras y números")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Otros métodos de validación útiles
+
+Python proporciona varios métodos adicionales para casos específicos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# isspace(): verifica si todos los caracteres son espacios
+print("   \t\n".isspace())  # True
+print("  a  ".isspace())    # False
+
+# islower(): verifica si todos los caracteres son minúsculas
+print("python".islower())   # True
+print("Python".islower())   # False
+
+# isupper(): verifica si todos los caracteres son mayúsculas
+print("PYTHON".isupper())   # True
+print("Python".isupper())   # False
+
+# istitle(): verifica si la cadena tiene formato de título
+print("Python Es Genial".istitle())  # True
+print("Python es Genial".istitle())  # False
+
+# isdecimal(): más estricto que isdigit(), solo dígitos decimales
+print("12345".isdecimal())  # True
+print("²³".isdecimal())     # False (son superíndices)
+print("²³".isdigit())       # True (isdigit acepta superíndices)
+
+# isnumeric(): incluye dígitos, fracciones, superíndices, etc.
+print("½".isnumeric())      # True
+print("½".isdigit())        # False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Casos prácticos
+
+──▶ Validación de correo electrónico simple
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def validar_correo_simple(correo):
+    """Validación básica de formato de correo electrónico."""
+    if not correo or "@" not in correo:
+        return False
+    
+    nombre, dominio = correo.split("@", 1)
+    
+    if not nombre or not dominio:
+        return False
+    
+    if "." not in dominio:
+        return False
+    
+    # Verificar que el dominio termina con una extensión válida
+    extensiones = (".com", ".org", ".net", ".edu", ".es")
+    if not dominio.endswith(extensiones):
+        return False
+    
+    return True
+
+# Ejemplos
+correos = ["usuario@ejemplo.com", "usuario@dominio", "usuario@ejemplo.org", 
+           "@ejemplo.com", "usuario@.com", "usuario@ejemplo.xyz"]
+
+for correo in correos:
+    resultado = "válido" if validar_correo_simple(correo) else "inválido"
+    print(f"{correo}: {resultado}")
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Extracción de información de un texto
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def extraer_informacion(texto):
+    """Extrae información relevante de un texto."""
+    info = {}
+    
+    # Buscar números de teléfono (formato simple: 9 dígitos)
+    i = 0
+    telefonos = []
+    while i < len(texto):
+        # Buscar secuencias de 9 dígitos
+        if i + 8 < len(texto) and texto[i:i+9].isdigit():
+            telefonos.append(texto[i:i+9])
+            i += 9
+        else:
+            i += 1
+    
+    info["telefonos"] = telefonos
+    
+    # Buscar URLs
+    palabras = texto.split()
+    urls = []
+    for palabra in palabras:
+        if palabra.startswith(("http://", "https://", "www.")):
+            urls.append(palabra)
+    
+    info["urls"] = urls
+    
+    # Buscar hashtags
+    hashtags = []
+    for palabra in palabras:
+        if palabra.startswith("#") and len(palabra) > 1:
+            hashtags.append(palabra)
+    
+    info["hashtags"] = hashtags
+    
+    return info
+
+# Ejemplo
+texto_muestra = """
+Visita nuestra web https://ejemplo.com para más información.
+Contacta al 912345678 o al 987654321.
+Síguenos en redes con #Python #Programacion
+"""
+
+info_extraida = extraer_informacion(texto_muestra)
+for clave, valor in info_extraida.items():
+    print(f"{clave}: {valor}")
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Análisis de código fuente
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def analizar_codigo_python(codigo):
+    """Analiza características básicas de código Python."""
+    lineas = codigo.splitlines()
+    estadisticas = {
+        "total_lineas": len(lineas),
+        "lineas_vacias": 0,
+        "comentarios": 0,
+        "funciones": 0,
+        "clases": 0
+    }
+    
+    for linea in lineas:
+        linea = linea.strip()
+        
+        # Contar líneas vacías
+        if not linea:
+            estadisticas["lineas_vacias"] += 1
+            continue
+        
+        # Contar comentarios
+        if linea.startswith("#"):
+            estadisticas["comentarios"] += 1
+            continue
+        
+        # Contar definiciones de funciones
+        if linea.startswith("def "):
+            estadisticas["funciones"] += 1
+        
+        # Contar definiciones de clases
+        if linea.startswith("class "):
+            estadisticas["clases"] += 1
+    
+    return estadisticas
+
+# Ejemplo
+codigo_ejemplo = """
+# Ejemplo de código Python
+def saludar(nombre):
+    # Esta función saluda
+    return f"Hola, {nombre}"
+
+class Persona:
+    def __init__(self, nombre):
+        self.nombre = nombre
+    
+    def presentarse(self):
+        return saludar(self.nombre)
+
+# Crear una instancia
+p = Persona("Ana")
+print(p.presentarse())
+"""
+
+analisis = analizar_codigo_python(codigo_ejemplo)
+for clave, valor in analisis.items():
+    print(f"{clave}: {valor}")
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Combinación con expresiones regulares
+
+Para búsquedas y validaciones más complejas, los métodos nativos de cadenas pueden combinarse con el módulo re (expresiones regulares):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+import re
+
+texto = "Mi número es +34-912-345-678 y mi código postal es 28001"
+
+# Buscar números de teléfono con formato internacional
+patron_telefono = r'\+\d{1,3}-\d{3}-\d{3}-\d{3}'
+telefonos = re.findall(patron_telefono, texto)
+print(f"Teléfonos encontrados: {telefonos}")  # ['+34-912-345-678']
+
+# Validar si una cadena contiene un código postal español (5 dígitos)
+def es_codigo_postal(texto):
+    return bool(re.search(r'\b\d{5}\b', texto))
+
+print(f"¿Contiene código postal? {es_codigo_postal(texto)}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Rendimiento y consideraciones
+
+* Los métodos de búsqueda como find() son muy eficientes para cadenas cortas, pero para textos largos o búsquedas complejas, las expresiones 
+regulares pueden ser más apropiadas.
+
+* Para validaciones simples, los métodos como isdigit() o startswith() son más rápidos y legibles que las expresiones regulares equivalentes.
+
+* Cuando necesites realizar múltiples comprobaciones sobre la misma cadena, considera almacenar resultados intermedios para evitar cálculos repetidos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Enfoque ineficiente
+if texto.lower().startswith("http") and texto.lower().endswith(".html"):
+    # Procesar URL HTML
+
+# Enfoque más eficiente
+texto_lower = texto.lower()
+if texto_lower.startswith("http") and texto_lower.endswith(".html"):
+    # Procesar URL HTML
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los métodos de búsqueda y validación de cadenas en Python proporcionan herramientas poderosas para analizar y procesar texto de manera eficiente. 
+Dominar estos métodos te permitirá escribir código más limpio y efectivo para tareas como validación de entrada, extracción de información y 
+procesamiento de texto.
+
+──▶ Aprendizajes de esta lección
+
+* Comprender y aplicar métodos básicos para manipular cadenas, como cambio de mayúsculas/minúsculas, eliminación de espacios y reemplazos.
+* Utilizar técnicas de formateo de cadenas con f-strings, método format() y plantillas para generar textos dinámicos.
+* Dominar la indexación y slicing para extraer subcadenas y manipular textos de forma eficiente.
+* Emplear métodos de búsqueda y validación para localizar subcadenas, verificar prefijos/sufijos y validar contenido textual.
+* Integrar múltiples métodos para resolver casos prácticos de procesamiento y análisis de texto en Python.

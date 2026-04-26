@@ -1,0 +1,1186 @@
+Trabajando con variables: operandos y operadores
+
+──▶ Operadores aritméticos y su precedencia en expresiones matemáticas
+
+Los operadores aritméticos en Python permiten realizar cálculos matemáticos con valores numéricos. Estos operadores son fundamentales para 
+manipular datos y realizar operaciones desde las más básicas hasta cálculos más complejos.
+
+──▶ Operadores aritméticos básicos
+
+Python proporciona los siguientes operadores aritméticos principales:
+
+    * Suma (+): Realiza la adición de dos operandos.
+    * Resta (-): Resta el operando derecho del izquierdo.
+    * Multiplicación (*): Multiplica dos operandos.
+    * División (/): Divide el operando izquierdo por el derecho (siempre devuelve un float).
+    * División entera (//): Realiza la división y redondea hacia abajo al entero más cercano.
+    * Módulo (%): Devuelve el resto de la división.
+    * Exponente (**): Eleva el operando izquierdo a la potencia del derecho.
+
+Veamos ejemplos de cada uno:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Operaciones aritméticas básicas
+a = 10
+b = 3
+
+suma = a + b          # 13
+resta = a - b         # 7
+multiplicacion = a * b  # 30
+division = a / b      # 3.3333333333333335 (siempre devuelve float)
+division_entera = a // b  # 3 (redondea hacia abajo)
+modulo = a % b        # 1 (el resto de 10/3)
+exponente = a ** b    # 1000 (10 elevado a 3)
+
+print(f"Suma: {suma}")
+print(f"Resta: {resta}")
+print(f"Multiplicación: {multiplicacion}")
+print(f"División: {division}")
+print(f"División entera: {division_entera}")
+print(f"Módulo: {modulo}")
+print(f"Exponente: {exponente}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operador de negación unaria
+
+El operador [ - ] también puede usarse como operador unario para cambiar el signo de un valor:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+x = 5
+y = -x  # -5
+z = -(-x)  # 5
+
+print(f"x: {x}, y: {y}, z: {z}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Precedencia de operadores aritméticos
+
+La precedencia determina el orden en que se evalúan las operaciones en una expresión. Python sigue las reglas matemáticas estándar para la 
+precedencia de operadores:
+
+    1. Paréntesis ()
+    2. Exponente **
+    3. Operadores unarios +x, -x
+    4. Multiplicación, división, módulo y división entera *, /, %, //
+    5. Suma y resta +, -
+
+            Esta tabla muestra la precedencia de mayor a menor:
+Operador    | 	               Descripción                        |	   Precedencia
+   () 	    |     Paréntesis                                      | 	Más alta
+   ** 	    |     Exponente 	                                  |        ↓
+  +x, -x    |	Positivo/negativo unario                          |        ↓
+*, /, //, % |	Multiplicación, división, división entera, módulo |  	   ↓
+   +, -     |          Suma, resta 	                              |     Más baja
+
+Veamos cómo afecta la precedencia a las expresiones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplos de precedencia
+resultado1 = 2 + 3 * 4       # 14 (no 20), porque * tiene mayor precedencia que +
+resultado2 = (2 + 3) * 4     # 20, los paréntesis alteran la precedencia
+resultado3 = 2 ** 3 * 2      # 16 (no 64), porque ** tiene mayor precedencia que *
+resultado4 = 4 + 3 % 2       # 5 (no 1), porque % tiene mayor precedencia que +
+resultado5 = 10 / 2 - 3      # 2.0 (no 3.5), operaciones de igual precedencia se evalúan de izquierda a derecha
+
+print(f"2 + 3 * 4 = {resultado1}")
+print(f"(2 + 3) * 4 = {resultado2}")
+print(f"2 ** 3 * 2 = {resultado3}")
+print(f"4 + 3 % 2 = {resultado4}")
+print(f"10 / 2 - 3 = {resultado5}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Asociatividad de operadores
+
+Cuando hay varios operadores con la misma precedencia, Python los evalúa según su asociatividad:
+
+    * La mayoría de los operadores son asociativos por la izquierda, lo que significa que se evalúan de izquierda a derecha.
+    * El operador de exponente ** es asociativo por la derecha, evaluándose de derecha a izquierda.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Asociatividad de operadores
+izquierda = 100 / 5 / 4      # (100 / 5) / 4 = 5.0
+derecha = 2 ** 3 ** 2        # 2 ** (3 ** 2) = 2 ** 9 = 512
+
+print(f"100 / 5 / 4 = {izquierda}")
+print(f"2 ** 3 ** 2 = {derecha}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Expresiones complejas
+
+En expresiones más complejas, es recomendable usar paréntesis para hacer el código más legible y evitar errores:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Expresión compleja sin paréntesis
+resultado_complejo1 = 2 + 3 * 4 ** 2 + 6 / 3  # 2 + 3 * 16 + 2 = 2 + 48 + 2 = 52.0
+
+# Misma expresión con paréntesis para claridad
+resultado_complejo2 = 2 + (3 * (4 ** 2)) + (6 / 3)  # Mismo resultado, más legible
+
+print(f"Expresión compleja: {resultado_complejo1}")
+print(f"Con paréntesis: {resultado_complejo2}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Casos especiales y consideraciones
+
+Python tiene algunos comportamientos especiales con operaciones aritméticas:
+
+    * División por cero genera un ZeroDivisionError:
+- - - - - - - - - - - - - - - - - - - - - - - 
+try:
+    resultado = 10 / 0
+except ZeroDivisionError as e:
+    print(f"Error: {e}")  # Error: division by zero
+- - - - - - - - - - - - - - - - - - - - - - - 
+    
+    * Operaciones con tipos mixtos siguen reglas de conversión implícita:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Entero + Float = Float
+resultado_mixto = 5 + 3.14  # 8.14
+
+# Entero ** Entero negativo = Float
+resultado_exp_neg = 2 ** -1  # 0.5
+
+print(f"5 + 3.14 = {resultado_mixto}")
+print(f"2 ** -1 = {resultado_exp_neg}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+    * Operaciones con números muy grandes son manejadas automáticamente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Python maneja enteros grandes sin problemas
+numero_grande = 2 ** 100
+print(f"2^100 = {numero_grande}")  # 1267650600228229401496703205376
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Optimización de expresiones
+
+Para optimizar el rendimiento y la legibilidad de expresiones matemáticas complejas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# En lugar de:
+resultado_ineficiente = a * a * a * a  # Cuatro multiplicaciones
+
+# Es más eficiente:
+resultado_eficiente = a ** 4  # Una operación de exponente
+
+# Para cálculos repetitivos:
+import math
+resultado_math = math.pow(a, 4)  # Alternativa usando el módulo math
+
+print(f"a * a * a * a = {resultado_ineficiente}")
+print(f"a ** 4 = {resultado_eficiente}")
+print(f"math.pow(a, 4) = {resultado_math}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Aplicaciones prácticas
+
+Los operadores aritméticos son fundamentales en muchas aplicaciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Cálculo de interés compuesto
+principal = 1000  # Inversión inicial
+tasa = 0.05       # Tasa de interés anual (5%)
+años = 5          # Período en años
+
+# Fórmula: A = P(1 + r)^t
+monto_final = principal * (1 + tasa) ** años
+
+print(f"Inversión inicial: ${principal}")
+print(f"Después de {años} años al {tasa*100}% de interés: ${monto_final:.2f}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Conversión de temperatura
+celsius = 25
+fahrenheit = (celsius * 9/5) + 32
+
+print(f"{celsius}°C equivale a {fahrenheit}°F")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Dominar los operadores aritméticos y entender su precedencia es esencial para escribir expresiones matemáticas correctas y eficientes en Python, 
+evitando errores lógicos y mejorando la legibilidad del código.
+
+──▶ Operadores de asignación y asignación combinada
+
+Los operadores de asignación en Python permiten almacenar valores en variables de manera eficiente. Más allá del operador de asignación básico (=), 
+Python ofrece operadores de asignación combinada que simplifican operaciones frecuentes al combinar una operación aritmética con una asignación.
+
+──▶ Operador de asignación básico
+
+El operador de asignación básico (=) asigna el valor de la expresión de la derecha a la variable de la izquierda:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Asignación básica
+contador = 0
+nombre = "Python"
+pi = 3.14159
+
+print(f"contador: {contador}")
+print(f"nombre: {nombre}")
+print(f"pi: {pi}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Es importante distinguir este operador de asignación del operador de igualdad (==) que se utiliza para comparaciones.
+
+──▶ Operadores de asignación combinada
+
+Los operadores de asignación combinada realizan una operación y asignan el resultado a la variable en un solo paso. Estos operadores son más concisos y a menudo más legibles que sus equivalentes expandidos:
+
+    * +=: Suma y asigna
+    * -=: Resta y asigna
+    * *=: Multiplica y asigna
+    * /=: Divide y asigna
+    * //=: Divide (división entera) y asigna
+    * %=: Calcula el módulo y asigna
+    * **=: Calcula la potencia y asigna
+
+Veamos ejemplos de cada uno:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplos de operadores de asignación combinada
+x = 10
+
+# Suma y asigna
+x += 5      # Equivalente a: x = x + 5
+print(f"Después de x += 5: {x}")  # 15
+
+# Resta y asigna
+x -= 3      # Equivalente a: x = x - 3
+print(f"Después de x -= 3: {x}")  # 12
+
+# Multiplica y asigna
+x *= 2      # Equivalente a: x = x * 2
+print(f"Después de x *= 2: {x}")  # 24
+
+# Divide y asigna
+x /= 4      # Equivalente a: x = x / 4
+print(f"Después de x /= 4: {x}")  # 6.0 (nota que ahora x es float)
+
+# Reiniciamos x para los siguientes ejemplos
+x = 17
+
+# División entera y asigna
+x //= 5     # Equivalente a: x = x // 5
+print(f"Después de x //= 5: {x}")  # 3
+
+# Módulo y asigna
+x %= 2      # Equivalente a: x = x % 2
+print(f"Después de x %= 2: {x}")  # 1
+
+# Potencia y asigna
+x **= 3     # Equivalente a: x = x ** 3
+print(f"Después de x **= 3: {x}")  # 1
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Ventajas de los operadores de asignación combinada
+
+Estos operadores ofrecen varias ventajas importantes:
+
+   1. Concisión: Reducen la cantidad de código necesario.
+   2. Legibilidad: Hacen que el código sea más fácil de leer y entender.
+   3. Eficiencia: En algunos casos, pueden ser más eficientes porque la variable se evalúa solo una vez.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Comparación de sintaxis
+contador = 0
+
+# Sin operador combinado
+contador = contador + 1
+
+# Con operador combinado
+contador += 1
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operadores de asignación combinada con cadenas y colecciones
+
+Los operadores de asignación combinada también funcionan con tipos no numéricos como cadenas, listas y otros objetos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Con cadenas
+saludo = "Hola"
+saludo += " mundo"  # Concatenación
+print(saludo)  # "Hola mundo"
+
+# Con listas
+numeros = [1, 2, 3]
+numeros += [4, 5]  # Equivalente a extend()
+print(numeros)  # [1, 2, 3, 4, 5]
+
+# Con tuplas
+coordenadas = (10, 20)
+coordenadas += (30, 40)  # Crea una nueva tupla
+print(coordenadas)  # (10, 20, 30, 40)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El comportamiento exacto depende del tipo de datos y cómo implementa la operación correspondiente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Multiplicación con cadenas
+prefijo = "Py"
+prefijo *= 3
+print(prefijo)  # "PyPyPy"
+
+# Multiplicación con listas
+patron = [0, 1]
+patron *= 3
+print(patron)  # [0, 1, 0, 1, 0, 1]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Asignación múltiple y desempaquetado
+
+Python permite asignaciones múltiples en una sola línea, lo que complementa bien a los operadores de asignación:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Asignación múltiple
+a, b = 1, 2
+print(f"a: {a}, b: {b}")  # a: 1, b: 2
+
+# Intercambio de valores sin variable temporal
+a, b = b, a
+print(f"Después del intercambio - a: {a}, b: {b}")  # a: 2, b: 1
+
+# Desempaquetado de secuencias
+coordenadas = (10, 20, 30)
+x, y, z = coordenadas
+print(f"x: {x}, y: {y}, z: {z}")  # x: 10, y: 20, z: 30
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+También podemos combinar asignación múltiple con operadores de asignación combinada:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Actualización de múltiples variables
+x, y = 5, 10
+x, y = x + 3, y * 2
+print(f"x: {x}, y: {y}")  # x: 8, y: 20
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Asignación aumentada y tipos inmutables
+
+Es importante entender que con tipos inmutables como cadenas, enteros o tuplas, los operadores de asignación combinada crean un nuevo objeto:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Con tipos inmutables
+s = "Hola"
+id_original = id(s)
+s += " mundo"
+id_nuevo = id(s)
+
+print(f"¿Mismo objeto?: {id_original == id_nuevo}")  # False
+print(f"s: {s}")  # "Hola mundo"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Mientras que con tipos mutables como listas, modifican el objeto existente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Con tipos mutables
+lista = [1, 2, 3]
+id_original = id(lista)
+lista += [4, 5]
+id_nuevo = id(lista)
+
+print(f"¿Mismo objeto?: {id_original == id_nuevo}")  # True
+print(f"lista: {lista}")  # [1, 2, 3, 4, 5]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Casos prácticos
+
+Los operadores de asignación combinada son especialmente útiles en situaciones como:
+
+──▶ Contadores y acumuladores
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Contador en un bucle
+total = 0
+for numero in range(1, 6):
+    total += numero
+    print(f"Sumando {numero}: total actual = {total}")
+print(f"Suma final: {total}")  # 15
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Construcción progresiva de estructuras de datos
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Construcción de una lista de cuadrados
+cuadrados = []
+for i in range(1, 6):
+    cuadrados.append(i ** 2)
+    
+# Alternativa con +=
+cuadrados_alt = []
+for i in range(1, 6):
+    cuadrados_alt += [i ** 2]
+    
+print(f"cuadrados: {cuadrados}")
+print(f"cuadrados_alt: {cuadrados_alt}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Procesamiento de texto
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Construcción de una cadena formateada
+reporte = ""
+datos = [("Manzanas", 5), ("Naranjas", 3), ("Plátanos", 2)]
+
+for fruta, cantidad in datos:
+    reporte += f"{fruta}: {cantidad} unidades\n"
+    
+print(reporte)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Consideraciones de rendimiento
+
+En la mayoría de los casos, los operadores de asignación combinada tienen un rendimiento similar a sus equivalentes expandidos, 
+pero pueden ser más eficientes con objetos complejos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplo de rendimiento con cadenas largas
+import time
+
+# Método 1: Concatenación repetida
+inicio = time.time()
+resultado1 = ""
+for i in range(10000):
+    resultado1 = resultado1 + str(i)
+tiempo1 = time.time() - inicio
+
+# Método 2: Operador +=
+inicio = time.time()
+resultado2 = ""
+for i in range(10000):
+    resultado2 += str(i)
+tiempo2 = time.time() - inicio
+
+print(f"Tiempo con concatenación normal: {tiempo1:.6f} segundos")
+print(f"Tiempo con operador +=: {tiempo2:.6f} segundos")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para operaciones intensivas de concatenación, es aún mejor usar join() o io.StringIO:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Método 3: join (más eficiente para muchas concatenaciones)
+inicio = time.time()
+partes = []
+for i in range(10000):
+    partes.append(str(i))
+resultado3 = "".join(partes)
+tiempo3 = time.time() - inicio
+
+print(f"Tiempo con join: {tiempo3:.6f} segundos")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Buenas prácticas
+
+Al trabajar con operadores de asignación combinada:
+
+    * Prioriza la legibilidad: Usa estos operadores para hacer el código más conciso y claro.
+    * Considera el contexto: En bucles o acumuladores, estos operadores hacen que la intención sea más evidente.
+    * Ten cuidado con tipos inmutables: Recuerda que con cadenas y otros tipos inmutables, cada operación crea un nuevo objeto.
+    * Evita operaciones muy complejas: Si la expresión a la derecha es compleja, considera dividirla en pasos separados.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplo de buena práctica
+total_ventas = 0
+for venta in ventas_diarias:
+    # Claro y conciso
+    total_ventas += venta
+
+# Versus alternativa más verbosa
+total_ventas = 0
+for venta in ventas_diarias:
+    total_ventas = total_ventas + venta
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los operadores de asignación combinada son herramientas que mejoran la expresividad del código Python, permitiendo escribir operaciones comunes 
+de manera más natural y directa.
+
+──▶ Operadores de comparación y operadores lógicos
+
+Los operadores de comparación y lógicos son fundamentales en Python para evaluar condiciones y tomar decisiones en el flujo de un programa. 
+Estos operadores permiten comparar valores y combinar condiciones para crear expresiones booleanas más complejas.
+
+──▶ Operadores de comparación
+
+Los operadores de comparación evalúan la relación entre dos valores y devuelven un resultado booleano (True o False). 
+Python proporciona los siguientes operadores de comparación:
+
+   * Igual a (==): Comprueba si dos valores son iguales.
+   * Distinto de (!=): Comprueba si dos valores son diferentes.
+   * Mayor que (>): Comprueba si el valor izquierdo es mayor que el derecho.
+   * Menor que (<): Comprueba si el valor izquierdo es menor que el derecho.
+   * Mayor o igual que (>=): Comprueba si el valor izquierdo es mayor o igual que el derecho.
+   * Menor o igual que (<=): Comprueba si el valor izquierdo es menor o igual que el derecho.
+
+Veamos ejemplos de cada uno:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplos de operadores de comparación
+a = 10
+b = 5
+c = 10
+
+print(f"a == c: {a == c}")  # True
+print(f"a != b: {a != b}")  # True
+print(f"a > b: {a > b}")    # True
+print(f"a < b: {a < b}")    # False
+print(f"a >= c: {a >= c}")  # True
+print(f"b <= a: {b <= a}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Python permite encadenar operadores de comparación de manera intuitiva:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Encadenamiento de operadores de comparación
+x = 15
+
+# Verifica si x está entre 10 y 20
+resultado = 10 < x < 20
+print(f"¿x está entre 10 y 20?: {resultado}")  # True
+
+# Equivalente a: (5 <= x) and (x <= 25)
+resultado = 5 <= x <= 25
+print(f"¿x está entre 5 y 25?: {resultado}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este encadenamiento es más legible y eficiente que usar operadores lógicos explícitamente, ya que cada valor se evalúa solo una vez.
+
+──▶ Comparación de diferentes tipos de datos
+
+Python puede comparar diferentes tipos de datos siguiendo reglas específicas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Comparación de números
+print(f"5 < 5.5: {5 < 5.5}")  # True
+
+# Comparación de cadenas (orden lexicográfico)
+print(f"'apple' < 'banana': {'apple' < 'banana'}")  # True
+print(f"'Python' < 'python': {'Python' < 'python'}")  # True (mayúsculas antes que minúsculas)
+
+# Comparación de listas (elemento por elemento)
+print(f"[1, 2] < [1, 3]: {[1, 2] < [1, 3]}")  # True
+print(f"[1, 2, 3] < [1, 2]: {[1, 2, 3] < [1, 2]}")  # False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Para cadenas, la comparación se basa en el orden lexicográfico (similar al diccionario), comparando los valores Unicode de cada carácter.
+
+──▶ Operadores lógicos
+
+Los operadores lógicos permiten combinar expresiones booleanas. Python proporciona tres operadores lógicos principales:
+
+   * and: Devuelve True si ambas expresiones son verdaderas.
+   * or: Devuelve True si al menos una de las expresiones es verdadera.
+   * not: Invierte el valor booleano de una expresión.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplos de operadores lógicos
+x = 8
+y = 12
+
+# Operador and
+resultado = x > 5 and y < 15
+print(f"x > 5 and y < 15: {resultado}")  # True
+
+# Operador or
+resultado = x > 10 or y > 10
+print(f"x > 10 or y > 10: {resultado}")  # True
+
+# Operador not
+resultado = not (x > 10)
+print(f"not (x > 10): {resultado}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Evaluación de cortocircuito
+
+Python utiliza evaluación de cortocircuito para los operadores lógicos, lo que significa que detiene la evaluación tan pronto como se determina el resultado:
+
+   * Para and: Si el primer operando es False, el resultado será False sin evaluar el segundo operando.
+   * Para or: Si el primer operando es True, el resultado será True sin evaluar el segundo operando.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Demostración de evaluación de cortocircuito
+
+def func1():
+    print("Evaluando func1()")
+    return False
+
+def func2():
+    print("Evaluando func2()")
+    return True
+
+# Con and, func2() no se evalúa
+print("\nUsando and:")
+resultado = func1() and func2()
+print(f"Resultado: {resultado}")
+
+# Con or, func2() sí se evalúa
+print("\nUsando or:")
+resultado = func1() or func2()
+print(f"Resultado: {resultado}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Esta característica es útil para evitar errores y optimizar el rendimiento:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Uso práctico de la evaluación de cortocircuito
+lista = []
+
+# Evita IndexError verificando primero si la lista tiene elementos
+if len(lista) > 0 and lista[0] == "Python":
+    print("El primer elemento es Python")
+else:
+    print("La lista está vacía o el primer elemento no es Python")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Valores truthy y falsy
+
+En Python, los valores pueden evaluarse como True o False en un contexto booleano, incluso si no son explícitamente booleanos:
+
+Valores considerados False (falsy):
+
+   * False
+   * None
+   * Cero en cualquier tipo numérico: 0, 0.0, 0j
+   * Secuencias vacías: '', (), [], {}
+   * Objetos que implementan __bool__() que devuelve False o __len__() que devuelve 0
+
+Todos los demás valores se consideran True (truthy).
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplos de valores truthy y falsy
+elementos = []
+nombre = ""
+numero = 0
+objeto = None
+
+# Verificación de valores no vacíos
+if not elementos:
+    print("La lista está vacía")
+
+if nombre:
+    print("El nombre no está vacío")
+else:
+    print("El nombre está vacío")
+
+# Verificación compacta con or para valores por defecto
+valor = numero or 10
+print(f"Valor (con or): {valor}")  # 10, porque 0 es falsy
+
+# Verificación de None
+resultado = objeto or "Valor por defecto"
+print(f"Resultado: {resultado}")  # "Valor por defecto"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operador de identidad is
+
+Aunque no es estrictamente un operador de comparación tradicional, el operador is compara la identidad de los objetos (si son el mismo 
+objeto en memoria):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Diferencia entre == e is
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(f"a == b: {a == b}")  # True (mismo contenido)
+print(f"a is b: {a is b}")  # False (diferentes objetos)
+print(f"a is c: {a is c}")  # True (mismo objeto)
+
+# Uso común con None
+valor = None
+print(f"valor is None: {valor is None}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El operador is es más eficiente que == para comparar con None, ya que None es un singleton en Python.
+
+──▶ Precedencia de operadores
+
+Los operadores de comparación y lógicos tienen su propia jerarquía de precedencia:
+
+   1. Operadores de comparación (==, !=, >, <, >=, <=)
+   2. not
+   3. and
+   4. or
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplo de precedencia
+resultado = not True and False or True
+# Equivalente a: ((not True) and False) or True
+print(f"not True and False or True: {resultado}")  # True
+
+# Uso de paréntesis para claridad
+resultado = not (True and False) or True
+print(f"not (True and False) or True: {resultado}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Es recomendable usar paréntesis para hacer el código más legible y evitar confusiones sobre la precedencia.
+
+──▶ Aplicaciones prácticas
+
+──▶ Validación de entrada de usuario
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+edad = int(input("Introduce tu edad: "))
+tiene_permiso = input("¿Tienes permiso parental? (s/n): ").lower() == 's'
+
+if (13 <= edad < 18 and tiene_permiso) or edad >= 18:
+    print("Puedes acceder al contenido")
+else:
+    print("Acceso denegado")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Filtrado de datos
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+datos = [15, 8, 23, 42, 16, 4, 8]
+
+# Filtrar números que son pares y mayores que 10
+filtrados = [num for num in datos if num > 10 and num % 2 == 0]
+print(f"Números pares mayores que 10: {filtrados}")  # [16, 42]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Implementación de lógica de negocio
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def verificar_elegibilidad(edad, ingresos, historial_crediticio):
+    """Verifica si un cliente es elegible para un préstamo."""
+    es_mayor_edad = edad >= 18
+    ingresos_suficientes = ingresos > 30000
+    buen_historial = historial_crediticio >= 700
+    
+    # Lógica de negocio usando operadores lógicos
+    return es_mayor_edad and (ingresos_suficientes or buen_historial)
+
+# Ejemplos de uso
+print(f"Cliente 1: {verificar_elegibilidad(25, 35000, 720)}")  # True
+print(f"Cliente 2: {verificar_elegibilidad(19, 25000, 750)}")  # True
+print(f"Cliente 3: {verificar_elegibilidad(30, 20000, 650)}")  # False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Asignación condicional compacta
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Uso de operadores lógicos para asignación condicional
+nivel = "admin"
+permisos = nivel == "admin" and "acceso total" or "acceso limitado"
+print(f"Permisos: {permisos}")  # "acceso total"
+
+# Alternativa más clara usando operador ternario
+permisos = "acceso total" if nivel == "admin" else "acceso limitado"
+print(f"Permisos (ternario): {permisos}")  # "acceso total"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Buenas prácticas
+
+   * Usa paréntesis para clarificar la precedencia en expresiones complejas.
+   * Evita negaciones múltiples (not not x) que dificultan la legibilidad.
+   * Aprovecha la evaluación de cortocircuito para optimizar el código y evitar errores.
+   * Prefiere el operador ternario para asignaciones condicionales simples.
+   * Usa is y is not específicamente para comparaciones con None.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Mal: Negaciones múltiples
+if not (not usuario_activo):
+    print("Usuario activo")
+
+# Bien: Expresión directa
+if usuario_activo:
+    print("Usuario activo")
+
+# Mal: No aprovecha la evaluación de cortocircuito
+if len(lista) >= 1:
+    if lista[0] == "inicio":
+        print("La lista comienza correctamente")
+
+# Bien: Usa and con evaluación de cortocircuito
+if lista and lista[0] == "inicio":
+    print("La lista comienza correctamente")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los operadores de comparación y lógicos son herramientas esenciales para controlar el flujo de ejecución en Python, permitiendo crear condiciones 
+precisas que determinan el comportamiento de un programa según los valores de sus variables.
+
+──▶ Operadores bit a bit y operadores de pertenencia
+
+Los operadores bit a bit y los operadores de pertenencia representan dos categorías distintas pero igualmente importantes en Python. 
+Mientras que los primeros permiten manipular datos a nivel de bits individuales, los segundos facilitan la verificación de membresía en colecciones.
+
+──▶ Operadores bit a bit
+
+Los operadores bit a bit trabajan con números a nivel binario, manipulando directamente los bits individuales que componen un valor. Estos operadores son particularmente útiles en programación de bajo nivel, procesamiento de datos y optimizaciones.
+
+Python proporciona los siguientes operadores bit a bit:
+
+   * AND bit a bit (&): Realiza una operación AND en cada par de bits correspondientes.
+   * OR bit a bit (|): Realiza una operación OR en cada par de bits correspondientes.
+   * XOR bit a bit (^): Realiza una operación XOR (OR exclusivo) en cada par de bits correspondientes.
+   * NOT bit a bit (~): Invierte todos los bits (complemento a uno).
+   * Desplazamiento a la izquierda (<<): Desplaza los bits hacia la izquierda.
+   * Desplazamiento a la derecha (>>): Desplaza los bits hacia la derecha.
+
+Veamos cómo funcionan estos operadores con ejemplos prácticos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+a = 60  # 0011 1100 en binario
+b = 13  # 0000 1101 en binario
+
+# Visualización en binario para mejor comprensión
+print(f"a en binario: {bin(a)}")
+print(f"b en binario: {bin(b)}")
+
+# AND bit a bit: 1 si ambos bits son 1, 0 en caso contrario
+resultado = a & b  # 0000 1100 (12 en decimal)
+print(f"a & b: {resultado} ({bin(resultado)})")
+
+# OR bit a bit: 1 si al menos uno de los bits es 1, 0 en caso contrario
+resultado = a | b  # 0011 1101 (61 en decimal)
+print(f"a | b: {resultado} ({bin(resultado)})")
+
+# XOR bit a bit: 1 si los bits son diferentes, 0 si son iguales
+resultado = a ^ b  # 0011 0001 (49 en decimal)
+print(f"a ^ b: {resultado} ({bin(resultado)})")
+
+# NOT bit a bit: invierte todos los bits
+resultado = ~a  # -61 en decimal (debido a la representación de complemento a dos)
+print(f"~a: {resultado} ({bin(resultado)})")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operadores de desplazamiento
+
+Los operadores de desplazamiento mueven los bits hacia la izquierda o derecha, lo que equivale a multiplicar o dividir por potencias de 2:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+c = 8  # 0000 1000 en binario
+
+# Desplazamiento a la izquierda: multiplica por 2^n
+resultado = c << 2  # 0010 0000 (32 en decimal)
+print(f"c << 2: {resultado} ({bin(resultado)})")  # Equivale a c * (2^2)
+
+# Desplazamiento a la derecha: divide por 2^n
+resultado = c >> 1  # 0000 0100 (4 en decimal)
+print(f"c >> 1: {resultado} ({bin(resultado)})")  # Equivale a c // (2^1)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Aplicaciones prácticas de operadores bit a bit
+
+Los operadores bit a bit tienen numerosas aplicaciones en programación:
+
+  * Manipulación de flags: Usar bits individuales como indicadores booleanos.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Definición de flags usando constantes bit a bit
+LEER    = 0b0001  # 1
+ESCRIBIR = 0b0010  # 2
+EJECUTAR = 0b0100  # 4
+ELIMINAR = 0b1000  # 8
+
+# Asignar permisos combinando flags
+permisos_usuario = LEER | ESCRIBIR  # 0011 (3)
+
+# Verificar permisos
+puede_leer = permisos_usuario & LEER > 0
+puede_ejecutar = permisos_usuario & EJECUTAR > 0
+
+print(f"¿Puede leer?: {puede_leer}")        # True
+print(f"¿Puede ejecutar?: {puede_ejecutar}")  # False
+
+# Agregar un permiso
+permisos_usuario |= EJECUTAR  # Ahora es 0111 (7)
+print(f"Permisos actualizados: {bin(permisos_usuario)}")
+
+# Quitar un permiso
+permisos_usuario &= ~ESCRIBIR  # Quita el permiso de escritura
+print(f"Después de quitar ESCRIBIR: {bin(permisos_usuario)}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+   * Optimización de memoria: Almacenar múltiples valores booleanos en un solo entero.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Representar un tablero de ajedrez (8x8) usando solo 64 bits
+tablero = 0
+
+# Colocar una pieza en la posición (2, 3)
+posicion = 2 * 8 + 3
+tablero |= (1 << posicion)
+
+# Verificar si hay una pieza en (2, 3)
+hay_pieza = (tablero & (1 << posicion)) > 0
+print(f"¿Hay pieza en (2,3)?: {hay_pieza}")  # True
+
+# Verificar si hay una pieza en (4, 5)
+otra_posicion = 4 * 8 + 5
+hay_pieza = (tablero & (1 << otra_posicion)) > 0
+print(f"¿Hay pieza en (4,5)?: {hay_pieza}")  # False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+   * Operaciones matemáticas rápidas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Multiplicar por 2 usando desplazamiento
+numero = 42
+resultado = numero << 1
+print(f"{numero} * 2 = {resultado}")  # 84
+
+# Dividir por 4 usando desplazamiento
+numero = 64
+resultado = numero >> 2
+print(f"{numero} // 4 = {resultado}")  # 16
+
+# Verificar si un número es par (el bit menos significativo es 0)
+es_par = (numero & 1) == 0
+print(f"¿{numero} es par?: {es_par}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+   * Intercambio de valores sin variable temporal:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Intercambio de valores usando XOR
+x = 10
+y = 25
+
+print(f"Antes: x = {x}, y = {y}")
+
+x = x ^ y
+y = x ^ y
+x = x ^ y
+
+print(f"Después: x = {25}, y = {10}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operadores de pertenencia
+
+Los operadores de pertenencia en Python permiten verificar si un valor está presente en una secuencia (como listas, tuplas, cadenas o diccionarios). Estos operadores son:
+
+   * in: Devuelve True si el valor se encuentra en la secuencia.
+   * not in: Devuelve True si el valor no se encuentra en la secuencia.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Ejemplos con diferentes tipos de colecciones
+frutas = ["manzana", "banana", "naranja", "pera"]
+mensaje = "Python es poderoso y versátil"
+edades = {"Ana": 25, "Carlos": 30, "Elena": 22}
+numeros = (1, 2, 3, 4, 5)
+letras = {"a", "b", "c", "d"}
+
+# Verificación en lista
+print(f"¿'banana' está en frutas?: {'banana' in frutas}")  # True
+print(f"¿'uva' no está en frutas?: {'uva' not in frutas}")  # True
+
+# Verificación en cadena (busca subcadenas)
+print(f"¿'Python' está en mensaje?: {'Python' in mensaje}")  # True
+print(f"¿'Java' no está en mensaje?: {'Java' not in mensaje}")  # True
+
+# Verificación en diccionario (busca en claves)
+print(f"¿'Ana' está en edades?: {'Ana' in edades}")  # True
+print(f"¿'Juan' no está en edades?: {'Juan' not in edades}")  # True
+
+# Verificación en tupla
+print(f"¿3 está en numeros?: {3 in numeros}")  # True
+
+# Verificación en conjunto
+print(f"¿'b' está en letras?: {'b' in letras}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Comportamiento con diferentes tipos de colecciones
+
+Es importante entender cómo funcionan los operadores de pertenencia con diferentes estructuras de datos:
+
+  *  Listas, tuplas y conjuntos: Buscan el valor exacto.
+  *  Cadenas: Buscan subcadenas.
+  *  Diccionarios: Buscan solo en las claves, no en los valores.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Comportamiento con diccionarios
+inventario = {"manzanas": 50, "naranjas": 30, "plátanos": 20}
+
+# Verifica si la clave existe
+print(f"¿'manzanas' está en inventario?: {'manzanas' in inventario}")  # True
+
+# Para verificar valores, se debe usar .values()
+print(f"¿50 está en los valores?: {50 in inventario.values()}")  # True
+
+# Para verificar pares clave-valor, se debe usar .items()
+print(f"¿('manzanas', 50) está en los items?: {('manzanas', 50) in inventario.items()}")  # True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Eficiencia de los operadores de pertenencia
+
+La eficiencia de los operadores de pertenencia varía según el tipo de colección:
+
+   * Listas y tuplas: Búsqueda lineal O(n).
+   * Conjuntos y diccionarios: Búsqueda de tiempo constante O(1).
+   * Cadenas: Búsqueda de subcadenas O(n*m).
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+import time
+
+# Comparación de rendimiento
+n = 10000000
+lista_grande = list(range(n))
+conjunto_grande = set(range(n))
+
+# Búsqueda en lista (lenta)
+inicio = time.time()
+resultado = n-1 in lista_grande
+fin = time.time()
+print(f"Búsqueda en lista: {fin - inicio:.6f} segundos")
+
+# Búsqueda en conjunto (rápida)
+inicio = time.time()
+resultado = n-1 in conjunto_grande
+fin = time.time()
+print(f"Búsqueda en conjunto: {fin - inicio:.6f} segundos")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Aplicaciones prácticas de operadores de pertenencia
+
+Los operadores de pertenencia son extremadamente útiles en muchos escenarios:
+
+   * Validación de entrada:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+opciones_validas = ["si", "no", "quizás"]
+respuesta = input("¿Estás de acuerdo? (si/no/quizás): ").lower()
+
+if respuesta in opciones_validas:
+    print("Respuesta válida")
+else:
+    print("Respuesta no válida. Por favor, responde si, no o quizás.")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+   * Filtrado de datos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Filtrar elementos que están en una lista pero no en otra
+lista1 = [1, 2, 3, 4, 5, 6]
+lista2 = [4, 5, 6, 7, 8]
+
+solo_en_lista1 = [x for x in lista1 if x not in lista2]
+print(f"Elementos solo en lista1: {solo_en_lista1}")  # [1, 2, 3]
+
+# Encontrar elementos comunes (intersección)
+comunes = [x for x in lista1 if x in lista2]
+print(f"Elementos comunes: {comunes}")  # [4, 5, 6]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+   * Verificación de permisos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def verificar_acceso(usuario, recurso):
+    permisos = {
+        "admin": ["config", "usuarios", "reportes", "sistema"],
+        "editor": ["contenido", "reportes"],
+        "visitante": ["contenido"]
+    }
+    
+    if usuario not in permisos:
+        return False
+    
+    return recurso in permisos[usuario]
+
+# Ejemplos de uso
+print(f"¿Admin puede acceder a usuarios?: {verificar_acceso('admin', 'usuarios')}")  # True
+print(f"¿Editor puede acceder a sistema?: {verificar_acceso('editor', 'sistema')}")  # False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+   * Análisis de texto:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def contar_palabras_clave(texto, palabras_clave):
+    palabras = texto.lower().split()
+    contador = 0
+    
+    for palabra in palabras:
+        # Eliminar puntuación
+        palabra = palabra.strip(".,;:!?")
+        if palabra in palabras_clave:
+            contador += 1
+            
+    return contador
+
+texto_muestra = "Python es un lenguaje versátil. Python se usa en ciencia de datos y desarrollo web."
+palabras_buscar = {"python", "datos", "desarrollo"}
+
+print(f"Palabras clave encontradas: {contar_palabras_clave(texto_muestra, palabras_buscar)}")  # 3
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Combinación de operadores bit a bit y de pertenencia
+
+Aunque estos operadores tienen propósitos diferentes, pueden combinarse en situaciones específicas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Verificar si un bit específico está activado en un conjunto de flags
+def tiene_permiso(permisos, permiso_requerido):
+    return permisos & permiso_requerido > 0
+
+# Definir permisos como constantes bit a bit
+LEER = 0b0001
+ESCRIBIR = 0b0010
+EJECUTAR = 0b0100
+
+# Lista de usuarios con sus permisos
+usuarios = {
+    "admin": LEER | ESCRIBIR | EJECUTAR,  # 7
+    "editor": LEER | ESCRIBIR,            # 3
+    "visitante": LEER                     # 1
+}
+
+# Verificar si un usuario tiene cierto permiso
+def verificar_usuario(nombre, permiso):
+    return nombre in usuarios and tiene_permiso(usuarios[nombre], permiso)
+
+print(f"¿Admin puede ejecutar?: {verificar_usuario('admin', EJECUTAR)}")  # True
+print(f"¿Editor puede ejecutar?: {verificar_usuario('editor', EJECUTAR)}")  # False
+print(f"¿Invitado puede leer?: {verificar_usuario('invitado', LEER)}")  # False (no existe)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Buenas prácticas
+
+Al trabajar con estos operadores, considera las siguientes recomendaciones:
+
+   * Operadores bit a bit:
+   * Usa constantes con nombres descriptivos para los flags.
+   * Incluye comentarios que expliquen el significado de los bits.
+   * Considera usar la biblioteca enum para flags más legibles.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+from enum import Flag, auto
+
+class Permisos(Flag):
+    NINGUNO = 0
+    LEER = auto()      # 1
+    ESCRIBIR = auto()  # 2
+    EJECUTAR = auto()  # 4
+    TODOS = LEER | ESCRIBIR | EJECUTAR
+
+# Uso más legible
+permisos_usuario = Permisos.LEER | Permisos.ESCRIBIR
+if Permisos.LEER in permisos_usuario:
+    print("Tiene permiso de lectura")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+   * Operadores de pertenencia:
+   * Usa conjuntos en lugar de listas para búsquedas frecuentes.
+   * Para diccionarios, específica claramente si buscas en claves, valores o ambos.
+   * Considera el método get() con valor predeterminado como alternativa a in para diccionarios.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# En lugar de:
+if clave in diccionario:
+    valor = diccionario[clave]
+else:
+    valor = valor_predeterminado
+
+# Más conciso:
+valor = diccionario.get(clave, valor_predeterminado)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Los operadores bit a bit y de pertenencia amplían significativamente las capacidades de Python, permitiendo manipulaciones de bajo nivel y verificaciones de membresía eficientes que son esenciales en muchos escenarios de programación.
+
+──▶ Aprendizajes de esta lección
+
+    Comprender y aplicar los operadores aritméticos básicos y su precedencia en expresiones matemáticas.
+    Utilizar operadores de asignación y asignación combinada para modificar variables de forma eficiente.
+    Emplear operadores de comparación y lógicos para evaluar condiciones y controlar el flujo del programa.
+    Manipular datos a nivel binario con operadores bit a bit y verificar pertenencia en colecciones con operadores de pertenencia.
+    Aplicar buenas prácticas para mejorar la legibilidad, eficiencia y corrección del código usando estos operadores.
+

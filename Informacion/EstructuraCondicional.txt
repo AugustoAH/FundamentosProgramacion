@@ -1,0 +1,1003 @@
+Estructuras de control condicional
+
+──▶ Sintaxis y estructura básica de if, elif y else
+
+Las estructuras de control condicional son fundamentales en cualquier lenguaje de programación, ya que permiten que nuestro código tome 
+decisiones basadas en condiciones específicas. En Python, estas estructuras se implementan mediante las palabras clave if, elif y else.
+
+──▶ La estructura if
+
+La estructura más básica de control condicional es el if. Esta estructura evalúa una expresión y ejecuta un bloque de código solo si dicha expresión es verdadera (equivalente a True).
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+if condición:
+    # Código que se ejecuta si la condición es True
+    instrucción1
+    instrucción2
+    # ...
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Aspectos importantes a tener en cuenta:
+
+   * La indentación es crucial en Python. El bloque de código que depende del if debe estar indentado (típicamente con 4 espacios).
+   * La condición debe ser una expresión que se pueda evaluar como verdadera o falsa.
+   * La línea del if siempre termina con dos puntos (:).
+
+Veamos un ejemplo práctico:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+edad = 18
+
+if edad >= 18:
+    print("Eres mayor de edad")
+    print("Puedes votar")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, si la variable edad es mayor o igual a 18, se imprimirán los dos mensajes. Si no, no se ejecutará ninguna instrucción.
+
+──▶ La estructura if-else
+
+Cuando queremos ejecutar un bloque de código alternativo en caso de que la condición sea falsa, utilizamos la estructura if-else:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+if condición:
+    # Código que se ejecuta si la condición es True
+    bloque_de_código_verdadero
+else:
+    # Código que se ejecuta si la condición es False
+    bloque_de_código_falso
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Ejemplo:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+temperatura = 5
+
+if temperatura > 20:
+    print("Hace calor")
+    print("Lleva ropa ligera")
+else:
+    print("Hace frío")
+    print("Lleva abrigo")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este caso, como la temperatura es 5 (menor que 20), se ejecutará el bloque del else y se imprimirá "Hace frío" y "Lleva abrigo".
+
+──▶ La estructura if-elif-else
+
+Cuando necesitamos evaluar múltiples condiciones en secuencia, utilizamos la estructura if-elif-else:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+if condición1:
+    # Se ejecuta si condición1 es True
+    bloque_código1
+elif condición2:
+    # Se ejecuta si condición1 es False y condición2 es True
+    bloque_código2
+elif condición3:
+    # Se ejecuta si condición1 y condición2 son False, y condición3 es True
+    bloque_código3
+else:
+    # Se ejecuta si todas las condiciones anteriores son False
+    bloque_código_else
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Características importantes:
+
+   * Podemos tener tantos bloques elif como necesitemos.
+   * El bloque else es opcional.
+   * Solo se ejecutará el primer bloque cuya condición sea verdadera.
+
+Ejemplo con calificaciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+calificacion = 85
+
+if calificacion >= 90:
+    print("Sobresaliente")
+elif calificacion >= 70:
+    print("Notable")
+elif calificacion >= 60:
+    print("Bien")
+elif calificacion >= 50:
+    print("Suficiente")
+else:
+    print("Insuficiente")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, como la calificación es 85, se imprimirá "Notable". Observa que aunque 85 también cumple la condición de ser mayor o 
+igual a 60 y 50, solo se ejecuta el primer bloque que cumple la condición.
+
+──▶ Condicionales anidados
+
+También es posible anidar estructuras condicionales dentro de otras:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+edad = 25
+tiene_licencia = True
+
+if edad >= 18:
+    print("Eres mayor de edad")
+    
+    if tiene_licencia:
+        print("Puedes conducir")
+    else:
+        print("No puedes conducir sin licencia")
+else:
+    print("Eres menor de edad, no puedes conducir")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, primero se verifica si la persona es mayor de edad. Si lo es, se verifica si tiene licencia para determinar si puede conducir.
+
+──▶ Evaluación de condiciones en Python
+
+Python considera como False los siguientes valores:
+
+   * False (el booleano falso)
+   * None (valor nulo)
+   * 0 (cero en cualquier tipo numérico)
+   * Secuencias vacías: "" (cadena vacía), [] (lista vacía), () (tupla vacía), etc.
+   * Diccionarios vacíos: {}
+   * Conjuntos vacíos: set()
+
+Cualquier otro valor se considera True. Esto permite escribir condicionales de forma más concisa:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+nombre = ""
+
+if nombre:
+    print(f"Hola, {nombre}")
+else:
+    print("Por favor, introduce tu nombre")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este caso, como nombre es una cadena vacía (que se evalúa como False), se imprimirá "Por favor, introduce tu nombre".
+
+──▶ Uso de pass en estructuras condicionales
+
+Si necesitamos una estructura condicional pero temporalmente no queremos incluir código en alguno de los bloques, podemos usar la instrucción pass:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+edad = 15
+
+if edad >= 18:
+    # Implementaremos esto más tarde
+    pass
+else:
+    print("Acceso denegado")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+La instrucción pass es una operación nula que no hace nada, pero nos permite tener una estructura sintácticamente correcta.
+
+──▶ Ejemplo práctico: Validación de datos de usuario
+
+Veamos un ejemplo más completo que combina varias estructuras condicionales:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+username = "admin"
+password = "12345"
+
+if not username:
+    print("El nombre de usuario no puede estar vacío")
+elif len(username) < 4:
+    print("El nombre de usuario debe tener al menos 4 caracteres")
+elif username == "admin" and password == "12345":
+    print("¡Bienvenido, administrador!")
+elif username == "admin":
+    print("Contraseña incorrecta para el administrador")
+else:
+    print(f"Bienvenido, {username}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este ejemplo muestra cómo podemos usar estructuras condicionales para implementar un sistema básico de validación de inicio de sesión.
+
+──▶ Expresiones condicionales compuestas con operadores lógicos
+
+Las expresiones condicionales en Python pueden volverse más potentes y flexibles cuando combinamos múltiples condiciones utilizando operadores lógicos. 
+Estos operadores nos permiten crear condiciones complejas que evalúan varios criterios simultáneamente.
+
+Python proporciona tres operadores lógicos principales:
+
+   * and: Devuelve True si ambas condiciones son verdaderas
+   * or: Devuelve True si al menos una de las condiciones es verdadera
+   * not: Invierte el valor de la condición (de True a False o viceversa)
+
+──▶ Operador and
+
+El operador and requiere que todas las condiciones conectadas sean verdaderas para que la expresión completa sea verdadera:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+edad = 25
+ingresos = 30000
+
+if edad >= 18 and ingresos > 20000:
+    print("Calificas para el préstamo")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, ambas condiciones deben cumplirse: la persona debe ser mayor de edad Y tener ingresos superiores a 20000. Si cualquiera de estas condiciones falla, el mensaje no se mostrará.
+
+Podemos encadenar múltiples condiciones con and:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+temperatura = 22
+humedad = 60
+viento = 10
+
+if temperatura > 20 and humedad < 70 and viento < 15:
+    print("Condiciones climáticas ideales para salir")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operador or
+
+El operador or requiere que al menos una de las condiciones conectadas sea verdadera:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+dia = "sábado"
+
+if dia == "sábado" or dia == "domingo":
+    print("Es fin de semana")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este código imprimirá "Es fin de semana" si el día es sábado O domingo. Solo necesitamos que una de las condiciones sea verdadera.
+
+Un ejemplo más complejo:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+es_estudiante = True
+es_jubilado = False
+edad = 22
+
+if es_estudiante or es_jubilado or edad < 18:
+    print("Tienes derecho a un descuento")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operador not
+
+El operador not invierte el valor de verdad de una expresión:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+tiene_permiso = False
+
+if not tiene_permiso:
+    print("Acceso denegado")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este código es equivalente a if tiene_permiso == False:, pero es más legible y directo.
+
+El operador not es especialmente útil para verificar la ausencia de algo:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+lista_invitados = ["Ana", "Carlos", "Elena"]
+nombre = "David"
+
+if not nombre in lista_invitados:
+    print("No estás en la lista de invitados")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Combinando operadores lógicos
+
+Los operadores lógicos pueden combinarse para crear condiciones más complejas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+edad = 65
+es_ciudadano = True
+años_residencia = 10
+
+if (edad >= 18 and es_ciudadano) or (edad >= 65 and años_residencia >= 5):
+    print("Puedes votar en las elecciones")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, una persona puede votar si:
+
+   * Es mayor de edad Y ciudadano, O
+   * Tiene 65 años o más Y ha residido al menos 5 años en el país
+
+──▶ Precedencia de operadores
+
+Python sigue un orden de precedencia para evaluar expresiones complejas:
+
+   1. Primero se evalúan los paréntesis ()
+   2. Luego el operador not
+   3. Después el operador and
+   4. Finalmente el operador or
+
+Para evitar confusiones y hacer el código más legible, es recomendable usar paréntesis para agrupar las condiciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Sin paréntesis (difícil de interpretar)
+if a > b and c > d or e > f and g > h:
+    print("Condición cumplida")
+
+# Con paréntesis (claro y explícito)
+if ((a > b and c > d) or (e > f and g > h)):
+    print("Condición cumplida")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Evaluación en cortocircuito
+
+Python utiliza la evaluación en cortocircuito para optimizar la ejecución de expresiones lógicas:
+
+   * Con and: Si la primera condición es False, Python no evalúa la segunda condición porque ya sabe que el resultado será False
+   * Con or: Si la primera condición es True, Python no evalúa la segunda condición porque ya sabe que el resultado será True
+
+Esto puede aprovecharse para escribir código más eficiente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# La división solo se ejecuta si denominador no es cero
+if denominador != 0 and numerador / denominador > 1:
+    print("El resultado es mayor que 1")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, si denominador es cero, la segunda condición (que causaría un error de división por cero) nunca se evalúa.
+
+──▶ Patrones comunes con operadores lógicos
+
+──▶ Verificación de rangos
+
+Para verificar si un valor está dentro de un rango específico:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+edad = 25
+
+# Forma tradicional
+if edad >= 18 and edad <= 65:
+    print("Edad laboral activa")
+
+# Forma más concisa en Python
+if 18 <= edad <= 65:
+    print("Edad laboral activa")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Python permite encadenar comparaciones, lo que hace que el código sea más legible y cercano al lenguaje natural.
+
+──▶ Validación de múltiples condiciones
+
+Para verificar si un valor coincide con alguno de varios valores posibles:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+dia = "martes"
+
+# Usando múltiples condiciones con or
+if dia == "lunes" or dia == "martes" or dia == "miércoles" or dia == "jueves" or dia == "viernes":
+    print("Es día laborable")
+
+# Forma más concisa usando in
+if dia in ["lunes", "martes", "miércoles", "jueves", "viernes"]:
+    print("Es día laborable")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Negación de condiciones complejas
+
+Las leyes de De Morgan nos permiten transformar expresiones lógicas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Estas dos expresiones son equivalentes
+if not (a and b):
+    print("Al menos una condición es falsa")
+
+if not a or not b:
+    print("Al menos una condición es falsa")
+
+# Estas dos expresiones también son equivalentes
+if not (a or b):
+    print("Ambas condiciones son falsas")
+
+if not a and not b:
+    print("Ambas condiciones son falsas")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Ejemplo práctico: Sistema de recomendación
+
+Veamos un ejemplo más completo que utiliza operadores lógicos para implementar un sistema básico de recomendación:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+temperatura = 28
+es_fin_de_semana = True
+esta_lloviendo = False
+presupuesto = 50
+
+if temperatura > 25 and not esta_lloviendo:
+    if es_fin_de_semana and presupuesto >= 100:
+        print("Recomendación: Visita la playa")
+    elif es_fin_de_semana and presupuesto >= 50:
+        print("Recomendación: Visita el parque acuático")
+    else:
+        print("Recomendación: Picnic en el parque")
+elif temperatura > 15 and not esta_lloviendo:
+    if presupuesto >= 40:
+        print("Recomendación: Visita un museo o exposición")
+    else:
+        print("Recomendación: Paseo por el centro de la ciudad")
+elif esta_lloviendo:
+    if presupuesto >= 60:
+        print("Recomendación: Cine y restaurante")
+    else:
+        print("Recomendación: Maratón de series en casa")
+else:
+    print("Recomendación: Lectura en casa o biblioteca")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este ejemplo muestra cómo podemos combinar operadores lógicos con estructuras condicionales anidadas para crear un sistema de decisión complejo 
+basado en múltiples factores.
+
+──▶ Uso de operadores lógicos con valores no booleanos
+
+Como vimos anteriormente, Python considera ciertos valores como False (0, None, secuencias vacías, etc.). Esto permite usar operadores lógicos de formas creativas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Asignar un valor predeterminado si la variable está vacía
+nombre = ""
+nombre_mostrar = nombre or "Invitado"  # Si nombre es vacío, usa "Invitado"
+
+# Elegir el primer valor no vacío de una lista
+primer_valor = "" or 0 or [] or "Hola" or 42  # primer_valor será "Hola"
+
+# Ejecutar una función solo si una condición es verdadera
+debug = True
+debug and print("Información de depuración")  # Solo imprime si debug es True
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Estos patrones son comunes en código Python profesional y aprovechan la evaluación en cortocircuito de los operadores lógicos.
+
+──▶ Operador ternario: sintaxis y casos de uso
+
+El operador ternario en Python proporciona una forma concisa de escribir expresiones condicionales en una sola línea. Es una alternativa elegante 
+a las estructuras if-else cuando necesitamos asignar un valor basado en una condición simple.
+
+La sintaxis del operador ternario en Python es:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+valor_si_verdadero if condición else valor_si_falso
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Esta estructura evalúa la condición y devuelve valor_si_verdadero cuando la condición es True, o valor_si_falso cuando es False.
+
+──▶ Sintaxis básica
+
+Veamos un ejemplo sencillo que compara la estructura tradicional if-else con el operador ternario:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Usando if-else tradicional
+edad = 20
+if edad >= 18:
+    estado = "adulto"
+else:
+    estado = "menor"
+
+# Equivalente usando operador ternario
+edad = 20
+estado = "adulto" if edad >= 18 else "menor"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El operador ternario hace que el código sea más compacto y, en muchos casos, más legible, especialmente cuando la lógica condicional es simple.
+
+──▶ Casos de uso comunes
+
+1. Asignación condicional de variables
+
+El uso más frecuente del operador ternario es para asignar valores a variables basados en una condición:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Determinar el mensaje según la temperatura
+temperatura = 28
+mensaje = "Hace calor" if temperatura > 25 else "Temperatura agradable"
+
+# Aplicar un descuento condicional
+es_cliente_premium = True
+precio = 100
+precio_final = precio * 0.8 if es_cliente_premium else precio
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+2. Valores predeterminados
+
+Es útil para asignar valores predeterminados cuando una variable podría estar vacía:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Asignar un nombre de usuario predeterminado
+input_usuario = ""
+nombre = input_usuario if input_usuario else "Invitado"
+
+# Establecer un valor máximo
+cantidad = 120
+cantidad_permitida = 100 if cantidad > 100 else cantidad
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+3. En expresiones de retorno
+
+El operador ternario es ideal para simplificar funciones que retornan valores basados en condiciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def obtener_estado(puntuacion):
+    return "Aprobado" if puntuacion >= 60 else "Reprobado"
+
+def calcular_envio(distancia):
+    return 0 if distancia < 5 else 10
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+4. En comprensiones de listas
+
+Podemos usar el operador ternario dentro de comprensiones de listas para aplicar transformaciones condicionales:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+numeros = [1, 2, 3, 4, 5, 6]
+
+# Convertir números a "par" o "impar"
+resultado = ["par" if n % 2 == 0 else "impar" for n in numeros]
+# resultado = ['impar', 'par', 'impar', 'par', 'impar', 'par']
+
+# Aplicar diferentes operaciones según el valor
+procesados = [n * 2 if n > 3 else n for n in numeros]
+# procesados = [1, 2, 3, 8, 10, 12]
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+5. Como argumento de función
+
+El operador ternario puede usarse directamente como argumento en llamadas a funciones:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Mostrar diferentes mensajes según la condición
+nombre = "Ana"
+print(f"Hola {nombre}" if nombre else "Hola invitado")
+
+# Ordenar una lista de forma ascendente o descendente
+numeros = [5, 2, 8, 1]
+orden_ascendente = True
+numeros_ordenados = sorted(numeros, reverse=False if orden_ascendente else True)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Operadores ternarios anidados
+
+Aunque es posible anidar operadores ternarios, esto puede reducir la legibilidad del código rápidamente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Operador ternario anidado
+edad = 25
+mensaje = "menor" if edad < 18 else ("adulto joven" if edad < 30 else "adulto")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, si edad es menor que 18, mensaje será "menor". De lo contrario, se evalúa otro operador ternario que asigna "adulto joven" 
+si edad es menor que 30, o "adulto" en caso contrario.
+
+Aunque técnicamente funciona, cuando necesitamos más de dos condiciones, generalmente es mejor usar una estructura if-elif-else tradicional o 
+un diccionario de mapeo para mantener la legibilidad:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Alternativa más legible usando if-elif-else
+if edad < 18:
+    mensaje = "menor"
+elif edad < 30:
+    mensaje = "adulto joven"
+else:
+    mensaje = "adulto"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Buenas prácticas
+
+Para usar el operador ternario de manera efectiva:
+
+   * Mantén la simplicidad: Úsalo solo para condiciones simples y claras.
+   * Evita anidamientos excesivos: Si necesitas más de un nivel de anidamiento, considera usar estructuras if-elif-else tradicionales.
+   * Prioriza la legibilidad: Si el operador ternario hace que tu código sea más difícil de entender, usa la forma tradicional.
+   * Usa paréntesis para claridad: Cuando sea necesario, usa paréntesis para agrupar expresiones y mejorar la legibilidad.
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+# Sin paréntesis (puede ser confuso)
+resultado = a + b if condicion else c + d
+
+# Con paréntesis (más claro)
+resultado = (a + b) if condicion else (c + d)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Ejemplos prácticos
+
+──▶ Validación de entrada de usuario
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+edad_str = input("Introduce tu edad: ")
+edad = int(edad_str) if edad_str.isdigit() else 0
+
+if edad == 0:
+    print("Entrada no válida")
+else:
+    print(f"Tu edad es: {edad}")
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Formateo condicional de texto
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+cantidad = 1
+producto = "manzana"
+mensaje = f"Hay {cantidad} {producto}{'s' if cantidad != 1 else ''}"
+# Si cantidad es 1: "Hay 1 manzana"
+# Si cantidad es 2: "Hay 2 manzanas"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Selección de estilo CSS
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+es_activo = True
+clase_css = "boton-activo" if es_activo else "boton-inactivo"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Manejo de permisos
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+rol = "admin"
+accion = "editar"
+permitido = True if rol in ["admin", "editor"] and accion != "eliminar" else False
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Cálculo de impuestos
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+precio = 100
+pais = "España"
+impuesto = 0.21 if pais == "España" else (0.19 if pais == "Alemania" else 0.10)
+precio_final = precio * (1 + impuesto)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Comparación con otros lenguajes
+
+Si estás familiarizado con otros lenguajes de programación, notarás que la sintaxis del operador ternario en Python 
+(valor_si_verdadero if condición else valor_si_falso) es diferente a la sintaxis común en lenguajes como Java, JavaScript o C++ 
+(condición ? valor_si_verdadero : valor_si_falso).
+
+La sintaxis de Python fue diseñada para ser más legible y similar al lenguaje natural, siguiendo la filosofía de que 
+"lo explícito es mejor que lo implícito".
+
+──▶ Limitaciones
+
+El operador ternario en Python tiene algunas limitaciones:
+
+   * No permite ejecutar múltiples instrucciones en cada rama (solo expresiones).
+   * No es adecuado para lógica condicional compleja.
+   * Puede reducir la legibilidad si se usa en exceso o se anida.
+
+Para estos casos, es mejor usar las estructuras if-else tradicionales.
+
+──▶ La sintaxis match case
+
+La estructura match case es una adición relativamente reciente a Python, introducida en la versión 3.10. Esta estructura proporciona una 
+forma elegante y potente de realizar coincidencia de patrones, similar a las estructuras switch o case que existen en otros lenguajes de programación, 
+pero con capacidades mucho más avanzadas.
+
+──▶ Sintaxis básica
+
+La estructura básica de match case es la siguiente:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+match expresión:
+    case patrón1:
+        # Código si expresión coincide con patrón1
+    case patrón2:
+        # Código si expresión coincide con patrón2
+    case patrón3:
+        # Código si expresión coincide con patrón3
+    case _:
+        # Código por defecto si no hay coincidencias
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+El funcionamiento es sencillo:
+
+   1. Se evalúa la expresión
+   2. Se compara su valor con cada patrón en orden
+   3. Se ejecuta el bloque de código del primer patrón que coincida
+   4. Si ningún patrón coincide, se ejecuta el bloque del caso comodín _ (si existe)
+
+──▶ Coincidencia con valores literales
+
+El uso más simple de match case es para comparar una variable con valores literales:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def describir_tipo(valor):
+    match valor:
+        case 0:
+            return "Es cero"
+        case 1:
+            return "Es uno"
+        case 2:
+            return "Es dos"
+        case _:
+            return f"Es otro número: {valor}"
+
+print(describir_tipo(1))  # Imprime: Es uno
+print(describir_tipo(5))  # Imprime: Es otro número: 5
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ El caso comodín
+
+El patrón case _: funciona como un comodín que coincide con cualquier valor, similar al else en una estructura if-elif-else. 
+Es una buena práctica incluirlo al final para manejar casos no contemplados:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def obtener_dia(numero):
+    match numero:
+        case 1:
+            return "Lunes"
+        case 2:
+            return "Martes"
+        case 3:
+            return "Miércoles"
+        case 4:
+            return "Jueves"
+        case 5:
+            return "Viernes"
+        case 6:
+            return "Sábado"
+        case 7:
+            return "Domingo"
+        case _:
+            return "Número de día inválido"
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Combinación de patrones
+
+Podemos combinar múltiples valores en un solo caso utilizando el operador | (OR):
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def clasificar_numero(n):
+    match n:
+        case 0:
+            return "Cero"
+        case 1 | 3 | 5 | 7 | 9:
+            return "Impar de un dígito"
+        case 2 | 4 | 6 | 8:
+            return "Par de un dígito"
+        case _:
+            return "Número de múltiples dígitos"
+
+print(clasificar_numero(5))  # Imprime: Impar de un dígito
+print(clasificar_numero(8))  # Imprime: Par de un dígito
+print(clasificar_numero(42)) # Imprime: Número de múltiples dígitos
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Coincidencia con condiciones (guardas)
+
+Podemos añadir condiciones adicionales a los patrones utilizando la palabra clave if:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def describir_numero(n):
+    match n:
+        case n if n < 0:
+            return "Número negativo"
+        case 0:
+            return "Cero"
+        case n if n % 2 == 0:
+            return "Número positivo par"
+        case _:
+            return "Número positivo impar"
+
+print(describir_numero(-5))  # Imprime: Número negativo
+print(describir_numero(0))   # Imprime: Cero
+print(describir_numero(6))   # Imprime: Número positivo par
+print(describir_numero(9))   # Imprime: Número positivo impar
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Coincidencia con tipos de datos
+
+Una característica poderosa de match case es la capacidad de coincidir con tipos de datos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def describir_tipo_dato(valor):
+    match valor:
+        case int():
+            return "Es un entero"
+        case float():
+            return "Es un número decimal"
+        case str():
+            return "Es una cadena de texto"
+        case list():
+            return "Es una lista"
+        case dict():
+            return "Es un diccionario"
+        case _:
+            return "Es otro tipo de dato"
+
+print(describir_tipo_dato(42))       # Imprime: Es un entero
+print(describir_tipo_dato(3.14))     # Imprime: Es un número decimal
+print(describir_tipo_dato("Hola"))   # Imprime: Es una cadena de texto
+print(describir_tipo_dato([1, 2, 3])) # Imprime: Es una lista
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Desestructuración de secuencias
+
+Una de las características más potentes de match case es la capacidad de desestructurar secuencias como listas y tuplas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def analizar_punto(punto):
+    match punto:
+        case (0, 0):
+            return "Origen"
+        case (0, y):
+            return f"En el eje Y, coordenada {y}"
+        case (x, 0):
+            return f"En el eje X, coordenada {x}"
+        case (x, y):
+            return f"En el punto ({x}, {y})"
+        case _:
+            return "No es un punto válido"
+
+print(analizar_punto((0, 0)))   # Imprime: Origen
+print(analizar_punto((0, 5)))   # Imprime: En el eje Y, coordenada 5
+print(analizar_punto((3, 0)))   # Imprime: En el eje X, coordenada 3
+print(analizar_punto((2, 4)))   # Imprime: En el punto (2, 4)
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, estamos desestructurando la tupla punto en sus componentes x e y, y utilizando esos valores en los patrones y en el código de respuesta.
+
+──▶ Desestructuración de listas
+
+También podemos desestructurar listas y utilizar el operador * para capturar múltiples elementos:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def analizar_lista(datos):
+    match datos:
+        case []:
+            return "Lista vacía"
+        case [único]:
+            return f"Lista con un solo elemento: {único}"
+        case [primero, segundo]:
+            return f"Lista con dos elementos: {primero} y {segundo}"
+        case [primero, *resto]:
+            return f"Lista con {len(datos)} elementos, empezando por {primero}"
+        case _:
+            return "No es una lista"
+
+print(analizar_lista([]))             # Imprime: Lista vacía
+print(analizar_lista([42]))           # Imprime: Lista con un solo elemento: 42
+print(analizar_lista([1, 2]))         # Imprime: Lista con dos elementos: 1 y 2
+print(analizar_lista([1, 2, 3, 4]))   # Imprime: Lista con 4 elementos, empezando por 1
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Desestructuración de diccionarios
+
+La coincidencia de patrones también funciona con diccionarios, permitiéndonos verificar la presencia de claves específicas:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def procesar_usuario(usuario):
+    match usuario:
+        case {"nombre": nombre, "edad": edad} if edad >= 18:
+            return f"{nombre} es mayor de edad"
+        case {"nombre": nombre, "edad": edad}:
+            return f"{nombre} es menor de edad"
+        case {"nombre": nombre}:
+            return f"{nombre} no ha especificado su edad"
+        case _:
+            return "Datos de usuario incompletos"
+
+print(procesar_usuario({"nombre": "Ana", "edad": 25}))  # Imprime: Ana es mayor de edad
+print(procesar_usuario({"nombre": "Luis", "edad": 16})) # Imprime: Luis es menor de edad
+print(procesar_usuario({"nombre": "Carlos"}))           # Imprime: Carlos no ha especificado su edad
+print(procesar_usuario({}))                             # Imprime: Datos de usuario incompletos
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+En este ejemplo, estamos verificando si el diccionario usuario contiene ciertas claves y extrayendo sus valores para usarlos en el código.
+Coincidencia con clases y objetos
+
+La estructura match case también puede trabajar con objetos, permitiendo coincidencias basadas en la estructura de la clase:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+class Punto:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+class Círculo:
+    def __init__(self, centro, radio):
+        self.centro = centro
+        self.radio = radio
+
+def describir_forma(forma):
+    match forma:
+        case Punto(x=0, y=0):
+            return "Punto en el origen"
+        case Punto(x=x, y=y):
+            return f"Punto en ({x}, {y})"
+        case Círculo(centro=Punto(x=0, y=0), radio=r):
+            return f"Círculo centrado en el origen con radio {r}"
+        case Círculo(centro=centro, radio=radio):
+            return f"Círculo en ({centro.x}, {centro.y}) con radio {radio}"
+        case _:
+            return "Forma desconocida"
+
+print(describir_forma(Punto(0, 0)))                # Imprime: Punto en el origen
+print(describir_forma(Punto(5, 3)))                # Imprime: Punto en (5, 3)
+print(describir_forma(Círculo(Punto(0, 0), 10)))   # Imprime: Círculo centrado en el origen con radio 10
+print(describir_forma(Círculo(Punto(2, 3), 5)))    # Imprime: Círculo en (2, 3) con radio 5
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Ejemplo práctico: Procesamiento de comandos
+
+Un caso de uso común para match case es el procesamiento de comandos o mensajes:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def procesar_comando(comando):
+    match comando.split():
+        case ["salir"]:
+            return "Saliendo del programa..."
+        case ["ayuda"]:
+            return "Comandos disponibles: salir, ayuda, sumar, restar"
+        case ["sumar", *numeros]:
+            return f"Suma: {sum(int(n) for n in numeros)}"
+        case ["restar", a, b]:
+            return f"Resta: {int(a) - int(b)}"
+        case ["hola", nombre]:
+            return f"Hola, {nombre}!"
+        case _:
+            return "Comando no reconocido. Escribe 'ayuda' para ver los comandos disponibles."
+
+print(procesar_comando("salir"))              # Imprime: Saliendo del programa...
+print(procesar_comando("ayuda"))              # Imprime: Comandos disponibles: salir, ayuda, sumar, restar
+print(procesar_comando("sumar 5 3 2"))        # Imprime: Suma: 10
+print(procesar_comando("restar 10 4"))        # Imprime: Resta: 6
+print(procesar_comando("hola Python"))        # Imprime: Hola, Python!
+print(procesar_comando("comando desconocido")) # Imprime: Comando no reconocido. Escribe 'ayuda' para ver los comandos disponibles.
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+──▶ Ventajas sobre if-elif-else
+
+La estructura match case ofrece varias ventajas sobre las estructuras if-elif-else tradicionales:
+
+   * Legibilidad: Para comparaciones múltiples, match case suele ser más legible y estructurado.
+   * Desestructuración: Permite extraer y utilizar componentes de estructuras de datos complejas de forma directa.
+   * Expresividad: Facilita expresar patrones complejos de forma concisa.
+   * Exhaustividad: El compilador puede verificar si todos los casos posibles están cubiertos.
+
+──▶ Consideraciones importantes
+
+Al utilizar match case, ten en cuenta lo siguiente:
+
+   * Está disponible solo a partir de Python 3.10, por lo que no funcionará en versiones anteriores.
+   * La coincidencia se realiza en orden secuencial, similar a if-elif-else.
+   * El caso comodín _ debe colocarse al final, ya que coincide con cualquier valor.
+   * Las variables definidas en un patrón están disponibles solo dentro del bloque de código correspondiente.
+
+──▶ Ejemplo avanzado: Analizador de expresiones
+
+Para ilustrar el poder de match case, veamos un ejemplo más complejo que analiza expresiones matemáticas simples:
+
+- - - - - - - - - - - - - - - - - - - - - - - 
+def evaluar_expresion(expr):
+    match expr:
+        case ("suma", a, b):
+            return evaluar_expresion(a) + evaluar_expresion(b)
+        case ("resta", a, b):
+            return evaluar_expresion(a) - evaluar_expresion(b)
+        case ("multiplicacion", a, b):
+            return evaluar_expresion(a) * evaluar_expresion(b)
+        case ("division", a, b):
+            divisor = evaluar_expresion(b)
+            if divisor == 0:
+                raise ValueError("División por cero")
+            return evaluar_expresion(a) / divisor
+        case ("negativo", a):
+            return -evaluar_expresion(a)
+        case int() | float() as num:
+            return num
+        case _:
+            raise ValueError(f"Expresión no válida: {expr}")
+
+# Ejemplos de uso
+expr1 = ("suma", 10, 5)                                      # 10 + 5
+expr2 = ("division", ("multiplicacion", 8, 4), 2)            # (8 * 4) / 2
+expr3 = ("resta", ("suma", 1, 2), ("negativo", 3))           # (1 + 2) - (-3)
+
+print(evaluar_expresion(expr1))  # Imprime: 15
+print(evaluar_expresion(expr2))  # Imprime: 16.0
+print(evaluar_expresion(expr3))  # Imprime: 6
+- - - - - - - - - - - - - - - - - - - - - - - 
+
+Este ejemplo muestra cómo match case puede utilizarse para implementar un evaluador recursivo de expresiones matemáticas representadas 
+como tuplas anidadas.
+
+La estructura match case es una adición valiosa a Python que facilita la escritura de código más expresivo y mantenible, especialmente 
+cuando se trabaja con estructuras de datos complejas y patrones de coincidencia elaborados.
+
+Aprendizajes de esta lección
+
+   * Comprender la sintaxis y funcionamiento básico de las estructuras condicionales if, elif y else en Python.
+   * Aprender a combinar condiciones usando operadores lógicos (and, or, not) para expresiones condicionales complejas.
+   * Utilizar el operador ternario para simplificar asignaciones condicionales y expresiones.
+   * Conocer la estructura match case para realizar coincidencia de patrones avanzada y su aplicación práctica.
+   * Aplicar buenas prácticas y patrones comunes en el uso de condicionales para escribir código legible y eficiente.
+
