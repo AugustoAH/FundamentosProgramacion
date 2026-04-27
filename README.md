@@ -1,6 +1,5 @@
 # Fundamentos de Programación en Python 🐍
 
-¡Bienvenido a mi repositorio de aprendizaje! Aquí documento mi progreso, ejercicios y apuntes sobre los fundamentos de Python. El objetivo de este espacio es organizar el material de clase y practicar la lógica de programación.
 
 ## 📂 Estructura del Repositorio
 
@@ -28,9 +27,11 @@ git clone https://github.com/AugustoAH/ClasePython.git
 ✨ *Proyecto mantenido por [Augusto Andrade Higuera](https://github.com/AugustoAH)*
 
 
-<h1 align="center"># Fundamentos de Programación en Python 🐍
-</h1>
-<h3 align="center">A passionate Mobile App developer from Pune India &#127470;&#127475</h3>
+<h1 align="center">Fundamentos de Programación en Python 🐍</h1>
+<h3 align="center">
+	¡Bienvenido a mi repositorio de aprendizaje! Aquí documento mi progreso, ejercicios y apuntes sobre los fundamentos de Python. El objetivo de este espacio es organizar el material de clase y practicar la lógica de programación.
+
+</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=100rabhcsmc&label=Profile%20views&color=0e75b6&style=flat" alt="100rabhcsmc" /> </p>
 
