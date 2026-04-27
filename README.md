@@ -41,19 +41,62 @@
 
 ---
 
-### 🛠️ Herramientas y Requisitos
-
+### 🛠️ Stack Tecnológico
 <p align="left">
-  <img src="https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" />
   <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" />
+  <img src="https://img.shields.io/badge/GitKraken-179287?style=flat-square&logo=gitkraken&logoColor=white" />
 </p>
+
+---
+
+## 📊 Estadísticas del Proyecto
+
+| Categoría | Estado | Descripción |
+| :--- | :---: | :--- |
+| **Nivel de Progreso** | 🟢 85% | Fundamentos, Estructuras y Lógica |
+| **Dificultad** | 🟡 Media | Algoritmos de control y gestión de datos |
+| **Total Carpetas** | 📁 7 | Organización modular del aprendizaje |
+| **Enfoque** | 💻 Práctico | 100% código ejecutable y documentado |
+
+---
 
 * **Lenguaje:** Python 3.x para todo el desarrollo.
 * **Editor:** Visual Studio Code (recomendado).
 
 ---
 
+## 🚀 Sobre este proyecto
+Este repositorio es mi bitácora de aprendizaje en el mundo de Python. Aquí no solo guardo código, sino que construyo soluciones lógicas a problemas reales.
+
+
+### 📁 Organización del Código
+| Módulo | Descripción | Progreso |
+| :--- | :--- | :--- |
+| 🐍 **Fundamentos** | Variables, tipos y estructuras. | `██████████ 100%` |
+| 📊 **Algoritmos** | Lógica de evaluación y cálculos. | `████████░░ 80%` |
+| 🎮 **Proyectos** | Pequeños juegos y simulaciones. | `██████░░░░ 60%` |
+
+---
+
+## 📈 Roadmap de Aprendizaje
+- [x] Variables y Tipos de Datos
+- [x] Estructuras de Control (If, While, For)
+- [ ] Listas y Diccionarios Avanzados
+- [ ] Programación Orientada a Objetos (POO)
+
+---
+## ⚡ Estadísticas de GitHub
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=AugustoAH&show_icons=true&theme=tokyonight&count_private=true" alt="Stats" height="170" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AugustoAH&layout=compact&theme=tokyonight&hide_border=true" alt="Top Langs" height="170" />
+</p>
+<br>
+<p align="center">
+  <i>"El código es poesía en movimiento."</i>
+</p>
+<br><br>
 <div align="center">
   <h3>
     <img src="https://media.giphy.com/media/iY8CRBdQXODJSCERIr/giphy.gif" width="30" height="30">
