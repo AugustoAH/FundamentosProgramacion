@@ -31,6 +31,7 @@
         <li>🛠️ <b><a href="./6.Talleres">Talleres</a></b>: Proyectos y retos extensos.</li>
         <li>🎮 <b><a href="./7.JuegosPython">JuegosPython</a></b>: Lógica recreativa.</li>
       </ul>
+		<br>
     </td>
     <td>
       <img src="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" width="300" alt="Python GIF">
