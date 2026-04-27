@@ -65,9 +65,6 @@
   <a href="https://github.com/AugustoAH" target="_blank">
     <img src="https://img.icons8.com/fluent/48/000000/github.png" />
   </a>
-  <a href="https://x.com/Augusto_A_H" target="_blank">
-    <img src="https://img.icons8.com/fluent/48/000000/twitter.png" />
-  </a>
   <a href="https://www.instagram.com/e_augustoah/" target="_blank">
     <img src="https://img.icons8.com/fluent/48/000000/instagram-new.png" />
   </a>
