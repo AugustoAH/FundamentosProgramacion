@@ -1,19 +1,3 @@
-# Fundamentos de Programación en Python 🐍
-
-
-
-
-
-
-## 🚀 Cómo usar este repositorio
-Para clonar este repositorio en tu máquina local, usa:
-bash
-git clone https://github.com/AugustoAH/ClasePython.git
-
-
----
-✨ *Proyecto mantenido por [Augusto Andrade Higuera](https://github.com/AugustoAH)*
-
 
 <h1 align="center">Fundamentos de Programación en Python 🐍</h1>
 <h4 align="center">
@@ -69,9 +53,7 @@ El contenido está organizado por categorías para facilitar la navegación:
 ## 🚀 Cómo usar este repositorio
 Para clonar este repositorio en tu máquina local, usa:
 bash
-git clone https://github.com/AugustoAH/ClasePython.git
-
-
+git clone https://github.com/AugustoAH/FundamentosProgramacion.git
 ---
 ✨ *Proyecto mantenido por [Augusto Andrade Higuera](https://github.com/AugustoAH)*
 
