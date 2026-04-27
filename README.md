@@ -28,10 +28,10 @@ git clone https://github.com/AugustoAH/ClasePython.git
 
 
 <h1 align="center">Fundamentos de Programación en Python 🐍</h1>
-<h3 align="center">
+<h4 align="center">
 	¡Bienvenido a mi repositorio de aprendizaje! Aquí documento mi progreso, ejercicios y apuntes sobre los fundamentos de Python. El objetivo de este espacio es organizar el material de clase y practicar la lógica de programación.
 
-</h3>
+</h4>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=100rabhcsmc&label=Profile%20views&color=0e75b6&style=flat" alt="100rabhcsmc" /> </p>
 
