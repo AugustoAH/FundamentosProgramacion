@@ -31,4 +31,115 @@ Implementar las condiciones necesarias para evaluar.
 la palabra (Salir).
 
 Solución del Ejercicio Propuesto    
+
+import random
+import time
+
+print("="*50)
+print(" PIEDRA, PAPEL O TIJERA ".center(50, "*"))
+print("="*50)
+
+# Opciones posibles
+opciones = ["piedra", "papel", "tijera"]
+
+while True:
+    # 1. Jugada del usuario
+    usuario = input("\n>> Elige (piedra, papel, tijera) o 'salir': ").lower()
+
+    if usuario == "salir":
+        print("Juego terminado.")
+        break
+
+    # 2. Jugada de la PC
+    pc = random.choice(opciones)
+    
+    print("Computadora eligiendo...")
+    time.sleep(0.8)
+    print(f"La PC lanzó: {pc.upper()}")
+
+    # 3. Comparación de resultados
+    if usuario == pc:
+        print(">>> EMPATE")
+    elif (usuario == "piedra" and pc == "tijera") or \
+         (usuario == "papel" and pc == "piedra") or \
+         (usuario == "tijera" and pc == "papel"):
+        print(">>> ¡GANASTE! ")
+    else:
+        print(">>> PERDISTE")
 '''
+
+import random
+import time
+
+# Definimos el arte ASCII
+rock = """
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+"""
+
+paper = """
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+"""
+
+scissors = """
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+"""
+
+print("="*50)
+print(" PIEDRA, PAPEL O TIJERA ".center(50, "*"))
+print("="*50)
+
+opciones = ["piedra", "papel", "tijera"]
+
+while True:
+    usuario = input("\n>> Elige (piedra, papel, tijera) o 'salir': ").lower()
+
+    if usuario == "salir":
+        print("¡Juego terminado!")
+        break
+
+    if usuario not in opciones:
+        print("Opción no válida, intenta de nuevo.")
+        continue
+
+    # Elegir imagen del usuario
+    if usuario == "piedra": print(rock)
+    elif usuario == "papel": print(paper)
+    else: print(scissors)
+
+    # Jugada de la PC
+    pc = random.choice(opciones)
+    print("Computadora eligiendo...")
+    time.sleep(0.8)
+    
+    print(f"La PC lanzó: {pc.upper()}")
+    # Elegir imagen de la PC
+    if pc == "piedra": print(rock)
+    elif pc == "papel": print(paper)
+    else: print(scissors)
+
+    # Lógica de resultados
+    if usuario == pc:
+        print(">>> EMPATE ")
+    elif (usuario == "piedra" and pc == "tijera") or \
+         (usuario == "papel" and pc == "piedra") or \
+         (usuario == "tijera" and pc == "papel"):
+        print(">>> ¡GANASTE! ")
+    else:
+        print(">>> PERDISTE ")
+    
+    print("-" * 50)
