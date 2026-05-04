@@ -1,0 +1,74 @@
+
+Las funciones nos permiten encapsular un bloque de instrucciones para que podamos utilizarlo
+varias veces dentro de nuestros programas. Para hacer esto, es necesario identificar ese 
+bloque de instrucciones usando la sintaxis de funciones que incluye Python.
+
+Características de las funciones en Python
+
+>/ Tienen un nombre para ser identificadas.
+>/ Ejecutan una tarea concreta.
+>/ Pueden recibir parámetros para su ejecución.
+>/ Puede devolver un resultado como acción de su ejecución.
+
+Importante: Tanto los parámetros que puede recibir, como el resultado que devuelven, 
+estos dos elementos que conforman la función son opcionales, es decir se pueden
+presentar las siguintes situaciones:
+
+>/ Funciones que no reciben parametros y no devuelven resultados.
+>/ Funciones que reciben parametros y no devuelven resultados.
+>/ Funciones que no reciben parametros y devuelven resultados.
+>/ Funciones que reciben parametros y devuelven resultados.
+
+Las Funciones se definen con la palabra reservada (def)
+
+Sintaxis de la Funcion en Python
+
+def NOMBRE_FUNCION(ARG1, ARG2, ....ARG_n):
+    sentencia1
+    sentencia2
+    ...
+    sentencia_n
+    return OBJETO_DEVUELTO
+
+1) def : Palabra reservada que refiere a una función en Python.
+2) NOMBRE_FUNCION: identificador que se le asigna a la función para poder llamarla cuando
+   se requiera. Se recomienda utilizar nombres de funciones descriptivos que representen
+   lo que la función hace.
+3) Parametros (ARG_n): seran valores u objetos que se necesitan para ejecutar la función.
+   Estos parametros deben ser separados por comas (,) y deben estar contenidos entre los 
+   parentesis, en caso de que nuestra función no necesite parametros para ejecutar su 
+   acción estos de dejan vaciós.
+4) Bloque de instrucciones: bloque de código que ejecuta la función.
+5) return: palabra reservada en python y debe asociarse a un identificador (variable) para
+   que la función pueda retornar un valor ejecutado, este es opcional.
+
+Para poder utilizar la función en Python desde el código fuente se debe hacer siguiendo
+la siguiente sintaxis.
+
+variable = NOMBRE_FUNCION(ARG1, ARG2, ....ARG_n)
+
+1) variable: almacena el valor que devuelve la función. Es opcional, ya que se suprime
+si la función no devuelve un valor.
+2) NOMBRE_FUNCION: nombre de la función que vamos a utilizar.
+3) parámetros: parámetros de entrada que tiene la función y se escriben separados por
+comas en caso de ser meas de uno. Es opcional, por lo que si la función no recibe parámetros
+se suprimirá.
+
+   
+Ejemplo función para calcular el area de un triangulo
+
+def area_triangulo(base, altura):
+    area = (base*altura)/2
+    return area
+
+Para ejecutar la función trahemos su nombre desde el bloque principal 
+
+area_triangulo(6,5) # Devolverá 15.0
+
+./ Resumen: " El uso de funciones simplifica el código fuente, permite una mejor organización
+del código y apoya en la reutilización de codigo.
+
+
+
+
+
